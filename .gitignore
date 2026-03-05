@@ -1,0 +1,37 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+build/
+dist/
+*.egg-info/
+
+# Environments
+.env
+*.env
+
+# Project specific
+local_models/
+faiss_index_store/
+extraction_checkpoint.json
+datasets/
+final_datasets/
+all-MiniLM-L6-v2/
+NER/
+sample_email_by_category/
+*.csv
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
