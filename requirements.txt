@@ -1,26 +1,27 @@
+# Core Data & NLP
 pandas
+numpy
 nltk
+tqdm
+regex
+
+# Notebook Environment
 ipython
 ipykernel
-tqdm
-click==8.3.1
-colorama==0.4.6
-comm==0.2.3
-debugpy==1.8.20
-decorator==5.2.1
-executing==2.2.1
-regex==2026.2.19
-six==1.17.0
-tornado==6.5.4
-traitlets==5.14.3
-tzdata==2025.3
-wcwidth==0.6.0
-neo4j
+
+# AI & LLM (Google Gemini)
 google-generativeai
 langchain-google-genai
-python-dotenv
+
+# Vector Storage (Pinecone)
+pinecone-client
+langchain-pinecone
+
+# Graph Database (Neo4j)
+neo4j
+
+# LangChain Ecosystem & Utils
+langchain-core
 langchain-community
-langchain-huggingface
-langchain-groq
-faiss-cpu
-sentence-transformers
+pydantic
+python-dotenv

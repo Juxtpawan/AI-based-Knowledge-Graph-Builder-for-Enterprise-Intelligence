@@ -2,7 +2,7 @@
 
 This project is a comprehensive pipeline designed to transform unstructured enterprise data (like the Enron email corpus) into a structured Knowledge Graph and a Hybrid RAG (Retrieval-Augmented Generation) system. 
 
-It combines advanced NLP, Graph Databases (Neo4j), and LLMs (Gemini/Groq) to provide deep insights into corporate communication, entities, and relationships.
+It combines advanced NLP, Graph Databases (Neo4j), Vector Databases (Pinecone), and LLMs (Gemini) to provide deep insights into corporate communication, entities, and relationships.
 
 ## 🗺️ Architectural Overview
 
@@ -10,37 +10,32 @@ The following diagram shows the end-to-end flow from raw data to an intelligent 
 
 ```mermaid
 graph TD
-    A["Raw Enron Data (datasets/)"] --> B["Preprocessing Pipeline (Notebook)"]
+    A["Raw Enron Data (datasets/)"] --> B["1. Preprocessing (miles1.ipynb)"]
     B --> C["Cleaned & Enriched CSVs (sample_email_by_category/)"]
-    C --> D["Extraction Engine (LLM-based NER/RE)"]
+    C --> D["2. Extraction Engine (miles2extract_ent_rel.ipynb)"]
     D --> E["NER & Relationship Triples (NER/)"]
-    E --> F["Neo4j Graph Ingestion"]
+    E --> F["3. Graph Ingestion (miles2neo4j_storage.ipynb)"]
     F --> G["Neo4j Knowledge Graph"]
-    C --> H["FAISS Vector Indexing"]
-    H --> I["Vector Store"]
-    G --> J["Hybrid RAG Pipeline"]
-    I --> J
-    J --> K["Intelligent AI Assistant"]
+    C --> H["4. Hybrid RAG (miles3hybridRAG.ipynb)"]
+    G --> H
+    H --> I["Intelligent AI Insights"]
 ```
 
 ---
 
 ## 🚀 Core Components
 
-### 1. Preprocessing Pipeline (`preprocess_pipeline.ipynb`)
-Handles initial data ingestion, multi-encoding recovery, and 3-layer body cleaning (removing markers, quotes, and boilerplate). It produces the enriched datasets found in `sample_email_by_category/`.
+### 1. Data Processing & Enrichment (`miles1.ipynb`)
+Handles initial data ingestion from the raw Enron corpus, multi-encoding recovery, and a multi-stage body cleaning process. It generates analytical features like word counts, time-of-day categories, and initial topic classifications.
 
-### 2. Extraction Engine (`extraction_engine.py`)
-Uses LLMs (Google Gemini or Groq) to perform high-precision Named Entity Recognition (NER) and Relationship Extraction (RE). It parses cleaned emails into structured triples.
+### 2. AI Intelligence Layer (`miles2extract_ent_rel.ipynb`)
+The "brain" of the extraction process. It uses LLMs (Gemini 3.1 Flash Lite) to exhaustively extract Named Entities and Semantic Relationships from cleaned emails, producing structured knowledge triples.
 
-### 3. Neo4j Storage (`neo4j_storage.py`)
-Orchestrates the ingestion of people, metrics, emails, and extracted triples into a Neo4j Graph Database. It establishes complex relationships like `SENT`, `TO`, `WORKS_FOR`, and `RELATED_TO`.
+### 3. Graph Ingestion & Storage (`miles2neo4j_storage.ipynb`)
+Orchestrates the transformation of processed CSVs into a 6-layer Neo4j Knowledge Graph. It builds the identity profiles, communication backbone, and integrates the AI-extracted triples.
 
-### 4. Hybrid RAG Pipeline (`rag_pipeline.py`)
-The final intelligence layer that combines:
-- **Semantic Search**: FAISS vector search over cleaned email bodies.
-- **Structured Retrieval**: Cypher queries against the Neo4j Knowledge Graph.
-- **Answer Generation**: Gemini-powered synthesis of both contexts to answer user queries accurately.
+### 4. Hybrid RAG Exploration (`miles3hybridRAG.ipynb`)
+The final intelligence layer that combines semantic vector search and structured graph retrieval. It allows for interactive querying of the Knowledge Graph and Vector store within a notebook environment.
 
 ---
 
@@ -49,16 +44,21 @@ The final intelligence layer that combines:
 ### 1. Prerequisites
 - **Python 3.10+**
 - **Neo4j Database** (Local or Aura)
-- **API Keys**: Google Gemini (GEMINI_AI_API_KEY) and/or Groq (GROQ_API_KEY).
+- **Pinecone Account** (For vector storage)
+- **API Keys**: 
+    - `GEMINI_AI_API_KEY` (Google AI)
+    - `PINECONE_API_KEY` (Pinecone)
 
 ### 2. Setup Environment
 ```bash
 git clone https://github.com/Juxtpawan/AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence.git
 cd AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence
 python -m venv .venv
+
 # Windows
 .venv\Scripts\activate
-# Install deps
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
@@ -68,34 +68,33 @@ Create a `.env` file in the root directory:
 NEO4J_URI=bolt://localhost:7687
 NEO4J_USER=neo4j
 NEO4J_PASSWORD=your_password
+
 GEMINI_AI_API_KEY=your_gemini_key
+PINECONE_API_KEY=your_pinecone_key
 ```
 
-### 4. Run the Pipeline
-1. **Extract Knowledge**:
-   ```bash
-   python extraction_engine.py
-   ```
-2. **Ingest to Graph**:
-   ```bash
-   python neo4j_storage.py
-   ```
-3. **Build Vector Index**:
-   ```bash
-   python rag_pipeline.py --build
-   ```
-4. **Query the System**:
-   ```bash
-   python rag_pipeline.py --query "Who was involved in the California power crisis?"
-   ```
+1. **Prepare Data & Enrich**:
+   Run `miles1.ipynb` to process raw data.
+2. **Extract AI Intelligence**:
+   Run `miles2extract_ent_rel.ipynb` to generate NER and Relationship triples.
+3. **Build Knowledge Graph**:
+   Run `miles2neo4j_storage.ipynb` to ingest data into Neo4j.
+4. **Hybrid RAG Querying**:
+   Use `miles3hybridRAG.ipynb` to perform complex queries using Vector and Graph context.
 
 ---
 
 ## 📂 Project Structure
-- `rag_pipeline.py`: Main entry point for Hybrid RAG.
-- `neo4j_storage.py`: Neo4j ingestion logic.
-- `extraction_engine.py`: LLM-based entity and relationship extractor.
-- `sample_email_by_category/`: The core cleaned dataset.
-- `NER/`: Extracted knowledge triples (Entities and Relationships).
-- `datasets/`: Raw input CSVs (ignored by git).
-- `final_datasets/`: Intermediate preprocessing results.
+
+### 📓 Notebooks (The "Miles" Series)
+- `miles1.ipynb`: Data ingestion, cleaning, and enrichment.
+- `miles2extract_ent_rel.ipynb`: AI-driven entity and relationship extraction.
+- `miles2neo4j_storage.ipynb`: Knowledge Graph construction in Neo4j.
+- `miles3hybridRAG.ipynb`: Interactive Hybrid RAG development.
+
+### 📊 Data & Knowledge
+- `sample_email_by_category/`: Core cleaned and enriched dataset (CSV).
+- `NER/`: Structured intelligence triples (Entities & Relationships).
+- `final_datasets/`: Intermediate processed datasets.
+- `datasets/`: Raw input CSVs (Enron corpus).
+- `logs/`: Pipeline execution logs.
