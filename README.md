@@ -16,7 +16,7 @@ graph TD
     D --> E["NER & Relationship Triples (NER/)"]
     E --> F["3. Graph Ingestion (miles2neo4j_storage.ipynb)"]
     F --> G["Neo4j Knowledge Graph"]
-    C --> H["4. Hybrid RAG (miles3hybridRAG.ipynb)"]
+    C --> H["4. Hybrid RAG (miles3hybridRAG.py)"]
     G --> H
     H --> I["Intelligent AI Insights"]
 ```
