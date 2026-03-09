@@ -80,7 +80,7 @@ PINECONE_API_KEY=your_pinecone_key
 3. **Build Knowledge Graph**:
    Run `miles2neo4j_storage.ipynb` to ingest data into Neo4j.
 4. **Hybrid RAG Querying**:
-   Use `miles3hybridRAG.ipynb` to perform complex queries using Vector and Graph context.
+   Use `miles3hybridRAG.py` to perform complex queries using Vector and Graph context.
 
 ---
 
@@ -90,7 +90,7 @@ PINECONE_API_KEY=your_pinecone_key
 - `miles1.ipynb`: Data ingestion, cleaning, and enrichment.
 - `miles2extract_ent_rel.ipynb`: AI-driven entity and relationship extraction.
 - `miles2neo4j_storage.ipynb`: Knowledge Graph construction in Neo4j.
-- `miles3hybridRAG.ipynb`: Interactive Hybrid RAG development.
+- `miles3hybridRAG.py`: Interactive Hybrid RAG development.
 
 ### 📊 Data & Knowledge
 - `sample_email_by_category/`: Core cleaned and enriched dataset (CSV).
