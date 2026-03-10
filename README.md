@@ -34,7 +34,7 @@ The "brain" of the extraction process. It uses LLMs (Gemini 3.1 Flash Lite) to e
 ### 3. Graph Ingestion & Storage (`miles2neo4j_storage.ipynb`)
 Orchestrates the transformation of processed CSVs into a 6-layer Neo4j Knowledge Graph. It builds the identity profiles, communication backbone, and integrates the AI-extracted triples.
 
-### 4. Hybrid RAG Exploration (`miles3hybridRAG.ipynb`)
+### 4. Hybrid RAG Exploration (`miles3hybridRAG.py`)
 The final intelligence layer that combines semantic vector search and structured graph retrieval. It allows for interactive querying of the Knowledge Graph and Vector store within a notebook environment.
 
 ---
