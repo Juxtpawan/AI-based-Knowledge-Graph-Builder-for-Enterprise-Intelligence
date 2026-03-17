@@ -16,7 +16,7 @@ graph TD
     D --> E["NER & Relationship Triples (NER/)"]
     E --> F["3. Graph Ingestion (miles2neo4j_storage.ipynb)"]
     F --> G["Neo4j Knowledge Graph"]
-    C --> H["4. Hybrid RAG (miles3hybridRAG.ipynb)"]
+    C --> H["4. Hybrid RAG (miles3hybridRAG.py)"]
     G --> H
     H --> I["Intelligent AI Insights"]
 ```
@@ -34,7 +34,7 @@ The "brain" of the extraction process. It uses LLMs (Gemini 3.1 Flash Lite) to e
 ### 3. Graph Ingestion & Storage (`miles2neo4j_storage.ipynb`)
 Orchestrates the transformation of processed CSVs into a 6-layer Neo4j Knowledge Graph. It builds the identity profiles, communication backbone, and integrates the AI-extracted triples.
 
-### 4. Hybrid RAG Exploration (`miles3hybridRAG.ipynb`)
+### 4. Hybrid RAG Exploration (`miles3hybridRAG.py`)
 The final intelligence layer that combines semantic vector search and structured graph retrieval. It allows for interactive querying of the Knowledge Graph and Vector store within a notebook environment.
 
 ---
@@ -80,7 +80,7 @@ PINECONE_API_KEY=your_pinecone_key
 3. **Build Knowledge Graph**:
    Run `miles2neo4j_storage.ipynb` to ingest data into Neo4j.
 4. **Hybrid RAG Querying**:
-   Use `miles3hybridRAG.ipynb` to perform complex queries using Vector and Graph context.
+   Use `miles3hybridRAG.py` to perform complex queries using Vector and Graph context.
 
 ---
 
@@ -90,7 +90,7 @@ PINECONE_API_KEY=your_pinecone_key
 - `miles1.ipynb`: Data ingestion, cleaning, and enrichment.
 - `miles2extract_ent_rel.ipynb`: AI-driven entity and relationship extraction.
 - `miles2neo4j_storage.ipynb`: Knowledge Graph construction in Neo4j.
-- `miles3hybridRAG.ipynb`: Interactive Hybrid RAG development.
+- `miles3hybridRAG.py`: Interactive Hybrid RAG development.
 
 ### 📊 Data & Knowledge
 - `sample_email_by_category/`: Core cleaned and enriched dataset (CSV).
