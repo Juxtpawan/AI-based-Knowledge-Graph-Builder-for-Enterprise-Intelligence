@@ -32,8 +32,6 @@ venv.bak
 # Persistence & Data
 datasets/
 final_datasets/
-NER/
-sample_email_by_category/
 extraction_checkpoint.json
 *.csv
 *.log

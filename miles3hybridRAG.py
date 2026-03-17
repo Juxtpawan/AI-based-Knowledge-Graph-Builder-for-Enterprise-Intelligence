@@ -137,7 +137,7 @@ def build_vector_index(email_csv):
             
             msg_id = str(row['message_id'])
             metadata = {
-                "source": "email", 
+                "source": "email",
                 "message_id": msg_id, 
                 "subject": str(row.get('subject', 'No Subject'))
             }
@@ -265,10 +265,13 @@ def retrieve_hybrid_context(query):
     # 1. Vector Search (Semantic)
     vector_docs = retrieve_vector_context(query)
     vector_context = "\n".join([f"- {doc.page_content}" for doc in vector_docs])
+    # print(f"\n--- SEMANTIC SNIPPETS (Vector Search) ---\n{vector_context}\n")
     
     # 2. Graph Search (Structured)
     graph_facts = retrieve_graph_context(query)
     graph_context = "\n".join(graph_facts)
+    # print(f"\n--- STRUCTURED KNOWLEDGE ---\n{graph_context}\n")
+
     
     # Format for the LLM
     full_context = f"--- STRUCTURED KNOWLEDGE ---\n{graph_context}\n\n--- SEMANTIC SNIPPETS ---\n{vector_context}"
