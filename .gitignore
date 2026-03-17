@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -34,6 +34,10 @@ datasets/
 final_datasets/
 extraction_checkpoint.json
 *.csv
+!NER/entities/entities.csv
+!NER/relationships/relationships.csv
+!sample_email_by_category/
+!sample_email_by_category/*.csv
 *.log
 *.json
 

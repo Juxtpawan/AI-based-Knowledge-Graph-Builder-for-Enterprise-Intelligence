@@ -1,0 +1,975 @@
+employee_id,email_address,name
+9e73aae59d690b57,1800flowers.93690065@s2u2.com,"""1-800-FLOWERS.COM"" <1800Flowers.93690065@s2u2.com>"
+a6a33e84dda0e3b1,40enron@enron.com,eSource@ENRON <IMCEANOTES-eSource+40ENRON@ENRON.com>
+ded2dbb22fcddfbb,a..bibi@enron.com,Unknown
+4ff02b50c990a26b,aavalos@epelectric.com,Unknown
+21b80ea91f00dc36,abb@eslawfirm.com,Unknown
+f2e793e37cc7b46a,ack@aelaw.com,"""Amie C. King"" <ack@aelaw.com>"
+6b96e74197a9a6ef,acomnes@enron.com,Unknown
+91b23244fff1588e,ad046@detroit.freenet.org,Unknown
+64a4ad3ad66e8f6e,adriane.schultea@enron.com,Adriane Schultea
+5280fec07cdf7027,aherrera@statoilenergy.com,"""Anita Herrera"" <aherrera@statoilenergy.com>"
+c4d9032ee3f469a7,aimee.shek@enron.com,Unknown
+db5d35576944e596,akatz@eei.org,"""Andy Katz"" <AKatz@eei.org>"
+d377205f68f73bb5,alan.aronowitz@enron.com,Alan Aronowitz
+bf46e7fa4a6348e4,alan.comnes@enron.com,"Comnes, Alan </O=ENRON/OU=NA/CN=RECIPIENTS/CN=ACOMNES>"
+652e99b099c0f8c2,alan_reid@pcp.ca,Unknown
+a3812f0e49b9c97d,alb@cpuc.ca.gov,"""Biren, Andrea"" <alb@cpuc.ca.gov>"
+1115596633de51c6,albino.lopez@enron.com,Unknown
+318b7e2b631ae99d,alerts-breakingnews@yahoo-inc.com,"""Yahoo! Alerts - Breaking News"" <alerts-breakingnews@yahoo-inc.com>"
+ffe0d77c27a6fef0,alewis@ect.enron.com,Unknown
+b14154dbcc31e93e,alex.huang@enron.com,Unknown
+bea80a9926eeb514,alex@pira.com,"""Alex Golubov"" <alex@pira.com>"
+45157c05c2492c2d,alexanms@sce.com,Unknown
+34f23041771efd4a,alexm@calpine.com,Unknown
+51602e882ef275ce,ali.ahmed@enron.com,Unknown
+d858b87269d07603,alicia.perkins@enron.com,Unknown
+aeb0d03415a010a6,all.america@enron.com,Unknown
+b304ce08a92f61d9,all.houston@enron.com,Unknown
+a6c0dcbfe18c953c,all.worldwide@enron.com,Unknown
+8cf86abcd33eb460,alumnijobs@anderson.ucla.edu,Unknown
+c5fb88ce0d65c49c,amelia.alland@enron.com,Amelia Alland
+ffc2b28cffcbf14c,ami.chokshi@enron.com,Ami Chokshi
+4a945abe7730329e,amitava.dhar@enron.com,Unknown
+c3817996ad8f6fa7,amr.ibrahim@enron.com,Amr Ibrahim
+199d71276c4465c9,amroperations@csc.com,Unknown
+896be8a777a5cee5,amy.copeland@enron.com,Amy Copeland
+5fc5dc8cb412bfce,amy.fitzpatrick@enron.com,Amy FitzPatrick
+adcaf39174391353,anders.ryrfeldt@enron.com,Anders Ryrfeldt
+513424b78c73d7be,andrea.bertone@enron.com,Andrea Bertone
+d3470d3d80046f47,andrea.guillen@enron.com,Andrea R Guillen
+12a353025ea3cece,andrea.richards@enron.com,"Richards, Andrea </O=ENRON/OU=NA/CN=RECIPIENTS/CN=ARICHARD>"
+5caead7eb50eedf7,andrea.williams@enron.com,Unknown
+170978ecb74b6b6d,andreas.schoepf@liwest.at,andreas.schoepf@liwest.at
+9336d5755f1bba47,andrew.edison@enron.com,Andrew Edison
+9967e6eaa5b07d92,andrew.fastow@enron.com,Unknown
+b0028fc1119cd7de,andy.zipper@enron.com,"Zipper, Andy </O=ENRON/OU=NA/CN=RECIPIENTS/CN=AZIPPER>"
+6ffb350274d63e79,angela.schwarz@enron.com,Unknown
+776953b1a5c4b02d,angeles.beltri@enron.com,Unknown
+d3f9934546dfa727,anita.dupont@enron.com,Unknown
+6b128e38ea096b8b,ann.schmidt@enron.com,Unknown
+16708410dbd38b99,ann.white@enron.com,Ann Elizabeth White
+28b19bbc73b88c20,anna.santucci@enron.com,Unknown
+39cf702130bff689,anne.bike@enron.com,Unknown
+b22aa0433fefe39c,announcements.enron@enron.com,Enron General Announcements </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MBX_ANNCENRON>
+41afa23e287c1204,araceli.romero@enron.com,Araceli Romero
+19e05cc24880bf47,arlanz@mexis.com,arlanz@mexis.com (Armando Lanz)
+d2a0fbefc129d248,aroffwarg@bracepatt.com,"""Aaron Roffwarg"" <aroffwarg@bracepatt.com>"
+3727dc668c47ba8b,articles-email@ms1.lga2.nytimes.com,articles-email@ms1.lga2.nytimes.com
+188449db81d7741d,ava.garcia@enron.com,Unknown
+215ee7e7fc14c2c2,babbio@verizon.com,Unknown
+9fe68662f5800647,barbara.gray@enron.com,Barbara N Gray
+3ef4260afb39541f,barbo@enron.com,Unknown
+9ef6f14ab49b2eae,barry.tycholiz@enron.com,Barry Tycholiz
+2f31fb1b0e4269c4,bart.burk@enron.com,Unknown
+e8fa4d6a4a69539a,bartlette@mail.utexas.edu,bartlette <bartlette@mail.utexas.edu>
+ccd6fef39a67b17c,bcherry@sempra.com,"""Cherry, Brian - TPBKC"" <BCherry@sempra.com>"
+b5ace4ba7b5c547a,becky.spencer@enron.com,Becky Spencer
+53d45e5a715b2b5e,ben.f.jacoby@enron.com,Unknown
+bf50db25e6c08c5e,ben.jacoby@enron.com,Ben F Jacoby <Ben F Jacoby/HOU/ECT@ECT>
+c4e451983c1470f7,benjamin.bell@enron.com,Benjamin Bell
+659293742cc02304,benjamin.rogers@enron.com,Benjamin Rogers
+de5f32f39131422f,bernadette.hawkins@enron.com,Bernadette Hawkins
+e9ca1d737da971d0,beth.apollo@enron.com,"Apollo, Beth </O=ENRON/OU=NA/CN=RECIPIENTS/CN=BAPOLLO>"
+72b0a86f814e284f,beth.cherry@enform.com,beth.cherry@enform.com@ENRON <IMCEANOTES-beth+2Echerry+40enform+2Ecom+40ENRON@ENRON.com>
+bd20124263d0c51e,beth.miertschin@enron.com,Beth Miertschin
+ff610fc9bfd2ebde,beverly.aden@enron.com,Unknown
+f6d636758d71d9d1,bhansen@lhom.com,Unknown
+b27c1abdd07cd1e4,bill.gathmann@enron.com,Unknown
+d9131e5fd2370447,bill.votaw@enron.com,Unknown
+b0bd3e61bb7cd37d,billy.lemmons@enron.com,Billy Lemmons
+3ccc3635a058479c,bob.bowen@enron.com,Bob Bowen
+6f9155eedb5b93c6,bob.lee@enron.com,Unknown
+dd40b38fe3a92b7c,bob.shults@enron.com,Bob Shults
+7bcbb8e580dc2213,body.shop@enron.com,"Shop, Body </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=822681F3-F80F85B8-86256689-51487A>"
+356e4bb121579de4,boyle@enron.com,"Boyle, Sean"
+20fdd0ffc628660d,brad.blesie@enron.com,Unknown
+fe0faa442c0612c7,brad.mckay@enron.com,Unknown
+84cf2608ec4b3319,brant.reves@enron.com,Brant Reves
+4ee96b204cf29269,breakingnews@cnn.com,BreakingNews@CNN.COM <IMCEANOTES-BreakingNews+40CNN+2ECOM@ENRON.com>
+7ef3628eb0873815,brenda.herod@enron.com,Brenda F Herod
+8e4772a3cfe50ed1,brenda.whitehead@enron.com,Brenda Whitehead
+77bca1ccf8d64621,brendan.devlin@enron.com,Brendan Devlin
+bc0a3edc6d420eaa,brian.dawson@enron.com,Brian K Dawson
+a937d953083852c4,bridgette.anderson@enron.com,Unknown
+a7bddccb21406ce2,britaldo.soares@enron.com,Britaldo Soares
+c6765ed1549b71c1,bruce.golden@enron.com,Bruce Golden
+89b14fdcf4e64ac3,bryan.seyfried@enron.com,Bryan Seyfried
+9682ab4a37d327f0,bryce.baxter@enron.com,Unknown
+10f279c79756a7e2,buckley@enron.com,"Buckley, Karen"
+8fb1eb9af0bb24e2,businessweek_online@clickaction.net,BusinessWeek_Online@clickaction.net
+fbeec72bca1f9ed6,c..gossett@enron.com,Unknown
+2f163b8c0caca24a,c..kenne@enron.com,Unknown
+3ec3e68924a77d65,cara.semperger@enron.com,Cara Semperger <Cara Semperger/PDX/ECT@ECT>
+b04748962f898f15,career.management.center@anderson.ucla.edu,Career Management Center <career.management.center@anderson.ucla.edu> <IMCEANOTES-Career+20Management+20Center+20+3Ccareer+2Emanagement+2Ecenter+40anderson+2Eucla+2Eedu+3E@ENRON.com>
+3fccede8dd876b02,carl.carter@enron.com,"Carter, Carl </O=ENRON/OU=NA/CN=RECIPIENTS/CN=CCARTER4>"
+3c69ecb7b6c60957,carlos.sole@enron.com,Carlos Sole
+1d4877d0c55bea63,carol.clair@enron.com,Carol St Clair
+ca58348753af6bcf,carole.frank@enron.com,Unknown
+d573936c3476fb54,caroline.emmert@enron.com,"Emmert, Caroline </O=ENRON/OU=NA/CN=RECIPIENTS/CN=CEMMERT>"
+3cd91ef7bab3e7e2,carolyn.george@enron.com,Carolyn George
+5de89015c0d75ea3,carrie.robert@enron.com,Carrie A Robert
+d4163692ee7a22ff,cashhorse@ozbytes.net.au,cashhorse@ozbytes.net.au@ENRON <IMCEANOTES-cashhorse+40ozbytes+2Enet+2Eau+40ENRON@ENRON.com>
+c930859c62f195dd,cassandra.schultz@enron.com,"Schultz, Cassandra </O=ENRON/OU=NA/CN=RECIPIENTS/CN=CSCHULT>"
+e73274169945fcae,cathy@pira.com,"""Cathy Lopez"" <cathy@pira.com>"
+5f07dad9e476e22b,ccampbell@kslaw.com,"""Campbell, Carolyn"" <CCampbell@KSLAW.com>"
+037a6a83e1c90bdf,cecklund@llgm.com,Unknown
+e1409a1195a7a08e,celeste.roberts@enron.com,Celeste Roberts
+fbdb84a09fc0fa1b,cephus.gunn@enron.com,Unknown
+50aaebdfbb6c0eff,charlene.jackson@enron.com,Charlene Jackson
+4411b0d98e4c8f74,charles.weldon@enron.com,"Weldon, V. Charles </O=ENRON/OU=NA/CN=RECIPIENTS/CN=VWELDON>"
+3fa28818a305f7bc,cheryl.johnson@enron.com,"Johnson, Cheryl </O=ENRON/OU=NA/CN=RECIPIENTS/CN=CJOHNSO5>"
+97ab4acfb3e14b44,cheryl.kuehl@enron.com,Cheryl Kuehl
+cfde0a6b9ebde134,cheryl.nelson@enron.com,Cheryl Nelson
+4f17b1cc28b6abaa,cheryl.wilchynski@enron.com,Unknown
+3cc59e805fc11dcd,chris.abel@enron.com,Chris Abel
+dc8bb9265cca198f,chris.ahn@enron.com,Unknown
+6ea01fbe6df46deb,chris.booth@enron.com,Chris Booth
+17dbfb55f42e4c77,chris.dorland@enron.com,Chris Dorland
+9ba3d2c8d23b56b8,chris.gaskill@enron.com,"Gaskill, Chris </O=ENRON/OU=NA/CN=RECIPIENTS/CN=CGASKILL>"
+f80e45a8a2412a54,chris.germany@enron.com,Chris Germany
+711f66aa94d1a082,chris.hyde@enron.com,"Hyde, Chris </O=ENRON/OU=NA/CN=RECIPIENTS/CN=CHYDE3>"
+72aefc85a065789a,chris.lambert@enron.com,Unknown
+deac844afb20eb07,chris.long@enron.com,Chris Long
+ab2ac479caa43c2e,chris.schomer@enron.com,Unknown
+707ecdd79a9fd5a7,chris.stokley@enron.com,"Stokley, Chris </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MSTOKLE>"
+cd8c01095fb84a00,christi.nicolay@enron.com,Christi L Nicolay
+cec49f6ddd144d41,christian.yoder@enron.com,Christian Yoder
+f8ba4836dc5eaaf8,christopher.calger@enron.com,Christopher F Calger
+f48aaf65f7d58fb7,cindy.horn@enron.com,Unknown
+471e1246ec8b9cb3,cindy.olson@enron.com,Unknown
+778a8bb49d8599b3,cindy.stark@enron.com,Cindy Stark
+ca50c32696f15578,cindy.stokes@enron.com,Cindy Stokes
+6e84dc0649b8cfac,cindy.vachuska@enron.com,Unknown
+f2d7e42b265ecc35,cindy.ward@enron.com,Unknown
+d772b1fb187ba65d,citymgr@southside-place.org,David Moss <CityMgr@southside-place.org>
+2c7c3055171719f5,cliff.baxter@enron.com,Unknown
+b11d70f161de0043,clint.dean@enron.com,Clint Dean
+64e0f0119e0d569a,clint.freeland@enron.com,Clint Freeland
+2a37245361db5862,cmicheli@carpentersnodgrass.com,"""Chris Micheli"" <cmicheli@carpentersnodgrass.com>"
+716b49424261b6a9,colin.tonks@enron.com,"Tonks, Colin </O=ENRON/OU=NA/CN=RECIPIENTS/CN=CTONKS>"
+6778fd4a4bd8c25a,colleen.sullivan@enron.com,Colleen Sullivan
+fccb5d1b518d0461,colwell@enron.com,"Colwell, Wes"
+6fc8da231ad46b8d,connie.sutton@enron.com,Connie Sutton
+9caf0d539aba5b27,constance.charles@enron.com,"Charles, Constance </O=ENRON/OU=NA/CN=RECIPIENTS/CN=CCHARLE>"
+b75a00168872a354,contact@weforum.org,Unknown
+ac28f0d1b3c2664d,cooper.richey@enron.com,Cooper Richey
+7462b33c4a3ed6e9,cpjohnson@brobeck.com,Unknown
+90522019692df0bf,customerservice@1800flowers.com,customerservice@1800flowers.com
+791331db406f2780,custserv@gap.com,custserv@gap.com (Gap Online Customer Service)@ENRON <IMCEANOTES-custserv+40gap+2Ecom+20+28Gap+20Online+20Customer+20Service+29+40ENRON@ENRON.com>
+3553990a9668633c,cvavrek@dttus.com,Unknown
+7ebbc1a88484662c,cynthia.barrow@enron.com,Unknown
+cdac95ba40835d29,cynthia.morrow@enron.com,Cynthia Morrow
+62cbde9c8c62b4a6,cynthia.sandherr@enron.com,Cynthia Sandherr
+4a4f91650465732c,d.hall@enron.com,D Todd Hall
+0e9df8931ef6f336,dale.neuner@enron.com,Dale Neuner
+e5e3490a316d6d68,dale.rasmussen@enron.com,Dale Rasmussen
+fbed919758345588,dan.bump@enron.com,Dan J Bump
+041f452589a92a33,dan.fancler@enron.com,Unknown
+fc9a619784b3160a,dan.hyvl@enron.com,Dan J Hyvl
+53d2a43fdc6534c1,dan.j.hyvl@enron.com,Unknown
+a7c0c69f88a892f8,dan.leff@enron.com,"Leff, Dan </O=ENRON/OU=NA/CN=RECIPIENTS/CN=DLEFF>"
+b4d4162492886683,dan.lyons@enron.com,Dan Lyons
+f12f48a2a70c95cb,dan.masters@enron.com,"Masters, Dan </O=ENRON/OU=NA/CN=RECIPIENTS/CN=DMASTER>"
+8303e0bdfc660005,dana.gibbs@enron.com,Unknown
+a30882647a934834,daniel.reck@enron.com,Daniel Reck
+2ca40b5810f7d950,danny.mccarty@enron.com,Unknown
+920d40541c4f6ad9,daren.farmer@enron.com,Daren J Farmer
+5fb2a863a5bf6592,darla.saucier@enron.com,Darla Saucier
+8a3c5164257ff3fa,darrell.schoolcraft@enron.com,Darrell Schoolcraft
+187d857cd9ba323e,darren.cavanaugh@enron.com,Unknown
+1f73564f7a81720b,darron.giron@enron.com,Darron C Giron
+14beb4275f484210,dave.guzman@fluor.com,Dave.Guzman@Fluor.com
+b2392c7fbf7e7de9,dave.nommensen@enron.com,Dave Nommensen
+b914195e69b1c8e0,dave.samuels@enron.com,Dave Samuels
+c6006e7531c54421,david.baumbach@enron.com,David Baumbach
+0f27b85c70b4a74d,david.delainey@enron.com,David W Delainey
+4f690b21b55db510,david.dronet@enron.com,"Dronet, David </O=ENRON/OU=NA/CN=RECIPIENTS/CN=DDRONET>"
+e5066dd0e7042f9f,david.dupre@enron.com,David P Dupre
+8c4a9df7ac27acde,david.fairley@enron.com,David Fairley
+a756a436099520a9,david.forster@enron.com,David Forster
+bce7d19dcb629c2c,david.minns@enron.com,David Minns
+c6fadff557d34023,david.oliver@enron.com,David Oliver
+d1baec5334734601,david.owen@enron.com,David Owen
+c09d0d16c9b4f882,dblack1@enron.com,Unknown
+b12acd03e1086d87,dchristo2@attglobal.net,"""Diomedes Christodoulou"" <dchristo2@attglobal.net>"
+9b5ba1ddba826457,dean.kassmann@aspentech.com,Dean Kassmann <Dean.Kassmann@aspentech.com>
+d13cad5efc228108,debbie.brackett@enron.com,Debbie R Brackett
+e896c3347ff43b13,debbie.yates@enron.com,Unknown
+3cbc50b9a61b7674,debra.perlingiere@enron.com,Debra Perlingiere
+6d4c4c0ea850d657,delainey@enron.com,"Delainey, David"
+dca59badf1e7e0e5,denise.williams@enron.com,Denise Williams
+a4a6b25dc262125c,dennis.sidbury@prudential.com,Unknown
+ae6fb7beead87c51,derek.ashing@auxsable.com,Derek.Ashing@auxsable.com@ENRON <IMCEANOTES-Derek+2EAshing+40auxsable+2Ecom+40ENRON@ENRON.com>
+4fe8ddd297f2380d,derekaberle@aec.ca,"""Aberle, Derek"" <DerekAberle@aec.ca>"
+3531757cf530562f,dfulton@enron.com,Unknown
+dc4182b24e14ba08,dgibbons@cera.com,David Gibbons <dgibbons@CERA.com>
+4adfcef125145d7a,diana.allen@enron.com,Unknown
+52cc41137fbd63fe,diana.luu@enron.com,Unknown
+8e4182d95ede546c,diana.scholtes@enron.com,"Scholtes, Diana </O=ENRON/OU=NA/CN=RECIPIENTS/CN=DSCHOLT>"
+01c7852aa49c8d73,dick.jenkins@enron.com,Unknown
+63ad3f55d9b8443d,dick.westfahl@enron.com,Unknown
+76ba2d344de263be,dipak.agarwalla@enron.com,Unknown
+545072d65afe1920,dl-ga-all_enron_houston@enron.com,Unknown
+3659b1ea5fac5f62,dl-ga-all_enron_worldwide1@enron.com,Unknown
+2968c41b6fcf9be2,dm-dmcn-help@dmlogix.com,"""Centennial Credit Card"" <dm-dmcn-help@dmlogix.com>"
+ff06838679be6bdd,dmcvey@theenergycoop.com,Unknown
+b140461359827720,don.baughman@enron.com,Don Baughman
+b7a1f8942055cf1a,don.miller@enron.com,Don Miller <Don Miller/ENRON@enronXgate@ENRON>
+0ea7e1dcec80a04f,donna.johnson@enron.com,"Johnson, Donna </O=ENRON/OU=NA/CN=RECIPIENTS/CN=DJOHNS13>"
+3c7d50221df8b8ed,doug.gilbert-smith@enron.com,Doug Gilbert-Smith
+172c1c6421cc0c06,doug.leach@enron.com,Doug Leach
+96dc351be039c0a6,doug.pedigo@enron.com,Unknown
+1c98af4641f31ff9,doug.rotenberg@enron.com,Unknown
+bfea8152d0a808cc,doug.wood@enron.com,Doug Wood
+31ec56d611f424a8,douglas.friedman@enron.com,Unknown
+05ed288a949f4982,douglass@arterhadden.com,Unknown
+9728c7afc49ebf1e,drew.fossum@enron.com,Drew Fossum
+a246dc0012ef7153,dsullivan@totalise.co.uk,Unknown
+f071f61bd1a2bb15,dustin.collins@enron.com,Unknown
+1019c7dcd94f767a,dwatkiss@bracepatt.com,Unknown
+c3597f33a3b55a41,e..levingston@enron.com,"Levingston, Maxine E. </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MLEVING>"
+eb9572062bc0c1df,earlene.ackley@enron.com,Unknown
+472f5f5959eb3adf,ecenter@williams.com,Jay Rickerts <eCenter@williams.com>
+2a178ff2490e9d1d,ect.trading@enron.com,Unknown
+5b8675e6ecadd92e,ed.mcmichael@enron.com,"McMichael Jr., Ed </O=ENRON/OU=NA/CN=RECIPIENTS/CN=EMCMICH>"
+88ff12a2cc54bd0e,edis-by-email@incident.com,Unknown
+4fd9c42625ae7042,edismail@incident.com,EDIS Email Service <edismail@incident.com>@ENRON <IMCEANOTES-EDIS+20Email+20Service+20+3Cedismail+40incident+2Ecom+3E+40ENRON@ENRON.com>
+722ab21285b3d1fc,eduardo.robles@enron.com,Eduardo Robles
+784500e72740a2dd,edward.baughman@enron.com,"Baughman, Edward </O=ENRON/OU=NA/CN=RECIPIENTS/CN=EBAUGHM>"
+19aca2c843a6b669,edward.terry@enron.com,Unknown
+4dd07b82b45cf364,eespower@enron.com,Unknown
+0b450dde35fec39f,egillaspies@coral-energy.com,Unknown
+0e3a507c755342e9,eharris@insightpartners.com,Erica Harris <EHarris@insightpartners.com>
+af81d2736eb50ead,eileen@pira.com,"""Eileen Hanley"" <Eileen@pira.com>@ENRON <IMCEANOTES-+22Eileen+20Hanley+22+20+3CEileen+40pira+2Ecom+3E+40ENRON@ENRON.com>"
+bb981b309feb79f8,elabano@enron.com,Unknown
+8867bd09da089d4a,elee@zbi.com,Edan Lee  <ELee@zbi.com>
+790f63562ef52ba8,elisabeth_mends@enron.net,Unknown
+0be7a31adbd97152,elizabeth.linnell@enron.com,Elizabeth Linnell
+a4f416ffa5f3b854,elizabeth.sager@enron.com,Elizabeth Sager
+8e045a0732bc9698,elizabeth.tilney@enron.com,Elizabeth Tilney <Elizabeth Tilney/HOU/EES@EES>
+c11f14758a4ee989,emergency.group@enron.com,Unknown
+18c6e103c21f4eb9,emoses@mayor.lacity.org,Unknown
+cd2f15e241ddbbd9,energyvoice@txoga.org,<energyvoice@txoga.org>@ENRON
+3460b578f6adbe14,enl-dailyupdate-txt@estutenws11.energy.williams.com,Unknown
+669b4f7f80de9518,enron-owner@lists.qgadc.com,Enron-owner@lists.qgadc.com
+cc877f8744e06db3,enron.announcement@enron.com,Enron Change Management Announcement <Enron Change Management Announcement@ENRON>
+205ca6fad41ad497,enron.announcements@enron.com,Enron Announcements
+a1fd2bf155f4f126,enron.committee@enron.com,Unknown
+4ee6e79a92be712b,enron.everyone_ewc@enron.com,Unknown
+ae9dfd0693805b6f,enron.houston@enron.com,Unknown
+895b4a70d70fb5c3,enron@lists.qgadc.com,Unknown
+68e607c45d4088ae,enw-employees@enron.com,Unknown
+74112ac36114371b,eric.bass@enron.com,Eric Bass
+1e0493c72a696dfe,eric.booth@enron.com,Eric Booth
+1e3255ffbb5bc1ec,eric.boyt@enron.com,Eric Boyt
+26b1255939a90e54,eric.gillaspie@enron.com,Eric Gillaspie
+4977802ad8f879e1,eric.gonzales@enron.com,Unknown
+a5e2568b4deaa77e,eric.moon@enron.com,Unknown
+33fef96d6eeaba5b,eric.saibi@enron.com,Unknown
+f797fb89a0b5791e,eric.shaw@enron.com,Unknown
+182fa9ad3f908be1,eronn@mail.utexas.edu,"""Ehud I. Ronn"" <eronn@mail.utexas.edu>"
+da415b09d793152d,errol.mclaughlin@enron.com,Errol McLaughlin
+51d1f9422f993975,eserver@enron.com,eserver@enron.com@ENRON <IMCEANOTES-eserver+40enron+2Ecom+40ENRON@ENRON.com>
+e8cf6e57d93409c7,esource@enron.com,eSource <eSource@ENRON>
+256a34f85cd99980,ethink@enron.com,ethink </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=ETHINK>
+863e4b7e5721885e,ets.center@enron.com,ETS Solution Center
+b0e6de352e1563ba,eve.puckett@enron.com,Unknown
+a4069238b17ede19,eveningmba@haas.berkeley.edu,Unknown
+f1198c6c5419889d,ew_benefits@enron.com,Unknown
+9ab453d10498d518,exchangeinfo@nymex.com,exchangeinfo@nymex.com
+98c367e4f2afe024,executive.office@enron.com,Office of the Chief Executive </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MBX_ANNCCHIEFEXEC>
+252f3c0db03a5332,fgetman@houstonstreet.com,"""Frank Getman, HSE"" <fgetman@houstonstreet.com>"
+1097ef15d7ff0310,fhaskett@rice.edu,Fred Haskett <fhaskett@rice.edu>
+d765813c802068a2,fletcher.j.sturm@enron.com,Unknown
+eaf12234dc1f16e1,fletcher.sturm@enron.com,Unknown
+db72fe115f0aaa4a,frank.hayden@enron.com,Frank Hayden
+787c83aeb1fb2076,fred.mitro@enron.com,fred.mitro@enron.com
+861de71a3188a8f7,fred.philipson@enron.com,"Philipson, Fred </O=ENRON/OU=NA/CN=RECIPIENTS/CN=FPHILIPS>"
+fd44c878fb4561ce,gabriella.goekjian@oecd.org,Unknown
+4e18870085184527,gail.brownfeld@enron.com,Gail Brownfeld
+c3b41a62b765c2db,gang00@msn.com,Unknown
+127c73d5d704398a,gary.hanks@enron.com,Gary A Hanks
+0b75b1a091227cfd,gary.hickerson@enron.com,Unknown
+f4c7517570ea4950,gary.smith@enron.com,"Smith, Gary </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=2BF1C836-C4363CEB-8625674C-67E4CE>"
+f08677ad0bc04c61,gary.stadler@enron.com,Unknown
+eddc096e9d849e94,gaurav.babbar@enron.com,Unknown
+60f39aceea476488,gay.arnold@enron.com,Gay Arnold
+587782c39ee06885,gbojp@netdoor.com,Unknown
+202f653064e96a62,geir.solberg@enron.com,"Solberg, Geir </O=ENRON/OU=NA/CN=RECIPIENTS/CN=GSOLBER>"
+2debbbef9a2c871a,gene.humphrey@enron.com,"Humphrey, Gene </O=ENRON/OU=NA/CN=RECIPIENTS/CN=GHUMPHR>"
+3c3d3cbeb5836f6d,genia.fitzgerald@enron.com,Genia FitzGerald
+8b6626cded98a1fe,geoff.storey@enron.com,"Storey, Geoff </O=ENRON/OU=NA/CN=RECIPIENTS/CN=GSTOREY>"
+8f52fcd9801e502b,george.ellis@americas.bnpparibas.com,george.ellis@americas.bnpparibas.com
+eb2b4f15d581a7d2,george.grant@enron.com,Unknown
+39371840c838d3ed,george.mcclellan@enron.com,Unknown
+8442e417446aebd6,george.robinson@enron.com,George Robinson
+61bd1232ff47e6f8,george.smith@enron.com,Unknown
+46add9bf49d58f5e,georgette.semaan@enron.com,Georgette Semaan
+6430dcbc5bd60bef,gerald.nemec@enron.com,Gerald Nemec
+e5d8c0159bd0008c,germany@enron.com,Unknown
+132d57df26eeec2d,gfergus@brobeck.com,"""Fergus, Gary S."" <GFergus@brobeck.com>"
+024f9744d705ac37,ghh@telcordia.com,Unknown
+c0debc71040e3590,gilbergd@sullcrom.com,GILBERGD@sullcrom.com
+483f1cba089f8b57,gina.taylor@enron.com,Gina Taylor
+71ee61b4f3d1eeb7,gisb1@aol.com,GISB1@aol.com
+1fa02bd87dde2414,gisb4@aol.com,Unknown
+57272d4f840083b7,gisb@aol.com,Gisb@aol.com@ENRON
+dd6d8abc910dcccd,glen.dixon@qp.qld.gov.au,DIXON Glen <Glen.Dixon@qp.qld.gov.au>
+e630288ab30d7066,glen.hass@enron.com,"Hass, Glen </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=C6B372D0-6F90C726-862566AA-6A315A>"
+e74de3028bdd17c9,gnemec@houston.rr.com,Unknown
+1cd40395afa9be37,greg.brazaitis@enron.com,Greg Brazaitis
+3123c38827ccb0ea,greg.krause@enron.com,Greg Krause
+4276df9f33cd5e02,greg.lewis@enron.com,Unknown
+1fa6bd6b422e085d,greg.piper@enron.com,"Piper, Greg </O=ENRON/OU=NA/CN=RECIPIENTS/CN=GPIPER>"
+1c9d645124b3d2fe,greg.whalley@enron.com,Greg Whalley
+639ef5376585bfb3,greg@pira.com,Unknown
+999bd0757a7152a6,greg_priest@smartforce.com,greg_priest@smartforce.com@ENRON <IMCEANOTES-greg+5Fpriest+40smartforce+2Ecom+40ENRON@ENRON.com>
+efae34ff88c91edf,gregory.adams@enron.com,Unknown
+f54261024e0a9856,gsullivan@sempra.com,"""Sullivan, Glen J."" <GSullivan@sempra.com>"
+dd749e83af559e71,gwadmin@sullcrom.com,GWADMIN@SULLCROM.COM
+9aeb83e41834936e,gwhalle@enron.com,Unknown
+b4069074b3f70abf,gwyn.koepke@enron.com,Gwyn Koepke
+1040b32dffb2296e,hayley@turn.org,Unknown
+6eebc9be7ad2b41e,heather.kroll@enron.com,Heather Kroll <Heather Kroll/ENRON@enronXgate@ENRON>
+000b92fad6b64739,heidi.mason@enron.com,Heidi Mason
+48aedb7c14cc54fa,heidi.withers@enron.com,Heidi Withers
+e7afc7099a4f61e8,hendrickson@enron.com,Unknown
+22add1e114ad0eee,henry.emery@ubspainewebber.com,"""Emery, Henry"" <henry.emery@ubspainewebber.com>"
+f67ca0a1f1a76474,henry.van@enron.com,Henry Van <Henry Van@ENRON>
+d374efff550e7d2f,herman.manis@enron.com,Unknown
+f8ea667be86d90f2,herndon@enron.com,"Herndon, Rogers"
+1423ff890830c525,hgovenar@govadv.com,Hedy Govenar <hgovenar@govadv.com>
+5ebec10541739d64,hherzog@columbiaenergygroup.com,hherzog@columbiaenergygroup.com
+aa5a005ba15bab15,hollis.kimbrough@enron.com,Hollis Kimbrough
+ae5656a857bd8e71,hope.vargas@enron.com,Hope Vargas <Hope Vargas/ENRON@enronXgate@ENRON>
+c03d31d946130f3e,houston.report@enron.com,Unknown
+3011f92c6553f1d6,houstontexans@newsletter.houstontexans.com,Houston Texans <HoustonTexans@Newsletter.HoustonTexans.Com>
+59e15f27cd1f4e4d,hunter.shively@enron.com,Unknown
+7d9a86a4d867f6bd,huntingtonbeach@energy.ca.gov,Unknown
+e05b4c29f893adb0,hweg@pgwlaw.com,Unknown
+52a41dde28522282,icehelpdesk@intcx.com,ice helpdesk <icehelpdesk@intcx.com> <IMCEANOTES-ice+20helpdesk+20+3Cicehelpdesk+40intcx+2Ecom+3E@ENRON.com>
+6b532d600985e4d8,ignacio.taveras@enron.com,Ignacio Taveras
+e95446caeedd6773,ime_mailer.4-1317530-1531186-1nqhlywu@message.americancentury.com,American Century Update <ime_mailer.4-1317530-1531186-1NQHLYWU@message.americancentury.com>
+7551567d2c361bd4,imelda.trevino@enron.com,Imelda Trevino
+3c95580b7855c9bb,ina.rangel@enron.com,Ina Rangel
+fae05f77e91f0876,info@attorneysed.com,<info@attorneysed.com>
+26935ba23520cae5,info@oregongourmet.com,Oregon Gourmet <info@oregongourmet.com>
+895fce273a761b26,info@stockselector.com,"""StockSelector.com"" <info@stockselector.com>@ENRON <IMCEANOTES-+22StockSelector+2Ecom+22+20+3Cinfo+40stockselector+2Ecom+3E+40ENRON@ENRON.com>"
+117ee01381f8c9cd,information.management@enron.com,Information Risk Management
+d67bdb1b0a60d239,investinme@enron.com,Investinme <Investinme@ENRON>
+daaa92c0dbbf3ca3,iris.mack@enron.com,Iris Mack
+a95b83db6f382bef,isabel.parker@freshfields.com,"""PARKER, Isabel"" <isabel.parker@freshfields.com>"
+4a228942abcd2846,isero_alicia@gsb.stanford.edu,Unknown
+99f28e311333f2bd,j.kaminski@enron.com,Unknown
+f9aa84a92c668635,j.slechta@pecorp.com,j.slechta@pecorp.com@ENRON <IMCEANOTES-j+2Eslechta+40pecorp+2Ecom+40ENRON@ENRON.com>
+03400000879b1c46,jack.williams@enron.com,Jack Williams
+43126bf84231522a,jackie.young@enron.com,Unknown
+8d34c58acca4f837,james.brown@enron.com,James J Brown
+bbdb67d98e4ad3e4,james.d.steffes@enron.com,Unknown
+ca3712f4eb94ae36,james.derrick@enron.com,"Derrick Jr., James </O=ENRON/OU=NA/CN=RECIPIENTS/CN=JDERRIC>"
+ca1098555e4db56b,james.hughes@enron.com,Unknown
+816f3a13c4b8d353,james.keller@enron.com,James E Keller
+0bccb58cdcb3b8a3,james.scribner@enron.com,James Scribner
+540a481206339143,james.steffes@enron.com,James D Steffes
+e30eb117bc141837,jamie.wachel@enron.com,Jamie Wachel
+05bb76d102d14e28,janel.guerrero@enron.com,Janel Guerrero
+d72143336eb0629e,janelle.scheuer@enron.com,"Scheuer, Janelle </O=ENRON/OU=NA/CN=RECIPIENTS/CN=JSCHEUE>"
+ace0608b91b84566,janette.elbertson@enron.com,Janette Elbertson
+e1154e002c29c78a,janice.moore@enron.com,Janice R Moore
+bf202e5e199e6f62,janine.juggins@enron.com,Unknown
+19b596c62229ac71,janine.migden@enron.com,Janine Migden
+e97fe09e84944ac1,jarrod.cyprow@enron.com,Jarrod Cyprow
+c56a72aa50631a2d,jason.peters@enron.com,Jason Peters
+d245af0427625957,jason.williams@enron.com,Jason R Williams
+6d03fb4ce7764a99,jason.wolfe@enron.com,Unknown
+e74576939bf46798,jay.fitzgerald@enron.com,Jay Fitzgerald
+d42561c98fe4d0ca,jay.reitmeyer@enron.com,Jay Reitmeyer
+2fafb7ecf71e648d,jbennett@gmssr.com,JBennett <JBennett@GMSSR.com>
+c2b7282878e2f9d4,jcchilders@hotmail.com,"""Jason Childers"" <jcchilders@hotmail.com>@ENRON <IMCEANOTES-+22Jason+20Childers+22+20+3Cjcchilders+40hotmail+2Ecom+3E+40ENRON@ENRON.com>"
+eeb6e86652b69cfc,jcohen@whitecase.com,Unknown
+3617303664ddddf3,jcrossen@apx.com,Unknown
+0cf74d53c314b09c,jderric@enron.com,Unknown
+4906f8d1a5941a8d,jean.ryall@enron.com,Jean Ryall
+eb1ef1e4b58e6d51,jeff.ader@enron.com,Unknown
+b690a2af743ab491,jeff.dasovich@enron.com,Jeff Dasovich
+c720164edb0076da,jeff.donahue@enron.com,Unknown
+f6ffcc7af34e302f,jeff.duff@enron.com,Jeff Duff
+d8bc6f89c02f1b31,jeff.forbis@enron.com,Jeff Forbis
+8d226f9bc634f11a,jeff.johnson@enron.com,Jeff Johnson
+059c9e265a7c1645,jeff.king@enron.com,Unknown
+1e9e17b9b3fadb85,jeff.nogid@enron.com,Jeff Nogid
+4927e5f173e1deb9,jeff.richter@enron.com,"Richter, Jeff </O=ENRON/OU=NA/CN=RECIPIENTS/CN=JRICHTE>"
+29d761463783b343,jeff.skilling@enron.com,Jeff Skilling
+0c38ef6da63aeba7,jeff_dasovich@enron.com,Unknown
+8d251408b5d7b46a,jeff_skilling@enron.com,Unknown
+9df5516828c0de38,jefferson.sorenson@enron.com,Jefferson D Sorenson
+2e4a122920924c04,jeffery.fawcett@enron.com,Jeffery Fawcett
+d3c501d20fb6b5c2,jeffrey.garten@yale.edu,"""Garten, Jeffrey"" <jeffrey.garten@yale.edu>"
+70513ad5ccd8189e,jeffrey.gossett@enron.com,"Gossett, Jeffrey </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=A7EA6A46-528529CC-86256546-79A536>"
+165eeacc42ca7221,jeffrey.hodge@enron.com,Jeffrey T Hodge
+a7b08c24cf4ddd69,jeffrey.keenan@enron.com,Unknown
+de640eb7d021a853,jeffrey.shankman@enron.com,Jeffrey A Shankman
+50baafda01a5f6e5,jeffrey.soo@enron.com,Unknown
+a63b7e4fc42bfbf9,jennifer.denny@enron.com,Unknown
+5bb3624e8c4badb9,jennifer.dickinson@alumni.utexas.net,Unknown
+b5b5ea36b295c172,jennifer.h.staton@us.andersen.com,jennifer.h.staton@us.andersen.com
+75a02738798ccfd8,jennifer.thome@enron.com,Jennifer Thome
+3d2d777410912de5,jere.overdyke@enron.com,Unknown
+963befa570280764,jeremy.blachman@enron.com,"Blachman, Jeremy </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=5B4F1138-3D204C64-8625672E-5D589E>"
+7b5340bd458f246b,jfichera@saberpartners.com,"""Joseph S. Fichera"" <jfichera@saberpartners.com>"
+ba09681b00110b10,jh306@netzero.net,Unknown
+2023ad0b20edfdec,jhb@8760.com,Unknown
+c8b71cb80d09245d,jhernan3@enron.com,Unknown
+e065a14a1454fa60,jhomco@minutemaid.com,Unknown
+2898ce008e987e44,jim.dyer@bus.utexas.edu,Jim Dyer <Jim.Dyer@bus.utexas.edu>
+3f0e1155d989fa98,jim.homco@enron.com,Jim Homco
+758041062584ab55,jim.reyes@enron.com,"Reyes, Jim </O=ENRON/OU=NA/CN=RECIPIENTS/CN=JREYES4>"
+c716b1bc73f6f3d4,jim.talcott@enron.com,Unknown
+f691be5a43d42163,jimbrulte@aol.com,Unknown
+929ac3af92fdba46,jinbaek@ieor.berkeley.edu,Unknown
+ccc69dfea4dd9780,jmenconi@adv-eng-ser-inc.com,Unknown
+b40560dc79ca9a6a,jo.hill@enron.com,Jo Ann Hill
+e3690d75dd9db3c7,jo.williams@enron.com,Jo Williams
+c0f125ee8ec88d0b,joan.veselack@enron.com,Joan Veselack
+b517ff3c5b60def1,joann.collins@enron.com,Joann Collins
+cf1e49aade0b6a07,joannie.williamson@enron.com,Joannie Williamson
+114463d11d97d320,joe.chapman@enron.com,Unknown
+69736299648cffd7,joe.connor@enron.com,Joe Connor
+1ca1b38d4ae94339,joe.hillings@enron.com,Unknown
+4e083f4d793f821b,joe.quenet@enron.com,Unknown
+2c2a1787156b4b6d,john.arnold@enron.com,John Arnold
+681a31baf102eb9e,john.brindle@enron.com,Unknown
+200981e805fcb576,john.cummings@enron.com,"Cummings, John </O=ENRON/OU=NA/CN=RECIPIENTS/CN=JCUMMIN>"
+049764d93ba4f9bb,john.forney@enron.com,John M Forney
+32c94048bb29740a,john.goodpasture@enron.com,John Goodpasture
+8053625f5d4dc726,john.griffith@enron.com,John Griffith <John Griffith/Corp/Enron@ENRON>
+649e439a24a53913,john.hardy@enron.com,John Hardy
+febd2e0d81014661,john.hodge@enron.com,John Hodge
+1f4e7c864ccd1595,john.kinser@enron.com,Unknown
+a43eb46fc6dd3617,john.lavorato@enron.com,John J Lavorato
+7cd84478ce18d66c,john.llodra@enron.com,John Llodra
+c8c00053821ee737,john.nowlan@enron.com,Unknown
+a5b0a93d6b8b4365,john.peyton@enron.com,Unknown
+d6599dbbbdad1b17,john.rigby@enron.com,John G Rigby
+cf480558919c7e66,john.shafer@enron.com,Unknown
+51592d66894006e3,john.singer@enron.com,John M Singer
+1c62b8b8de1d0a4c,john.suttle@enron.com,John Suttle
+09103747d93a2435,john.valdes@enron.com,John Valdes
+f0e854183137d03b,john.viverito@enron.com,John Viverito
+d9852b450086d814,johnny.alam@enron.com,Unknown
+6cdd52b72af04847,johnson@enron.com,Unknown
+97b07ba44840ed81,jordan.mintz@enron.com,Unknown
+2af9b21afc403a92,jorge.garcia@enron.com,Jorge A Garcia
+7005944bc656de04,jose.bestard@enron.com,Jose Bestard
+16384940953642e1,joseph.alamo@enron.com,Joseph Alamo
+4b39f1629caec2cb,joseph.hirl@enron.com,"Hirl, Joseph </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=76324CB5-C2DEBE7A-86256910-3E6AD6>"
+61c49a651ef05d4a,josephstanislaw@cera.com,josephstanislaw <josephstanislaw@CERA.com>
+0812a6cbbd2d9246,jtholt@ect.enron.com,Unknown
+3281b5c17144b46f,juan.hernandez@enron.com,Juan Hernandez
+84af5cd8bd22c85b,juan.padron@enron.com,Unknown
+0d78e26328574652,judy.hernandez@enron.com,Judy Hernandez
+0c2e138d6989f35e,judy.townsend@enron.com,Unknown
+d2423b6d50003ad0,julia.white@enron.com,Unknown
+be4c0610be623a01,julie.meyers@enron.com,"Meyers, Julie </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=A8131D50-2229AC72-862564B4-7573B7>"
+4b24711fc6300a92,julie.sarnowski@enron.com,Unknown
+6891bb5700f1f858,justin.rostant@enron.com,Justin Rostant
+d567c45039b52eac,jzively@earthlink.net,Unknown
+e762916444c380a9,jzivley@earthlink.net,Unknown
+30fde5184010a8a3,kam.keiser@enron.com,Kam Keiser
+cb4857d080ea26bf,karen.buckley@enron.com,Karen Buckley <Karen Buckley/ENRON@enronXgate@ENRON>
+c5de173b6a8df143,karen.denne@enron.com,Karen Denne
+309c0b7322a24a30,karen.lambert@enron.com,Karen Lambert
+555a5c3b4453e752,karlyn.clifton@us.pwcglobal.com,<karlyn.clifton@us.pwcglobal.com>
+270d64967129ea59,kashiwamura_shelby@gsb.stanford.edu,"""Kashiwamura, Shelby"" <kashiwamura_shelby@gsb.stanford.edu>"
+90fc6816ab5bcf19,kate.cole@enron.com,Kate Cole
+039bd069b76b7055,kate.symes@enron.com,Kate Symes
+7fe9ea7715c9a62c,katherine.kelly@enron.com,Unknown
+4bad30bae3300146,kathie.grabstald@enron.com,Kathie Grabstald
+7d8c638db210be81,kathleen.carnahan@enron.com,Kathleen Carnahan
+c55fa7def702ace8,kathryn.corbally@enron.com,Unknown
+5d438af85de992c5,kay.chapman@enron.com,Kay Chapman
+3fd25791ecf32764,kay.mann@enron.com,Kay Mann
+d22c47a6d17ca4b7,kay.young@enron.com,Kay Young
+7227299af88a0284,kaye.ellis@enron.com,Kaye Ellis
+1f52dff970898b98,kayne.coulter@enron.com,Unknown
+db95a502e4c8b328,keegan.farrell@enron.com,Keegan Farrell
+91054c7dc7ddffca,keith-sappenfield@reliantenergy.com,Unknown
+33de0e297e45b94d,kenneth.harmon@enron.com,Unknown
+5f6aa217c99c1c63,kenneth.lay@enron.com,"Lay, Kenneth </O=ENRON/OU=NA/CN=RECIPIENTS/CN=KLAY>"
+5cd04a9ca51f59fb,kenneth.parkhill@enron.com,Kenneth Parkhill
+f2cc5cd4e39960bc,kenneth.thibodeaux@enron.com,Kenneth Thibodeaux <Kenneth Thibodeaux/ENRON@enronXgate@ENRON>
+9a49c65ba958fb47,kent.shoemaker@ae.ge.com,"""Shoemaker, Kent (GEAE)"" <kent.shoemaker@ae.ge.com>"
+155283e1cd77972b,kerry.harrington@enron.com,Kerry Harrington
+175c3a75489e7f96,kevin.hyatt@enron.com,Kevin Hyatt
+c54b4aa15d8d0e73,kevin.mcgowan@enron.com,Unknown
+019c81d91d870b37,kevin.presto@enron.com,Kevin M Presto
+14f1c7d2852efca7,kevin.ruscitti@enron.com,Kevin Ruscitti
+2e09762fa0aec0be,kgk@hoegh.no,"""Leif Hoegh & Co. ASA - Kvammen, Kjell G."" <kgk@hoegh.no>@ENRON <IMCEANOTES-+22Leif+20Hoegh+20+26+20Co+2E+20ASA+20-+20Kvammen+2C+20Kjell+20G+2E+22+20+3Ckgk+40hoegh+2Eno+3E+40ENRON@ENRON.com>"
+2e08b38cc3aa8d97,kim.melodick@enron.com,Kim Melodick
+d117fdc3cabb7401,kim.ward@enron.com,Kim Ward
+e4848507aa3817c5,kimberly.hillis@enron.com,Kimberly Hillis
+f107e313a5506987,kimberly.hundl@enron.com,Kimberly Hundl
+4b1ef99d9e489b58,kit.blair@enron.com,Unknown
+ba5e60cbdb27ce6c,klay@enron.com,Unknown
+531a364ebeca1ae0,klow@loudcloud.com,Unknown
+d2dc20c4fd362588,kneda@clds.net,Unknown
+04c77de61eaf8c79,knedrager@buddybistro.com,knedrager@buddybistro.com@ENRON <IMCEANOTES-knedrager+40buddybistro+2Ecom+40ENRON@ENRON.com>
+bfc1c8983bfdd4d3,kortney.brown@enron.com,Kortney Brown
+d65e830f1eb151d1,kourtney.nelson@enron.com,"Nelson, Kourtney </O=ENRON/OU=NA/CN=RECIPIENTS/CN=KNELSON>"
+7ce4ed7c26efb2b8,kristin.gandy@enron.com,Kristin Gandy
+d302f446278b2b3e,kristin.walsh@enron.com,Kristin Walsh
+118bb0e913a4d033,kristina.mordaunt@enron.com,Unknown
+845b39ab62fd092f,kurt.anderson@enron.com,Kurt Anderson
+26fb1a1e13b264ab,kurt.lindahl@enron.com,Kurt Lindahl
+eb02eb8b1fde56c4,kvanpelt@flash.net,"""Karen Van Pelt"" <kvanpelt@flash.net>"
+9bfc5eec4b2b82b4,lafontaine@bankofamerica.com,Unknown
+89601500319c2215,lance.schuler-legal@enron.com,Lance Schuler-Legal
+94acb441463f6def,lane.alexander@enron.com,Unknown
+d0e76c3536f9fc3d,lara.mckinney@enron.com,Lara McKinney
+c2d141e576943673,larrissa.sharma@enron.com,Larrissa Sharma
+6ea61f50d35b8cda,larry.campbell@enron.com,Larry Campbell
+306dcfbd88dec229,larry.f.campbell@enron.com,Unknown
+5f77f74326d9679a,larry.hunter@enron.com,Larry Joe Hunter
+24f423957055713e,larry.lawyer@enron.com,Larry Lawyer
+c8944bc79a68a467,larry.may@enron.com,Larry May
+abef7d97220b1ee1,larry_f_campbell@enron.com,Unknown
+48b8d95815bb5d09,laura.valencia@enron.com,Laura Valencia
+b7ad8a7b41671ea4,laurel.adams@enron.com,Laurel Adams
+f583f6d211c06348,lauri.allen@enron.com,Unknown
+260d25fd4e068dc0,lawrencelrtnmt@aol.com,Unknown
+69037e9c191f8841,lcampbel@enron.com,Unknown
+3c1538b50e3443cd,leah.rijo@enron.com,Unknown
+7b598660d5c857ac,lee.johnson@ss.ps.ge.com,Unknown
+30bbdba6ee773a5f,lee@epis.com,"""Lee A. Barney"" <lee@epis.com>@ENRON"
+b40058ddd8b1cd3d,legal.2@enron.com,Unknown
+63bd037483257505,lemmons.jr.@enron.com,"Lemmons Jr., Billy"
+37252ae937b1f720,leslie.smith@enron.com,Unknown
+4ac2cbca841edc19,lexi.elliott@enron.com,"Elliott, Lexi </O=ENRON/OU=NA/CN=RECIPIENTS/CN=LELLIOTT>"
+4ced9b9f61838f7e,lgang@enron.com,Unknown
+48c837908b7038d3,lgoldseth@svmg.org,"""Laura Goldseth"" <lgoldseth@svmg.org>"
+1d635baa201d2f87,linda.auwers@compaq.com,"""Auwers, Linda"" <Linda.Auwers@COMPAQ.com>"
+295cec8f834853f8,linda.guinn@enron.com,Linda R Guinn
+bde1985764f77035,linda.o.norman@us.andersen.com,linda.o.norman@us.andersen.com@ENRON <IMCEANOTES-linda+2Eo+2Enorman+40us+2Eandersen+2Ecom+40ENRON@ENRON.com>
+60b13e81ebbfadcd,linda.robertson@enron.com,Linda Robertson
+da71a616d158c701,lisa.best@enron.com,Unknown
+07eaf84859cd6770,lisa.connolly@enron.com,Unknown
+638793dda1cfa6d8,lisa.csikos@enron.com,Lisa Csikos
+6228c6da5a27d965,lisa.gang@enron.com,Unknown
+1effe46e575be0b8,lisa.hesse@enron.com,Unknown
+ac76a7caaf64c59f,lisa.jacobson@enron.com,Lisa Jacobson
+764887d094ebfa47,lisa.valderrama@enron.com,Unknown
+dd032295d4dc736c,lisa.yoho@enron.com,Lisa Yoho
+077a1905b9a85468,ljefferson@jefferson-usa.com,"""Limas Jefferson"" <ljefferson@jefferson-usa.com>@ENRON <IMCEANOTES-+22Limas+20Jefferson+22+20+3Cljefferson+40jefferson-usa+2Ecom+3E+40ENRON@ENRON.com>"
+b41c241c39e5bfb3,lkitchen@enron.co.uk,Unknown
+187609ed20573bc3,lloyd.will@enron.com,Lloyd Will
+15402dc220b7cb01,lois.woodland@enron.com,Unknown
+7310d6b87c1b402a,loleary@riskwaters.com,Unknown
+4fe9d5ac97313866,lora.sullivan@enron.com,Lora Sullivan
+f18db95ab6c8100b,lorchard@commrisk.bm,"""Laurie Orchard"" <lorchard@commrisk.bm>"
+4bf7c857234883b3,lori.maddox@enron.com,Unknown
+5dfdccefd593149f,lorie.leigh@enron.com,Lorie Leigh
+69740b1815403d8f,lorraine.lindberg@enron.com,"Lindberg, Lorraine </O=ENRON/OU=NA/CN=RECIPIENTS/CN=LLINDBE>"
+68e7f79f3fb3e3ae,louise.beer@enron.com,Louise Beer <Louise Beer/Enron@EUEnronXGate>
+dc85611c8bde4540,louise.kitchen@enron.com,Louise Kitchen
+d30ee9545c959755,lynn.blair@enron.com,Lynn Blair
+7ebfc66c23776b32,lynnj@iname.com,Unknown
+50368173fead8ee8,mailbot@datek.com,mailbot@datek.com
+36e15270f96b68bc,mara_alexander@cargill.com,Mara_Alexander@cargill.com
+f20cae741a8fb2e6,marchris.robinson@enron.com,Marchris Robinson
+84be381f4b5d984e,marcus.nettelton@enron.com,Marcus Nettelton
+0aa8e44fc4a86319,maria.salazar@enron.com,Maria Salazar
+87bb21d22677bc74,maria.valdes@enron.com,Unknown
+0f35b8a3e1998f18,maria02@aftonbladet.se,maria02@aftonbladet.se@ENRON <IMCEANOTES-maria02+40aftonbladet+2Ese+40ENRON@ENRON.com>
+70aff134e1a6d43a,marianne.castano@enron.com,Marianne Castano
+b94b0be24f87eaab,marie.heard@enron.com,Marie Heard
+ee5dc827391bc589,marilyn.colbert@enron.com,Marilyn Colbert
+6edaba7e9bbae73d,mark.adleman@enron.com,Unknown
+48227daefefa3fed,mark.breese@enron.com,"Breese, Mark </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MBREESE>"
+8a95762a600d9ae6,mark.c.austin@us.andersen.com,mark.c.austin@us.andersen.com
+35810ac5a40871d4,mark.confer@enron.com,"Confer, Mark </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MCONFER>"
+63975ffeb8ebc07a,mark.crowther@enron.com,Mark Crowther
+2287a4e3d0e4262b,mark.davis@enron.com,Unknown
+476b01521fe00bec,mark.dobler@enron.com,Unknown
+6f3a56c35979ca38,mark.e.haedicke@enron.com,Unknown
+840017b710702e55,mark.fisher@enron.com,Unknown
+f0818496ad0a772a,mark.frevert@enron.com,Unknown
+1421252bf7759674,mark.greenberg@enron.com,Mark Greenberg
+e1d8f2609cea168f,mark.guzman@enron.com,Unknown
+050cf92748ac354c,mark.haedicke@enron.com,Mark E Haedicke
+58d533f836d30a07,mark.knippa@enron.com,"Knippa, Mark </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MKNIPPA>"
+f2b1a20b86f03f17,mark.koenig@enron.com,Unknown
+74b95ce53d4bf426,mark.metts@enron.com,Unknown
+f6f024f27b372a77,mark.palmer@enron.com,Mark S Palmer
+e13fefabaa8bf8cd,mark.pickering@enron.com,Mark Pickering
+c8bdaa1184a6ac13,mark.smith@enron.com,Mark Smith
+020e708001d76876,mark.tawney@enron.com,Mark Tawney
+c6978dc741410280,mark.taylor@enron.com,Mark Taylor
+27411587a1687439,mark.walker@enron.com,Mark V Walker
+8dd599a00af442ec,markel@enron.com,Unknown
+9f90ec6ad020da90,marketrelations@nyiso.com,Unknown
+ac50407472e50461,marlene.hilliard@enron.com,Marlene Hilliard
+04e0f2ebf2cd2511,martha.benner@enron.com,Unknown
+115003755719d711,mary.cook@enron.com,Mary Cook
+e99cde954ed96cfc,mary.darveaux@enron.com,Unknown
+670d43f040e7116d,mary.franklin@enron.com,Unknown
+53369307b3110410,mary.gosnell@enron.com,Unknown
+c2ea38cf542e2b44,mary.gray@enron.com,Unknown
+5b833a5439041793,mary.miller@enron.com,Unknown
+3327dda6a5ab18c3,mary.schoen@enron.com,Mary Schoen
+8494057487bfb506,mary.smith@enron.com,Mary M Smith
+7c8b39a1dce3aba5,mary.solmonson@enron.com,Mary Solmonson
+ace20ca16d01025f,massage.therapy@enron.com,Unknown
+f3a574de056f0357,master.amar@hoegh.no,"""LNG/C Hoegh Galleon - Master"" <master.amar@hoegh.no>@ENRON <IMCEANOTES-+22LNG_C+20Hoegh+20Galleon+20-+20Master+22+20+3Cmaster+2Eamar+40hoegh+2Eno+3E+40ENRON@ENRON.com>"
+173f2fc63b2a095e,matt.allsup@enron.com,Matt Allsup
+dd50c35ccf9fa19e,matt.gillaspie@brentonbank.com,Unknown
+f78151c4772c4aba,matt.smith@enron.com,"Smith, Matt </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MSMITH18>"
+7a9013be73b44ffb,matthew.duffy@enron.com,Unknown
+5ad6dd7250b8daa5,matthew.gockerman@enron.com,Matthew F Gockerman
+c96e9d525b6a02cf,matthew.lenhart@enron.com,Matthew Lenhart
+ca39d09f2411f9f2,maureen.mcvicker@enron.com,Maureen McVicker
+737a59b94a3fa674,maureen.smith@enron.com,Maureen Smith
+1280d80ad13e88c8,mcarroll@texas.net,Unknown
+4ad33dea5ae3ad4a,mday@gmssr.com,MDay <MDay@GMSSR.com>
+f3e55291c97969a1,mdenney@nortelnetworks.com,"""Monica Denney"" <mdenney@nortelnetworks.com>"
+0cafdbe236293c53,mdennison@sdlintl.com,"""Michael Dennison"" <mdennison@sdlintl.com>"
+20e9a119976c0e2c,melba.lozano@enron.com,"Lozano, Melba </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MLOZANO>"
+b332b03b58940a16,melissa.becker@enron.com,Melissa Becker
+95a1089e75b4cf44,melissa.murphy@enron.com,Melissa Ann Murphy
+0d969eec96d768fb,mgermany@ch2m.com,Unknown
+934afc5e9a01a144,mhaedic@ect.enron.com,Unknown
+c44ff00d2782079a,michael.bridges@enron.com,"Bridges, Michael </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MBRIDGE2>"
+ef3d7d76309edb35,michael.brown@enron.com,Michael R Brown
+12f9a50de259257e,michael.burke@enron.com,Michael Burke
+c58302c5e84e68a7,michael.driscoll@enron.com,Unknown
+186995c26a58be7d,michael.eiben@enron.com,Michael Eiben
+09e1de8b0ac81e92,michael.frazier@enron.com,"Frazier, Michael </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MFRAZIER>"
+3828127dfa9ee818,michael.galvan@enron.com,Unknown
+4ccba3180a2e7b12,michael.hutchinson@enron.com,"Hutchinson, Michael </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=C13D5033-D8C17715-80256957-38993B>"
+73fe34431bd23654,michael.j.beyer@enron.com,Unknown
+790ca510858457c3,michael.moscoso@enron.com,Unknown
+d90437fcf4561489,michael.moulton@enron.com,Unknown
+db81b89e234d2a7a,michael.philippe@enron.com,Unknown
+e9e8b21a0c841f4d,michael.tribolet@enron.com,Michael Tribolet
+70ffe77e81bcd325,michael.tully@enron.com,"Tully, Michael </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MTULLY>"
+8fca253734211360,michael.young@northwestern.com,Unknown
+22a217a9a8029bf8,michael@pnge.psu.edu,Michael Adewumi <michael@pnge.psu.edu>
+fa3b38ae2726e8c8,michelle.cash@enron.com,Michelle Cash
+2d8b4e177fe1e0ee,michelle.lokay@enron.com,"Lokay, Michelle </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MLOKAY>"
+084346cfd46d176e,miguel.padron@enron.com,Unknown
+5fcc00d39c51ed14,miguel.vasquez@enron.com,Unknown
+07459e997a5f8165,mike.carson@enron.com,Mike Carson
+dfb266a4d19e11d0,mike.curry@enron.com,Mike Curry
+9cdb39b679e5a538,mike.grigsby@enron.com,Mike Grigsby
+1b93f68310d7a7a0,mike.jordan@enron.com,"Jordan, Mike </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=C3E4221E-2010C105-802568B7-3D015E>"
+5aa9f68db8f40c75,mike.mcconnell@enron.com,Mike McConnell
+64a6e4e9b178be1e,mike.miller@enron.com,Unknown
+95b24380174b1d81,mike.swerzbin@enron.com,Unknown
+24c968540a268f53,mike_kelly@eott.com,Unknown
+33fe157aeea6a3d9,mitch.robinson@enron.com,Mitch Robinson
+f40459aefca29af8,miyung.buster@enron.com,Miyung Buster
+ea9e87ad21326aa4,mkeyser@enron.com,Unknown
+9630a4a025470b13,mmalmeida@elektro.com.br,Unknown
+19b7367e65b85b2d,mmcgrath@eei.org,"""Michael McGrath"" <MMcGrath@eei.org>"
+74308bed862f44e3,mmilner@coral-energy.com,Unknown
+4e95c1c74dba7684,mo.elafandi@enron.com,"Elafandi, Mo </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MELAFAND>"
+f36332cd226b3c4e,mollie.gustafson@enron.com,Mollie Gustafson
+59107aad2f5487e7,molly.magee@enron.com,Unknown
+6dbc5e65e225af21,monique.sanchez@enron.com,Monique Sanchez
+077871ef8a29e465,morgan.gottsponer@enron.com,"Gottsponer, Morgan </O=ENRON/OU=NA/CN=RECIPIENTS/CN=MGOTTSP>"
+cdaf9a3e5db83c8f,mreuter@kslaw.com,"""Reuter, Marisa"" <MReuter@KSLAW.com>"
+17c66c56ea6343ff,nailia.dindarova@enron.com,Nailia Dindarova
+e38e6c9b5d3f5580,nancy.bagot@enron.com,Nancy Bagot
+0635fae30f715423,nancy.sellers@robertmondavi.com,Nancy Sellers <Nancy.Sellers@RobertMondavi.com>
+12470097fbee0123,naomi.connell@enron.com,Unknown
+4a87bf1575c4b970,nate.blackburn@enron.com,Unknown
+2f9f40edb6ed35d7,naul@hesinet.com,Unknown
+c1a88da0003b809c,neal.gerstandt@enron.com,Neal Gerstandt
+fdac175e318b89d6,nicholas.stephan@enron.com,Unknown
+7b53ebe5ed7a844d,nick.hiemstra@enron.com,Nick Hiemstra
+082ac826bebb4cea,no.address@enron.com,@ENRON
+ed25b9147b79587a,nyiso_tech_exchange@global2000.net,Unknown
+3ebb8b682d69fa8d,office.chairman@enron.com,Office of the Chairman
+04262fe5626d2f2e,orders@ashford.com,<orders@ashford.com>
+fe1200ec5eafcbb1,orlando.gonzalez@enron.com,Orlando Gonzalez
+74f6f75b00b6a993,oscar.dalton@enron.com,Oscar Dalton
+ca99a641e5ae6b36,outlook.migration.team@enron.com,Outlook.Migration.Team@enron.com
+096782e2056fd3cc,outlook.team@enron.com,Outlook Migration Team
+3a44fc3d12ddbfb9,overturf@enron.com,Unknown
+d8c7288c2687e9fd,owner-eveningmba@haas.berkeley.edu,owner-eveningmba@Haas.Berkeley.EDU
+cb8868c0269aaab7,owner-huntingtonbeach@energy.ca.gov,owner-huntingtonbeach@energy.ca.gov
+2f994c8930a14b53,owner-nyiso_tech_exchange@lists.thebiz.net,owner-nyiso_tech_exchange@lists.thebiz.net
+3cdcc4d1a3a13ef3,owner-pjm-customer-info@pjm.com,owner-pjm-customer-info@pjm.com
+274681f3ae6fed64,ozzie.pagan@enron.com,Unknown
+b9fb2794e2d8d678,paige.grumulaitis@enron.com,Unknown
+557693138dfe7ef4,palmer.letzerich@enron.com,Palmer Letzerich
+88049fa7419eb278,pat.clynes@enron.com,Pat Clynes
+26d49206db4499a1,pat.radford@enron.com,Unknown
+dc3e171afbb58c24,patricia.cini@enron.com,Unknown
+b403c077c3a3a740,patrick.hanse@enron.com,Unknown
+571a3578c8bb7634,patti.sullivan@enron.com,Unknown
+90875d48a1d8a1ac,patti.thompson@enron.com,Patti Thompson
+1122db8f446d3611,paul.adair@enron.com,Unknown
+5d425866e6c3a1d4,paul.cline@enron.com,Unknown
+e64277a52b5bc512,paul.hennemeyer@enron.com,Paul Hennemeyer
+923a7645b2bec1c7,paul.kaufman@enron.com,Paul Kaufman
+5d001f97d89a8850,paul.parrish@enron.com,Paul E Parrish
+57271e036e8a1b8a,paul.simons@enron.com,Paul Simons
+62161aae360b2bd1,paulamirault@aec.ca,Unknown
+185decf4128e5986,paulette.obrecht@enron.com,"Obrecht, Paulette </O=ENRON/OU=NA/CN=RECIPIENTS/CN=POBRECH>"
+77bf9c03ee23f0ce,pbukowski@acex.com,Patrick Bukowski <pbukowski@acex.com>
+62486c7e50f3f38a,peggy.fowler@enron.com,Unknown
+33e43f2b7c5ad5fb,peggy.mahoney@enron.com,Unknown
+d03bf24e363fbcda,per.sekse@enron.com,Per Sekse
+12003b8dd91f4a33,perfmgmt@ect.enron.com,"""perfmgmt@ect.enron.com""<perfmgmt@ect.enron.com>"
+3a58b0781394c7c1,perfmgmt@enron.com,"""Performance Evaluation Process (PEP)"" <perfmgmt@enron.com>"
+50e31e71d2bbce2b,peter.f.keavey@enron.com,Unknown
+c4e8f9cb3ebc2ff9,peter.styles@enron.com,Peter Styles
+c44cfa8007a7354c,philip.polsky@enron.com,Philip Polsky
+7df2c234b65ffb0f,philippe.bibi@enron.com,Unknown
+e3169b807870d69c,phillip.allen@enron.com,Phillip K Allen
+2d90ca243a2437b3,phillip.love@enron.com,Phillip M Love
+92e4e271fbbfb737,pjm-customer-info@risc1.pjm.com,Unknown
+47b19793a944f14a,pjpowerlaw@aol.com,PJPowerLaw@aol.com
+ae8f279f79071a70,pmims@enron.com,Unknown
+b0f6373290c2a98b,portland.desk@enron.com,Unknown
+dc53a48a794e0821,postmaster@ajilon.com,System Administrator <postmaster@Ajilon.com>
+72a84cfcd8c83fe8,postmaster@melnick.mvir.bcm.tmc.edu,System Administrator <postmaster@melnick.mvir.bcm.tmc.edu>
+e723ad1ac390c608,postmaster@mfah.org,postmaster@mfah.org
+e0bf437c37b3ff75,postmaster@pwcglobal.com,postmaster@pwcglobal.com
+617aa1cfddb6f5d7,postmaster@tmh.tmc.edu,System Administrator <postmaster@tmh.tmc.edu>
+2171b8d2f0210702,ppriest2@csc.com,Unknown
+e4ec699b699aacc9,priest@yazoopsc.org,Unknown
+dd943cb84ebedd18,pthompson@akllp.com,"""Thompson, Peter J."" <pthompson@akllp.com>"
+5a8c8074d43594aa,public.relations@enron.com,Public Relations
+333d747f418acc37,pushkar.shahi@enron.com,Unknown
+8a78a922b63a89e4,pwarren@rice.edu,Malcolm Gillis <pwarren@rice.edu>
+6bc62e331c8a5dcf,pys@piedmontyoga.com,Unknown
+8c3efde8ea0b1b04,quickplace@quickplace-2.interliant.com,"""californiasolutions"" <QuickPlace@quickplace-2.interliant.com>"
+c52b05041672a874,r..brackett@enron.com,Unknown
+bee4bc7ce2578ca4,r..conner@enron.com,Unknown
+67b8d4885909e42c,r..westbrook@enron.com,Unknown
+3b126ecd8fa197fa,rakesh.bharati@enron.com,Rakesh Bharati
+5be5df49d47fbe7d,ranabir.dutt@enron.com,Ranabir Dutt
+8425e1b16d662b7e,randall.gay@enron.com,Randall L Gay
+ec6e8992102a06f6,randy.lord@enron.com,Randy Lord
+0efdf6ec844e846a,ray.alvarez@ei.enron.com,Unknown
+c8cce5566c0975bf,raymond.bowen@enron.com,Unknown
+c0f427cebcfcb756,rberry@apx.com,Unknown
+180375c7d1965e38,rcarroll@bracepatt.com,"""Ronald Carroll"" <rcarroll@bracepatt.com>"
+97f90fd679fe00c0,rcrane@sto.id.us,Unknown
+817859a5308ca2a6,reactions@reactionsnet.com,Reactions <reactions@reactionsnet.com>
+837eede04de17fce,reagan.rorschach@enron.com,Reagan Rorschach
+c0544c798a6e7f4e,rebecca.cantrell@enron.com,Rebecca W Cantrell
+2944770a7eedef24,rebecca.mcdonald@enron.com,Unknown
+0f9b6dc84f249123,regina.blackshear@enron.com,Unknown
+7bcd0d05ef17e7ab,reliantenergy@ebillcare.com,<ReliantEnergy@ebillcare.com>
+efcdcb7d1f60c482,rex.shelby@enron.com,"Shelby, Rex </O=ENRON/OU=NA/CN=RECIPIENTS/CN=RSHELBY>"
+c52f91182141c565,rexhime@cbpa.com,Unknown
+19e266698d3cb8a7,richard.amabile@enron.com,Richard.Amabile@enron.com
+b508c0751c9ccf00,richard.b.sanders@enron.com,Unknown
+43ebfe713b7921f1,richard.black@enron.com,Richard J Black
+5a366d61552368cf,richard.causey@enron.com,Richard Causey
+71fe8258ecbefb70,richard.costigan@asm.ca.gov,"""Costigan, Richard"" <Richard.Costigan@asm.ca.gov>"
+f6bb9110b0206934,richard.deming@enron.com,Richard Deming
+324a54311119514f,richard.jeffrey@enron.com,Unknown
+b894bfed8628f752,richard.lauer@enron.com,Unknown
+1812a4897784bbe9,richard.lydecker@enron.com,Richard Lydecker <Richard Lydecker/ENRON@enronXgate@ENRON>
+e23818a6e34cc46f,richard.ring@enron.com,Unknown
+4e3be3b63dd283af,richard.sanders@enron.com,"Sanders, Richard </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=FB40DE6F-7345673D-86256575-5AE2F4>"
+4c6e41ed3d8ea6d6,richard.shapiro@enron.com,Richard Shapiro
+a2f7a82454e67e27,richard.zdunkewicz@enron.com,Richard L Zdunkewicz
+29bc91a1a27bc737,richey_holly@prc.com,Unknown
+762120e3324af86b,rick.buy@enron.com,"Buy, Rick </O=ENRON/OU=NA/CN=RECIPIENTS/CN=RBUY>"
+732745bf2a8dfacb,ricky.oberai@enron.com,Unknown
+d0cd2e2aa03c3ed1,riddles@riddlesandmore.com,riddles@riddlesandmore.com
+cacbf90db1897079,rika.imai@enron.com,Rika Imai
+a17149872665da87,rita.wynne@enron.com,Rita Wynne
+b3dfdd67549fbcdd,rjnewson@duke-energy.com,Unknown
+78ebfb1194aade8f,rob.bradley@enron.com,Rob Bradley
+1eda1a078a528676,rob.walls@enron.com,Unknown
+b13dace4f341ef3d,robert.allwein@enron.com,Unknown
+9e008e66ce4ccbc5,robert.anderson@enron.com,Unknown
+cf4f4d6163b8e94c,robert.bruce@enron.com,Robert Bruce
+7fcb89591bbe945d,robert.johnson@enron.com,Unknown
+120846073289fd45,robert.johnston@enron.com,Robert Johnston
+e7b742e249021bb0,robert.neustaedter@enron.com,Robert Neustaedter
+d40b0024bc9ea11c,robert.superty@enron.com,Unknown
+0d292d367e9a7246,robert.williams@enron.com,Robert C Williams
+a35e5d787418bc53,rod.hayslett@enron.com,"Hayslett, Rod </O=ENRON/OU=NA/CN=RECIPIENTS/CN=RHAYSLE>"
+878feb8554ff87af,rod.nelson@enron.com,Rod Nelson
+65fe2d466c9f7776,rogers.herndon@enron.com,Rogers Herndon <Rogers Herndon/HOU/ECT@ECT>
+85af4a43cbbb34c6,rosalee.fleming@enron.com,Rosalee Fleming
+729b8a2fb288743b,roseann.engeldorf@enron.com,Roseann Engeldorf
+a98ce3571723ef67,rosteen@powersrc.com,Unknown
+6352c242244f6918,rousseau.anai@enron.com,Unknown
+f16f099d3ce54980,roy.boston@enron.com,Unknown
+7dcc6c7188e64cf6,rshapiro@enron.com,Unknown
+03d108e380f7baad,rudy.acevedo@enron.com,Unknown
+934c162a5564f1d6,russell.ballato@enron.com,Unknown
+2e212847e5d1e719,russell.diamond@enron.com,Russell Diamond
+13422cc13cb0131b,ruth.concannon@enron.com,"Concannon, Ruth </O=ENRON/OU=NA/CN=RECIPIENTS/CN=RCONCAN>"
+befc5dfdda548d20,ryan.seleznov@enron.com,Unknown
+bae392f5c2136bcb,s..bradford@enron.com,Unknown
+be68dc6c4baae53e,s..shively@enron.com,"Shively, Hunter S. </O=ENRON/OU=NA/CN=RECIPIENTS/CN=HSHIVEL>"
+c2a152cdcde8313f,sally.beck@enron.com,Sally Beck
+99b86ff87b65cae6,samuel.schott@enron.com,Samuel Schott
+d5091f653d12a2ce,sande@pira.com,"""Sande Ubiol"" <sande@pira.com>"
+406501e30602058b,sandeep.kohli@enron.com,Sandeep Kohli
+cea8d375513dcaa0,sandra.brawner@enron.com,Sandra F Brawner
+644c4f9347074f8d,sandra.mccubbin@enron.com,Sandra McCubbin
+461247dc51cc1049,sanjeev.khanna@et.pge.com,"""Khanna, Sanjeev"" <sanjeev.khanna@et.pge.com>"
+0c90a8e350e2248e,sara.shackleton@enron.com,Sara Shackleton
+6e5ec56ba932a6f4,sarah.novosel@enron.com,Sarah Novosel
+07200bd47beff375,scharnberger-armin@t-online.de,Scharnberger-Armin@t-online.de (Heizungsbau Armin Scharnberger)@ENRON <IMCEANOTES-Scharnberger-Armin+40t-online+2Ede+20+28Heizungsbau+20Armin+20Scharnberger+29+40ENRON@ENRON.com>
+51512692b4ad69fe,scoop@mailer.money.net,"""Good Morning from Money.net"" <scoop@mailer.money.net>@ENRON <IMCEANOTES-+22Good+20Morning+20from+20Money+2Enet+22+20+3Cscoop+40mailer+2Emoney+2Enet+3E+40ENRON@ENRON.com>"
+ced6755cf5cbeac4,scott.coburn@enron.com,Unknown
+33e90f35d5d8783d,scott.dieball@enron.com,Scott Dieball
+7b925fb8ed7085e6,scott.goodell@enron.com,Scott Goodell
+203997380fdb463d,scott.hendrickson@enron.com,Scott Hendrickson
+8b9004989428bf9c,scott.mills@enron.com,"Mills, Scott </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=4C0D8397-C4264103-862569CE-57C8AD>"
+974d1ad9c39de61f,scott.neal@enron.com,Scott Neal
+f28669c1b8bdd488,scott.tholan@enron.com,Scott Tholan
+a8f94f1b97dac4bb,scott.vonderheide@enron.com,Scott Vonderheide
+cd7dda3e6f63b725,scott_sullivan@enron.com,Unknown
+c8fa1795bf914392,scottwl@hotmail.com,"""Scott Laughlin"" <scottwl@hotmail.com>"
+78ded576bf90ffc6,sean.boyle@enron.com,"Boyle, Sean </O=ENRON/OU=NA/CN=RECIPIENTS/CN=SBOYLE>"
+7bd29aeea357462a,sean.crandall@enron.com,"Crandall, Sean </O=ENRON/OU=NA/CN=RECIPIENTS/CN=SCRANDA>"
+39cca7c95313dd24,seckas@cwt.com,"""Scott Eckas"" <SECKAS@cwt.com>"
+34064a8f8132b3b4,seidmanconsult@aol.com,Seidmanconsult@aol.com
+b456c1b46f53b5cb,sglobby@pacbell.net,Unknown
+51f5ecd55277c166,sgovenar@govadv.com,Scott Govenar <sgovenar@govadv.com>
+6efeae741180f354,shalesh.ganjoo@enron.com,Shalesh Ganjoo
+1552075ff7d090aa,shari.stack@enron.com,Shari Stack
+bf9eda7e4a55e385,sharon.brown@enron.com,Unknown
+94e8327272912c01,sharon.butcher@enron.com,"Butcher, Sharon </O=ENRON/OU=NA/CN=RECIPIENTS/CN=SBUTCHE>"
+0c95b3da8fdb4423,sheila.glover@enron.com,Sheila Glover
+c55a8f46176b1d0f,sheila.tweed@enron.com,Sheila Tweed
+00147b6f8b2d47f7,shelley.corman@enron.com,Shelley Corman <Shelley Corman/ENRON@enronXgate@ENRON>
+116f26b86735a1a2,sherlyn.schumack@enron.com,Sherlyn Schumack
+5f534b0102686e81,sherri.sera@enron.com,Sherri Sera
+000cb0d994784656,shift.portland@enron.com,Unknown
+7f80b83e21f4ee7b,shirley.crenshaw@enron.com,Shirley Crenshaw
+0202ac080487edb5,shirley.mcdowell@enron.com,Shirley McDowell
+2551a6e96f6ba294,shorton@enron.com,Unknown
+17a6a417ab17da94,showard@agsk.com,showard@agsk.com
+fcec2b0b4a525465,simone.rose@enron.com,Simone La rose
+e68ffc1def9c29fd,skean@enron.com,Unknown
+c3671b5f2af1ac1d,skimmel@iexalt.net,Unknown
+62f4421d574ea35d,sneal@ei.enron.com,Unknown
+629ec3040ec5c407,soblander@carrfut.com,SOblander@carrfut.com
+83e14e39a381863c,software-news@amazon.com,"""Amazon.com"" <software-news@amazon.com>@ENRON <IMCEANOTES-+22Amazon+2Ecom+22+20+3Csoftware-news+40amazon+2Ecom+3E+40ENRON@ENRON.com>"
+2cc37a247329c4f2,sonya.johnson@enron.com,Sonya Johnson
+cc57ab994e873f54,sreyno@state.wy.us,"""Steve Reynolds"" <SREYNO@state.wy.us>"
+c6892dbd85bdd47e,stacey.neuweiler@enron.com,Stacey Neuweiler
+ba2863c0edf1ff77,stacey.w.white@enron.com,Unknown
+de1a558f516d7646,stacey.white@enron.com,"White, Stacey </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=64B26E5D-217ACFF6-8625665D-76B99E>"
+ada599107c26cbc9,staci.holtzman@enron.com,Unknown
+80cf498a5fde33a8,stacy.dickson@enron.com,Stacy E Dickson
+0c04f23c6f7c9ea8,stanley.horton@enron.com,Stanley Horton
+1478ff209c56a34e,stephanie.panus@enron.com,"Panus, Stephanie </O=ENRON/OU=NA/CN=RECIPIENTS/CN=SPANUS>"
+151be7912f526c58,stephanie.sever@enron.com,"Sever, Stephanie </O=ENRON/OU=NA/CN=RECIPIENTS/CN=SSEVER>"
+a4f98ad79818d1b2,stephanie.strong@enron.com,Unknown
+82c4acd4daa4e8f6,steve.duffy@enron.com,Steve Duffy
+c797ca79b3a3aff4,steve.gillespie@enron.com,Unknown
+6ad46c8b708181b4,steve.hall@enron.com,Steve C Hall
+0014e0e4883c870d,steve.howarth@bea.com,Steve Howarth <steve.howarth@bea.com>
+2252f8adae17682d,steve.jackson@enron.com,Unknown
+13f98f8056353f4d,steve.montovano@enron.com,Steve Montovano
+53c47b83be45a96a,steve.venturatos@enron.com,Steve Venturatos
+07cdae3bdb05f68b,steve.walton@enron.com,Unknown
+bec40ef9622fe8a4,steven.kean@enron.com,Steven J Kean
+d54585bb74baf521,steven.krimsky@enron.com,Steven Krimsky
+a0e76f0534fea504,steven.leppard@enron.com,Unknown
+889579b1cdd87dbd,steven.leung@enron.com,Unknown
+bddcd10795efe291,stinson.gibner@enron.com,"Gibner, Stinson </O=ENRON/OU=NA/CN=RECIPIENTS/CN=SGIBNER>"
+a2bd0d50e6377c6e,stuart.zisman@enron.com,Stuart Zisman
+21a46be21bfcbcc6,subscriptions@intelligencepress.com,subscriptions@intelligencepress.com
+b307790976e80fc8,sue.neville@enron.com,Unknown
+f5e2a4e5bac2a541,sunil.abraham@enron.com,Unknown
+036fe2405cfbe838,sunil.dalal@enron.com,Unknown
+ddcbc5255448f269,susan.bailey@enron.com,Susan Bailey
+f362035411132c4d,susan.flynn@enron.com,Susan Flynn
+dc8ac56f111ba75c,susan.landwehr@enron.com,Susan M Landwehr
+1bad9d61aa723a2b,susan.mara@enron.com,Susan J Mara
+64d140e355cf4bb9,susan.pereira@enron.com,Susan W Pereira
+9e03977309a6a76d,susan.ralph@enron.com,Susan Ralph
+7ce10fe670bd76ba,susan.scott@enron.com,Susan Scott
+651f57708bc3e8a3,suzanne.adams@enron.com,Suzanne Adams
+eafa1e48bc9b985c,suzanne.brown@enron.com,Unknown
+731fd14f287d742b,suzanne.calcagno@enron.com,Suzanne Calcagno
+3f0e723404412003,suzanne.christiansen@enron.com,Unknown
+15fdbfba09aae7b8,suzanne.danz@enron.com,Suzanne Danz <Suzanne Danz/ENRON@enronXgate@ENRON>
+c95aac017e4a7c35,swilliams@iconconsultants.com,Shawna Williams <swilliams@iconconsultants.com>
+57592b31c379e77e,syed.ahmed@enron.com,Unknown
+8879e046069cf61c,sylvia.campos@enron.com,Sylvia A Campos
+3d55840875880afe,taffy.milligan@enron.com,Taffy Milligan
+09737fb4c1cc0bd4,takashi.kimura@enron.com,Unknown
+75ad0b9d3b738e6b,tamara.black@enron.com,Tamara Jae Black
+1e8006b70720b4e9,tana.jones@enron.com,Tana Jones
+0ef82b4a3d906c1b,tanya.rohauer@enron.com,Tanya Rohauer
+e29fa986d712de4c,tanya.tamarchenko@enron.com,Tanya Tamarchenko
+8e549ee7fe57fcb4,tara.piazze@enron.com,Unknown
+0e692ae5862fce7d,tara.sweitzer@enron.com,Unknown
+aa572ee51755c4d3,ted.bockius@ivita.com,Unknown
+24da21bd5684a7e3,ted.murphy@enron.com,Ted Murphy
+cfef15726deff742,terence.thorn@enron.com,Terence H Thorn
+2d737fe5c3041d81,teresa_casazza@aeanet.org,Unknown
+127cde1158e319a1,texansnews@newsletter.houstontexans.com,Unknown
+03c43fd6ebd36830,texbasque@aol.com,Unknown
+b06a6219acfbe0b3,textbreakingnews@cnnimail4.cnn.com,Unknown
+010c6ce9d2065399,thane.twiggs@enron.com,Thane Twiggs
+39d306872260834f,theweatherchannel@alerts.weather.com,TheWeatherChannel@alerts.weather.com
+4524f4b753e77743,thomas.engel@enron.com,Thomas Engel
+91c9f636a53ff990,tie_list_server.nyiso@nyiso.com,Unknown
+012c182f57d9886e,tim.belden@enron.com,Tim Belden <Tim Belden/ENRON@enronXgate@ENRON>
+303dec101ec492e8,timesheets@iconconsultants.com,Time Sheets <timesheets@iconconsultants.com>
+a8087f49dd0c4747,tina.spiller@enron.com,"Spiller, Tina </O=ENRON/OU=NA/CN=RECIPIENTS/CN=TSPILLE>"
+9fac11a6a8468b88,tj@haas.berkeley.edu,Haas School of Business <tj@Haas.Berkeley.EDU>
+cb6269686d13c6d5,tjacobs@ou.edu,"""Jacobs, Ted K"" <tjacobs@ou.edu>"
+78d0c7f379d5eca4,tobin.carlson@enron.com,Unknown
+30f70a7b7a0c9325,tom.acton@enron.com,Tom Acton
+bd292eef44837b50,tom.briggs@enron.com,Tom Briggs
+1c0e55410ca1921b,tom.may@enron.com,Tom May
+d4b4387f2738d7a2,tom.moran@enron.com,Tom Moran
+7693e0c81cb75a8b,tom.nemila@enron.com,Unknown
+72d3803304a2ffa2,tomas.valnek@enron.com,Tomas Valnek
+c9b32a584913f3ae,tonda_bunge@yahoo.com,Unknown
+e77510f59dce3e5f,tony.galt@enron.com,"Galt, Tony </O=ENRON/OU=NA/CN=RECIPIENTS/CN=TGALT>"
+f3fcf5c9f5baaccb,tori.kuykendall@enron.com,Tori Kuykendall
+6f7c52c282b60ae3,traci.warner@enron.com,Unknown
+2df63ca042ffcbef,tracy.mclaughlin@enron.com,Tracy McLaughlin
+03dd01f4fce04393,twanda.sweet@enron.com,Twanda Sweet
+1cab2e7d4d520ddc,undisclosed.recipients@mailman.enron.com,Unknown
+6e3e5d6dc6bdf783,v.weldon@enron.com,V Charles Weldon
+40a1f3cb3f1e1143,vance.taylor@enron.com,Unknown
+c87e37ca6a42adf1,vasant.shanbhogue@enron.com,Vasant Shanbhogue
+95823a6ecb21e846,veronica.espinoza@enron.com,"Espinoza, Veronica </O=ENRON/OU=NA/CN=RECIPIENTS/CN=VESPINO>"
+74c9781c54b1d0b7,vhart@enron.com,Unknown
+ebae955ec10682fe,vicki.sharp@enron.com,"Sharp, Vicki </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=DC350363-F761E300-862564C2-54998E>"
+169566ce7a9c6695,victor.lamadrid@enron.com,"Lamadrid, Victor </O=ENRON/OU=NA/CN=RECIPIENTS/CN=VLAMADR>"
+94de46d008f9f026,vince.j.kaminski@enron.com,Unknown
+60f9c4ec6c82dd26,vince.kaminski@enron.com,Vince J Kaminski
+54fe26036da5ecb3,virginia.thompson@enron.com,"Thompson, Virginia </O=ENRON/OU=NA/CN=RECIPIENTS/CN=VTHOMPSO>"
+6bf976853d43438b,vkamins@enron.com,Unknown
+751a85226c9a11ca,vkaminski@aol.com,VKaminski@aol.com
+3baf8f19b74e9297,vladimir.gorny@enron.com,Vladimir Gorny
+06ef44668e80d42b,vmartinez@winstead.com,"""Martinez, Vidal"" <VMartinez@winstead.com>"
+e39ea65a8d90891f,w.duran@enron.com,W David Duran <W David Duran/HOU/ECT@ECT>
+253a3a39cb562270,wade.stubblefield@enron.com,"Stubblefield, Wade </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=4DAD4484-CCE8DEE5-862567D2-7524A8>"
+c43aa681061c3c5e,walt.zimmerman@enron.com,Walt Zimmerman
+a0d617824056d813,wayne.morter@austinenergy.com,"""Morter, Wayne"" <Wayne.Morter@austinenergy.com>"
+887238f5ee755341,wayne.perry@enron.com,"Perry, Wayne </O=ENRON/OU=NA/CN=RECIPIENTS/CN=NOTESADDR/CN=22FA2F5-4F6552EB-86256724-74F6E1>"
+7062572ee00e7291,weather@poweredby.lifeminders.com,"""weather.com"" <weather@poweredby.lifeminders.com>"
+44e1b2a522bb8e39,websupport@moneynet.com,Unknown
+253ab4495be521c7,wes.colwell@enron.com,Wes Colwell <Wes Colwell/ENRON@enronXgate@ENRON>
+f7c945f81c32e2a4,wfhenze@jonesday.com,Unknown
+c589f02860cc04a8,wgphou.customernotices@williams.com,"""CustomerNotices, WGPHOU"" <WGPHOU.CustomerNotices@Williams.com>"
+ac588e1bc822c5e0,william.bradford@enron.com,Unknown
+60566bb0b2763236,williamsj@iconus.com,"""Williams, Joanna (TX)"" <WilliamsJ@iconus.com>@ENRON <IMCEANOTES-+22Williams+2C+20Joanna+20+28TX+29+22+20+3CWilliamsJ+40iconus+2Ecom+3E+40ENRON@ENRON.com>"
+b84e12e0339f2838,wilson.kriegel@enron.com,Wilson Kriegel
+6b7df6a87023d135,wparmer@cysive.com,Unknown
+5dcb382924dfe351,wscfeedback@wallstreetcity.com,WallStreetCity Offers<wscfeedback@wallstreetcity.com>@ENRON <IMCEANOTES-WallStreetCity+20Offers+3Cwscfeedback+40wallstreetcity+2Ecom+3E+40ENRON@ENRON.com>
+4b058c22856775ef,xxbuldogx@aol.com,xxbuldogx@aol.com@ENRON <IMCEANOTES-xxbuldogx+40aol+2Ecom+40ENRON@ENRON.com>
+3873f4d0808c8adb,yolanda@ccemtl.org,"""Yolanda Clegg"" <yolanda@ccemtl.org>"
+179c961b286fdd47,zimin.lu@enron.com,Zimin Lu
