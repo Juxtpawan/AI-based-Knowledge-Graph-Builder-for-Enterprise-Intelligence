@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+neo4j
+pinecone-client
+pandas
+numpy
+langchain-core
+langchain-text-splitters
+langchain-pinecone
+langchain-google-genai
