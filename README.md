@@ -1,69 +1,56 @@
-# AI-based Knowledge Graph Builder for Enterprise Intelligence
+# Vidzai: AI-Based Knowledge Graph & Hybrid RAG
 
-This project is a comprehensive pipeline designed to transform unstructured enterprise data (like the Enron email corpus) into a structured Knowledge Graph and a Hybrid RAG (Retrieval-Augmented Generation) system. 
+Vidzai is a premium enterprise intelligence platform that transforms massive, unstructured data (like the Enron email corpus) into a structured Knowledge Graph and a high-performance Hybrid RAG (Retrieval-Augmented Generation) system.
 
-It combines advanced NLP, Graph Databases (Neo4j), Vector Databases (Pinecone), and LLMs (Gemini) to provide deep insights into corporate communication, entities, and relationships.
+![Dashboard Preview](/C:/Users/pawan/.gemini/antigravity/brain/a60ac386-79dd-4a37-8927-31af4d7d78ec/dashboard_preview.png)
 
-## 🗺️ Architectural Overview
+## 🌟 Key Features
 
-The following diagram shows the end-to-end flow from raw data to an intelligent AI assistant:
+- **Intelligence Chat**: A context-aware AI assistant that synthesizes answers by combining semantic vector search (Pinecone) and structured graph traversal (Neo4j).
+- **Graph Analytics**: A real-time dashboard visualizing entity distribution, top communicators, and ingestion progress.
+- **Hybrid RAG Pipeline**: An end-to-end data processing engine using Gemini AI for Named Entity Recognition (NER) and relationship extraction.
 
-```mermaid
-graph TD
-    A["Raw Enron Data (datasets/)"] --> B["1. Preprocessing (miles1.ipynb)"]
-    B --> C["Cleaned & Enriched CSVs (sample_email_by_category/)"]
-    C --> D["2. Extraction Engine (miles2extract_ent_rel.ipynb)"]
-    D --> E["NER & Relationship Triples (NER/)"]
-    E --> F["3. Graph Ingestion (miles2neo4j_storage.ipynb)"]
-    F --> G["Neo4j Knowledge Graph"]
-    C --> H["4. Hybrid RAG (miles3hybridRAG.py)"]
-    G --> H
-    H --> I["Intelligent AI Insights"]
-```
+## 🛠️ Tech Stack
 
----
+- **Frontend**: React 19, Vite, Tailwind CSS 4, Framer Motion, Recharts, Lucide Icons.
+- **Backend**: FastAPI, Uvicorn, Pydantic, Pandas.
+- **Database**: Neo4j (Graph), Pinecone (Vector).
+- **AI/LLM**: Google Gemini 3 Flash Preview, LangChain.
 
-## 🚀 Core Components
-
-### 1. Data Processing & Enrichment (`miles1.ipynb`)
-Handles initial data ingestion from the raw Enron corpus, multi-encoding recovery, and a multi-stage body cleaning process. It generates analytical features like word counts, time-of-day categories, and initial topic classifications.
-
-### 2. AI Intelligence Layer (`miles2extract_ent_rel.ipynb`)
-The "brain" of the extraction process. It uses LLMs (Gemini 3.1 Flash Lite) to exhaustively extract Named Entities and Semantic Relationships from cleaned emails, producing structured knowledge triples.
-
-### 3. Graph Ingestion & Storage (`miles2neo4j_storage.ipynb`)
-Orchestrates the transformation of processed CSVs into a 6-layer Neo4j Knowledge Graph. It builds the identity profiles, communication backbone, and integrates the AI-extracted triples.
-
-### 4. Hybrid RAG Exploration (`miles3hybridRAG.py`)
-The final intelligence layer that combines semantic vector search and structured graph retrieval. It allows for interactive querying of the Knowledge Graph and Vector store within a notebook environment.
-
----
-
-## ⚡ Getting Started
+## 🚀 Getting Started
 
 ### 1. Prerequisites
-- **Python 3.10+**
-- **Neo4j Database** (Local or Aura)
-- **Pinecone Account** (For vector storage)
-- **API Keys**: 
-    - `GEMINI_AI_API_KEY` (Google AI)
-    - `PINECONE_API_KEY` (Pinecone)
 
-### 2. Setup Environment
-```bash
-git clone https://github.com/Juxtpawan/AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence.git
-cd AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence
-python -m venv .venv
+- **Python 3.10+** & **Node.js 18+**
+- **Neo4j Instance** (Local or AuraDB)
+- **Pinecone Index** (1024 dimensions, cosine metric)
+- **API Keys**: Google Gemini & Pinecone API.
 
-# Windows
-.venv\Scripts\activate
+### 2. Installation
 
-# Install dependencies
-pip install -r requirements.txt
-```
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Juxtpawan/AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence.git
+   cd AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence
+   ```
+
+2. **Backend Setup**:
+   ```bash
+   cd backend
+   python -m venv .venv
+   .\.venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. **Frontend Setup**:
+   ```bash
+   cd ../frontend
+   npm install
+   ```
 
 ### 3. Configuration
-Create a `.env` file in the root directory:
+
+Create a `.env` file in the `backend/` directory:
 ```env
 NEO4J_URI=bolt://localhost:7687
 NEO4J_USER=neo4j
@@ -73,28 +60,22 @@ GEMINI_AI_API_KEY=your_gemini_key
 PINECONE_API_KEY=your_pinecone_key
 ```
 
-1. **Prepare Data & Enrich**:
-   Run `miles1.ipynb` to process raw data.
-2. **Extract AI Intelligence**:
-   Run `miles2extract_ent_rel.ipynb` to generate NER and Relationship triples.
-3. **Build Knowledge Graph**:
-   Run `miles2neo4j_storage.ipynb` to ingest data into Neo4j.
-4. **Hybrid RAG Querying**:
-   Use `miles3hybridRAG.py` to perform complex queries using Vector and Graph context.
+### 4. Running the Project
 
----
+In the project root, run the convenience PowerShell script:
+```powershell
+.\start_project.ps1
+```
+*Alternatively, run `npm run dev` in `frontend/` and `python main.py` in `backend/`.*
 
 ## 📂 Project Structure
 
-### 📓 Notebooks (The "Miles" Series)
-- `miles1.ipynb`: Data ingestion, cleaning, and enrichment.
-- `miles2extract_ent_rel.ipynb`: AI-driven entity and relationship extraction.
-- `miles2neo4j_storage.ipynb`: Knowledge Graph construction in Neo4j.
-- `miles3hybridRAG.py`: Interactive Hybrid RAG development.
+- `frontend/`: React dashboard and chat interface.
+- `backend/`: FastAPI server and RAG logic.
+- `backend/notebooks/`: Data ingestion and AI extraction pipeline (The "Miles" series).
+- `backend/datasets/`: Raw data storage (e.g., `emails.csv`).
+- `backend/NER/`: Structured entity and relationship triples.
 
-### 📊 Data & Knowledge
-- `sample_email_by_category/`: Core cleaned and enriched dataset (CSV).
-- `NER/`: Structured intelligence triples (Entities & Relationships).
-- `final_datasets/`: Intermediate processed datasets.
-- `datasets/`: Raw input CSVs (Enron corpus).
-- `logs/`: Pipeline execution logs.
+## ⚖️ License
+
+Distributed under the MIT License. See `LICENSE` for more information.
