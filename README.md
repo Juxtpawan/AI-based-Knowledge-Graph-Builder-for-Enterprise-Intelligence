@@ -499,7 +499,7 @@ This project is distributed under the **MIT License**. See the [LICENSE](LICENSE
 
 ## 👨‍💻 Author & Support
 
-**Created by**: [Pawan](https://github.com/Juxtpawan)
+**Created by**: [Pawan Sharma](https://github.com/Juxtpawan)
 
 For issues, feature requests, or questions:
 - Open an [Issue](https://github.com/Juxtpawan/AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence/issues)
