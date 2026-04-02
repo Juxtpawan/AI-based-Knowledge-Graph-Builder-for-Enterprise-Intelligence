@@ -270,54 +270,114 @@ AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence/
 ├── README.md                           # This file
 ├── LICENSE                             # MIT License
 ├── start_project.ps1                   # Windows startup script
+├── .gitignore                          # Git ignore rules
 │
 ├── backend/                            # FastAPI backend
 │   ├── main.py                         # FastAPI application entry point
 │   ├── miles3hybridRAG.py              # Hybrid RAG engine & query logic
 │   ├── requirements.txt                # Python dependencies
-│   ├── .env                            # Environment variables (create this)
+│   ├── config.py                       # Environment configuration
+│   ├── database.py                     # Neo4j connection management
+│   ├── extraction_checkpoint.json      # Processing checkpoint (generated)
 │   │
 │   ├── notebooks/                      # Jupyter notebooks (Miles series)
 │   │   ├── miles1.ipynb                # Data preprocessing & enrichment
 │   │   ├── miles2extract_ent_rel.ipynb # NER & relationship extraction
-│   │   ├── miles2neo4j_storage.ipynb   # Neo4j graph ingestion
-│   │   └── miles3hybridRAG.py          # Hybrid RAG pipeline
+│   │   └── miles2neo4j_storage.ipynb   # Neo4j graph ingestion
 │   │
-│   ├── datasets/                       # Raw input data
-│   │   └── emails.csv                  # Enron email corpus
+│   ├── api/                            # FastAPI routers
+│   │   ├── routers/
+│   │   │   ├── analytics.py            # Analytics endpoints
+│   │   │   ├── curation.py             # Curation endpoints
+│   │   │   └── graph.py                # Graph query endpoints
+│   │   └── __init__.py
 │   │
-│   ├── sample_email_by_category/       # Cleaned & enriched sample data
-│   │   ├── sample_emails.csv
-│   │   ├── sample_employees.csv
-│   │   ├── sample_communications.csv
-│   │   └── ...
+│   ├── models/                         # Pydantic models
+│   │   ├── analytics.py
+│   │   ├── curation.py
+│   │   └── graph.py
 │   │
-│   ├── final_datasets/                 # Processed datasets
-│   │   ├── aggregated_communications.csv
-│   │   ├── email_enrichment_features.csv
-│   │   ├── employee_metrics.csv
-│   │   └── ...
+│   ├── services/                       # Business logic
+│   │   └── analytics_engine.py
 │   │
-│   ├── NER/                            # Extracted entities & relationships
-│   │   ├── entities/
-│   │   │   └── entities.csv
-│   │   └── relationships/
-│   │       └── relationships.csv
-│   │
-│   ├── logs/                           # Processing logs
-│   │   ├── dataset_info.md
-│   │   └── topic_summary.md
-│   │
-│   ├── .venv/                          # Python virtual environment
-│   └── __pycache__/
+│   └── logs/                           # Processing logs
+│       ├── dataset_info.md
+│       └── topic_summary.md
 │
-└── frontend/                           # React + Vite frontend
-    ├── index.html                      # HTML entry point
-    ├── package.json                    # NPM dependencies
-    ├── vite.config.js                  # Vite configuration
-    ├── eslint.config.js                # ESLint rules
+├── frontend/                           # React + Vite frontend
+│   ├── index.html                      # HTML entry point
+│   ├── package.json                    # NPM dependencies
+│   ├── vite.config.js                  # Vite configuration
+│   ├── eslint.config.js                # ESLint rules
+│   │
+│   ├── src/
+│   │   ├── main.jsx                    # React entry point
+│   │   ├── App.jsx                     # Main application component
+│   │   ├── App.css                     # Application styles
+│   │   ├── index.css                   # Global styles
+│   │   │
+│   │   ├── components/
+│   │   │   ├── chat/
+│   │   │   │   ├── ChatInput.jsx
+│   │   │   │   ├── ChatMessage.jsx
+│   │   │   │   ├── IntelligenceSidebar.jsx
+│   │   │   │   └── ThoughtStepper.jsx
+│   │   │   ├── dashboard/
+│   │   │   │   ├── AlertFabric.jsx
+│   │   │   │   ├── CognitiveFluxChart.jsx
+│   │   │   │   ├── DashboardMetrics.jsx
+│   │   │   │   └── KpiCard.jsx
+│   │   │   ├── graph/
+│   │   │   │   ├── BloomGraphCanvas.jsx
+│   │   │   │   ├── CypherTerminal.jsx
+│   │   │   │   ├── IntelligenceFilterPanel.jsx
+│   │   │   │   └── StylingLegend.jsx
+│   │   │   ├── search/
+│   │   │   │   ├── CommandPalette.jsx
+│   │   │   │   ├── ContextualSearch.jsx
+│   │   │   │   ├── InvestigationBreadcrumbs.jsx
+│   │   │   │   └── TopicSearchSidebar.jsx
+│   │   │   ├── sidebar/
+│   │   │   │   ├── EvidenceBag.jsx
+│   │   │   │   ├── NodeIdentity.jsx
+│   │   │   │   ├── SidebarAnalytics.jsx
+│   │   │   │   ├── SidebarForensics.jsx
+│   │   │   │   ├── SidebarMetadata.jsx
+│   │   │   │   └── SidebarNodeInfo.jsx
+│   │   │   └── ui/
+│   │   │       ├── GlassContainer.jsx
+│   │   │       └── StatusIndicator.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── NetworkView.jsx
+│   │   │   ├── RagAgentChat.jsx
+│   │   │   └── TopicExplorer.jsx
+│   │   │
+│   │   ├── services/
+│   │   │   └── apiClient.js
+│   │   │
+│   │   └── store/
+│   │       └── useIntelStore.js
+│   │
+│   └── public/                         # Static assets
+│
+└── data/                               # Data files
+    ├── kg_data/                        # Knowledge graph data
+    │   ├── entities.csv
+    │   └── relationships.csv
     │
-    ├── src/
+    └── processed/                      # Processed datasets
+        ├── emails/
+        │   └── README.md
+        └── raw/
+            ├── aggregated_communications.csv
+            ├── communications.csv
+            ├── email_enrichment_features.csv
+            ├── emails_cleaned.csv
+            ├── emails.csv
+            ├── employee_metrics.csv
+            └── employees.csv
+```
     │   ├── main.jsx                    # React entry point
     │   ├── App.jsx                     # Main application component
     │   ├── App.css                     # Application styles
