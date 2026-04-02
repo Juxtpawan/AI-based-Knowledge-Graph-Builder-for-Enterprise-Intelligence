@@ -270,78 +270,19 @@ AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence/
 ├── README.md                           # This file
 ├── LICENSE                             # MIT License
 ├── start_project.ps1                   # Windows startup script
-<<<<<<< HEAD
-=======
 ├── .gitignore                          # Git ignore rules
->>>>>>> recovery-branch
 │
 ├── backend/                            # FastAPI backend
 │   ├── main.py                         # FastAPI application entry point
 │   ├── miles3hybridRAG.py              # Hybrid RAG engine & query logic
 │   ├── requirements.txt                # Python dependencies
-<<<<<<< HEAD
-│   ├── .env                            # Environment variables (create this)
-=======
 │   ├── config.py                       # Environment configuration
 │   ├── database.py                     # Neo4j connection management
 │   ├── extraction_checkpoint.json      # Processing checkpoint (generated)
->>>>>>> recovery-branch
 │   │
 │   ├── notebooks/                      # Jupyter notebooks (Miles series)
 │   │   ├── miles1.ipynb                # Data preprocessing & enrichment
 │   │   ├── miles2extract_ent_rel.ipynb # NER & relationship extraction
-<<<<<<< HEAD
-│   │   ├── miles2neo4j_storage.ipynb   # Neo4j graph ingestion
-│   │   └── miles3hybridRAG.py          # Hybrid RAG pipeline
-│   │
-│   ├── datasets/                       # Raw input data
-│   │   └── emails.csv                  # Enron email corpus
-│   │
-│   ├── sample_email_by_category/       # Cleaned & enriched sample data
-│   │   ├── sample_emails.csv
-│   │   ├── sample_employees.csv
-│   │   ├── sample_communications.csv
-│   │   └── ...
-│   │
-│   ├── final_datasets/                 # Processed datasets
-│   │   ├── aggregated_communications.csv
-│   │   ├── email_enrichment_features.csv
-│   │   ├── employee_metrics.csv
-│   │   └── ...
-│   │
-│   ├── NER/                            # Extracted entities & relationships
-│   │   ├── entities/
-│   │   │   └── entities.csv
-│   │   └── relationships/
-│   │       └── relationships.csv
-│   │
-│   ├── logs/                           # Processing logs
-│   │   ├── dataset_info.md
-│   │   └── topic_summary.md
-│   │
-│   ├── .venv/                          # Python virtual environment
-│   └── __pycache__/
-│
-└── frontend/                           # React + Vite frontend
-    ├── index.html                      # HTML entry point
-    ├── package.json                    # NPM dependencies
-    ├── vite.config.js                  # Vite configuration
-    ├── eslint.config.js                # ESLint rules
-    │
-    ├── src/
-    │   ├── main.jsx                    # React entry point
-    │   ├── App.jsx                     # Main application component
-    │   ├── App.css                     # Application styles
-    │   ├── index.css                   # Global styles
-    │   │
-    │   ├── components/
-    │   │   ├── ChatView.jsx            # Intelligence chat interface
-    │   │   └── DashboardView.jsx       # Graph analytics dashboard
-    │   │
-    │   └── assets/                     # Images, icons, etc.
-    │
-    └── public/                         # Static assets
-=======
 │   │   └── miles2neo4j_storage.ipynb   # Neo4j graph ingestion
 │   │
 │   ├── api/                            # FastAPI routers
@@ -436,7 +377,6 @@ AI-based-Knowledge-Graph-Builder-for-Enterprise-Intelligence/
             ├── emails.csv
             ├── employee_metrics.csv
             └── employees.csv
->>>>>>> recovery-branch
 ```
 
 ---

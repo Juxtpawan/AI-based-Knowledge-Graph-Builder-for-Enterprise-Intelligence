@@ -8,30 +8,22 @@ Thumbs.db
 .agents/
 brain/
 tmp/
-<<<<<<< HEAD
-=======
 *.tmp
 *.bak
 *.swp
 *.swo
->>>>>>> recovery-branch
 
 # Frontend
 frontend/node_modules/
 frontend/dist/
 frontend/.env
 frontend/*.log
-<<<<<<< HEAD
-=======
 frontend/.vite/
->>>>>>> recovery-branch
 
 # Backend
 backend/.venv/
 backend/.env
 backend/__pycache__/
-<<<<<<< HEAD
-=======
 backend/**/*.pyc
 backend/**/*.pyo
 backend/.pytest_cache/
@@ -82,7 +74,6 @@ backend/logs/
 tmp/
 temp/
 backend/__pycache__/
->>>>>>> recovery-branch
 backend/datasets/
 backend/final_datasets/
 backend/logs/
