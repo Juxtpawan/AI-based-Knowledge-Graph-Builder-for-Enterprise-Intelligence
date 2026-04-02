@@ -1,102 +1,48 @@
 import React from 'react';
-import { FileText, ArrowRightLeft, Layers, Shield, Zap, Globe } from 'lucide-react';
+import { Tag, Database, Calendar, Link } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-/**
- * SidebarMetadata - Forensic Dossier Explorer
- */
-export default function SidebarMetadata({ element }) {
-  if (!element) return null;
-  const isNode = !element.isRelationship;
-  const props = element.properties || {};
+const SidebarMetadata = ({ properties }) => {
+  if (!properties) return null;
 
-  // Define Category Mappings
-  const identityKeys = ['name', 'subject', 'role', 'entity_type', 'job_title', 'department'];
-  const behavioralKeys = ['sentiment', 'risk_score', 'curation_status', 'volume', 'velocity', 'count'];
-
-  const identityProps = Object.entries(props).filter(([k]) => identityKeys.includes(k.toLowerCase()));
-  const behavioralProps = Object.entries(props).filter(([k]) => behavioralKeys.some(b => k.toLowerCase().includes(b)));
-  const otherProps = Object.entries(props).filter(([k]) => 
-     !identityKeys.includes(k.toLowerCase()) && 
-     !behavioralKeys.some(b => k.toLowerCase().includes(b))
-  );
-
-  const PropertyCard = ({ k, v, icon: Icon = Layers, highlight = false }) => (
-    <div className={`group p-4 rounded-2xl border transition-all duration-300 ${
-        highlight 
-            ? 'bg-vidzai-emerald/5 border-vidzai-emerald/20 hover:border-vidzai-emerald/40' 
-            : 'bg-slate-900/40 border-white/5 hover:border-white/10'
-    }`}>
-       <div className="flex items-center justify-between mb-1.5">
-          <span className={`text-[8px] font-black uppercase tracking-widest ${highlight ? 'text-vidzai-emerald' : 'text-slate-600'} group-hover:text-primary transition-colors`}>
-            {k.replace(/_/g, ' ')}
-          </span>
-          <Icon size={10} className={highlight ? 'text-vidzai-emerald' : 'text-slate-800'} />
-       </div>
-       <span className={`text-xs block truncate font-mono ${highlight ? 'text-white font-bold' : 'text-slate-200'}`} title={String(v)}>
-        {String(v)}
-       </span>
-    </div>
+  const entries = Object.entries(properties).filter(([key]) => 
+    !['verified', 'name', 'subject', 'id'].includes(key.toLowerCase())
   );
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-10 pb-10">
+    <div className="p-6 border-b border-white/5 space-y-4">
+      <div className="flex items-center gap-2 mb-4">
+        <Database className="w-4 h-4 text-slate-500" />
+        <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Extended Intelligence</h3>
+      </div>
       
-      {/* 1. LINK CONTINUITY */}
-      {!isNode && (
-        <div className="space-y-4">
-           <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-              <ArrowRightLeft size={14} className="text-amber-500" /> Link Protocol
-           </h4>
-           <div className="grid grid-cols-2 gap-4">
-              <div className="vidzai-glass p-5 rounded-3xl border-white/5 bg-slate-900/60 shadow-xl">
-                 <span className="text-[7px] text-slate-700 font-black uppercase block mb-2 tracking-tighter">Initiator</span>
-                 <span className="text-[10px] text-white font-mono break-all leading-tight">{element.from}</span>
-              </div>
-              <div className="vidzai-glass p-5 rounded-3xl border-white/5 bg-slate-900/60 shadow-xl">
-                 <span className="text-[7px] text-slate-700 font-black uppercase block mb-2 tracking-tighter">Recipient</span>
-                 <span className="text-[10px] text-white font-mono break-all leading-tight">{element.to}</span>
-              </div>
-           </div>
-        </div>
-      )}
-
-      {/* 2. ESSENTIAL IDENTITY */}
-      {identityProps.length > 0 && (
-        <div className="space-y-4">
-           <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-              <Shield size={14} className="text-primary" /> Identity Markers
-           </h4>
-           <div className="grid grid-cols-1 gap-3">
-              {identityProps.map(([k, v], i) => <PropertyCard key={i} k={k} v={v} icon={Globe} highlight={true} />)}
-           </div>
-        </div>
-      )}
-
-      {/* 3. BEHAVIORAL ANALYTICS */}
-      {behavioralProps.length > 0 && (
-        <div className="space-y-4">
-           <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-              <Zap size={14} className="text-amber-500" /> Intelligence Signal
-           </h4>
-           <div className="grid grid-cols-2 gap-3">
-              {behavioralProps.map(([k, v], i) => <PropertyCard key={i} k={k} v={v} icon={Zap} />)}
-           </div>
-        </div>
-      )}
-
-      {/* 4. EXTENDED METADATA */}
-      {otherProps.length > 0 && (
-        <div className="space-y-4">
-           <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-              <FileText size={14} className="text-slate-600" /> Extended Intel
-           </h4>
-           <div className="grid grid-cols-1 gap-3">
-              {otherProps.map(([k, v], i) => <PropertyCard key={i} k={k} v={v} />)}
-           </div>
-        </div>
-      )}
-
-    </motion.div>
+      <div className="space-y-3">
+        {entries.length > 0 ? entries.map(([key, value], idx) => (
+          <motion.div
+            key={key}
+            initial={{ opacity: 0, x: -5 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: idx * 0.05 }}
+            className="group flex flex-col gap-1 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-white/10 transition-all hover:bg-white/10"
+          >
+            <div className="flex items-center gap-2">
+              {key.toLowerCase().includes('date') ? <Calendar className="w-3 h-3 text-indigo-400 opacity-60" /> : 
+               key.toLowerCase().includes('url') ? <Link className="w-3 h-3 text-emerald-400 opacity-60" /> : 
+               <Tag className="w-3 h-3 text-slate-500 opacity-60" />}
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{key.replace(/_/g, ' ')}</span>
+            </div>
+            <p className="text-sm font-medium text-slate-200 break-all leading-tight">
+              {typeof value === 'object' ? JSON.stringify(value) : value.toString()}
+            </p>
+          </motion.div>
+        )) : (
+          <div className="p-6 text-center border-2 border-dashed border-white/5 rounded-2xl opacity-20">
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">No Metadata Found</p>
+          </div>
+        )}
+      </div>
+    </div>
   );
-}
+};
+
+export default SidebarMetadata;

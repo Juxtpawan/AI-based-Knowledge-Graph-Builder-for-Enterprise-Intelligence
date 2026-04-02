@@ -1,113 +1,94 @@
 import React from 'react';
-import { 
-  Pin, Trash2, Download, ExternalLink, 
-  Database, Fingerprint, FileText, Share2, 
-  Maximize2, X, ShieldCheck, AlertCircle 
-} from 'lucide-react';
+import { Briefcase, X, FileText, Share2, User, Globe, MoreHorizontal, Download, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-/**
- * EvidenceBag - High-Fidelity Forensic Collection
- * Restored with integrated intelligence exports and atomic pin management.
- */
-export default function EvidenceBag({ items = [], onRemove, onClear, onSelect }) {
-  const exportAll = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items, null, 2));
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", `forensic_bundle_${new Date().toISOString()}.json`);
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-  };
-
-  if (items.length === 0) return null;
+const EvidenceBag = ({ items = [], onRemove, onExport, isOpen, onClose }) => {
+  // Mock items for design if empty
+  const displayItems = items.length > 0 ? items : [
+    { id: '1', label: 'Person', name: 'John Doe', type: 'High Risk' },
+    { id: '2', label: 'Email', name: 'Confidential Strategy', type: 'Flagged' },
+    { id: '3', label: 'Organization', name: 'Nexus Corp', type: 'Verified' }
+  ];
 
   return (
-    <div className="w-80 pointer-events-auto">
-      <motion.div 
-        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 20, scale: 0.95 }}
-        className="vidzai-glass rounded-4xl border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.8)] overflow-hidden bg-slate-900/60 backdrop-blur-3xl flex flex-col"
-      >
-        {/* Header */}
-        <div className="p-5 border-b border-white/5 flex items-center justify-between bg-slate-950/40">
-           <div className="flex items-center gap-3">
-              <div className="p-2 bg-vidzai-emerald/15 rounded-xl border border-vidzai-emerald/20">
-                 <Pin className="text-vidzai-emerald" size={16} />
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ x: 300, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: 300, opacity: 0 }}
+          className="fixed right-6 top-6 bottom-6 w-80 bg-slate-900/90 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl z-50 flex flex-col overflow-hidden"
+        >
+          {/* Header */}
+          <div className="p-5 border-b border-white/5 flex items-center justify-between bg-indigo-500/5">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-indigo-500/20 rounded-lg">
+                <Briefcase className="w-4 h-4 text-indigo-400" />
               </div>
-              <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Evidence Bag</h3>
-              <span className="px-2 py-0.5 bg-slate-800 rounded-full text-[8px] font-mono text-slate-400 border border-white/5">{items.length}</span>
-           </div>
-           <div className="flex items-center gap-2">
-              <button 
-                onClick={exportAll}
-                className="p-2 hover:bg-white/5 rounded-lg text-slate-500 hover:text-white transition-colors"
-                title="Export Bundle"
-              >
-                 <Download size={14} />
-              </button>
-              <button 
-                onClick={onClear}
-                className="p-2 hover:bg-red-500/10 rounded-lg text-slate-500 hover:text-red-400 transition-colors"
-                title="Prune All"
-              >
-                 <Trash2 size={14} />
-              </button>
-           </div>
-        </div>
-
-        {/* Evidence List */}
-        <div className="p-4 space-y-3 max-h-[320px] overflow-y-auto custom-scrollbar">
-           <AnimatePresence initial={false}>
-              {items.map((item) => (
-                <motion.div 
-                   key={item.id}
-                   initial={{ x: -20, opacity: 0 }}
-                   animate={{ x: 0, opacity: 1 }}
-                   exit={{ x: 20, opacity: 0 }}
-                   className="group p-4 bg-slate-950/40 hover:bg-slate-900/60 rounded-2xl border border-white/5 hover:border-white/20 transition-all flex items-center justify-between pointer-events-auto cursor-pointer"
-                   onClick={() => onSelect && onSelect(item)}
-                >
-                   <div className="flex items-center gap-4 overflow-hidden">
-                      <div className="p-2 bg-slate-900 rounded-xl group-hover:bg-primary/20 transition-colors">
-                         {item.labels?.includes('Employee') ? <Fingerprint size={14} className="text-vidzai-emerald" /> : <Database size={14} className="text-indigo-400" />}
-                      </div>
-                      <div className="flex flex-col min-w-0">
-                         <span className="text-[11px] font-bold text-white truncate pr-2 uppercase tracking-tighter">
-                            {item.properties?.name || item.properties?.subject || item.id.substring(0, 8)}
-                         </span>
-                         <span className="text-[8px] font-mono text-slate-600 uppercase tracking-widest font-black leading-none mt-1">
-                            {item.labels?.[0] || 'Entity'}
-                         </span>
-                      </div>
-                   </div>
-                   <button 
-                      onClick={(e) => { e.stopPropagation(); onRemove(item.id); }}
-                      className="p-2 text-slate-800 group-hover:text-red-500/40 hover:text-red-500! transition-colors"
-                   >
-                      <X size={14} />
-                   </button>
-                </motion.div>
-              ))}
-           </AnimatePresence>
-        </div>
-
-        {/* Footer Analysis Summary */}
-        <div className="p-5 bg-slate-950/60 border-t border-white/5">
-           <div className="flex items-center justify-between mb-4">
-              <span className="text-[8px] font-black uppercase tracking-[0.2em] text-slate-500">Bundle Integrity</span>
-              <div className="flex items-center gap-2">
-                 <ShieldCheck size={10} className="text-emerald-500" />
-                 <span className="text-[9px] font-mono text-emerald-500 font-bold uppercase tracking-widest">Verified</span>
+              <div>
+                <h3 className="text-sm font-bold text-white uppercase tracking-wider">Evidence Bag</h3>
+                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{items.length} Intelligence Items</p>
               </div>
-           </div>
-           <div className="w-full bg-slate-900 h-1 rounded-full overflow-hidden">
-              <div className="bg-vidzai-emerald h-full w-[85%] shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-           </div>
-        </div>
-      </motion.div>
-    </div>
+            </div>
+            <button onClick={onClose} className="p-1.5 hover:bg-white/10 rounded-lg text-slate-400 transition-all">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Items List */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 no-scrollbar mt-2">
+            {displayItems.map((item, idx) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.05 }}
+                className="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-all group relative overflow-hidden"
+              >
+                <div className="flex items-center gap-3 relative z-10">
+                  <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-white/5">
+                    {item.label === 'Email' ? <FileText className="w-4 h-4 text-indigo-400" /> : 
+                     item.label === 'Person' ? <User className="w-4 h-4 text-indigo-400" /> : <Globe className="w-4 h-4 text-indigo-400" />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] font-bold text-indigo-400/70 uppercase tracking-widest mb-0.5">{item.label}</p>
+                    <p className="text-xs font-bold text-slate-200 truncate group-hover:text-white transition-colors">{item.name}</p>
+                  </div>
+                  <button onClick={() => onRemove(item.id)} className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-rose-500/10 rounded-lg text-rose-400 transition-all">
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                
+                {/* Background trace */}
+                <div className="absolute top-0 right-0 w-16 h-16 bg-indigo-500/5 blur-2xl -z-10 rounded-full" />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Footer Actions */}
+          <div className="p-5 border-t border-white/5 bg-white/5 space-y-3">
+            <button 
+              onClick={onExport}
+              className="w-full flex items-center justify-center gap-3 p-3 bg-indigo-500 hover:bg-indigo-600 rounded-xl text-xs font-bold text-white transition-all shadow-lg shadow-indigo-500/20 active:scale-[0.98]"
+            >
+              <Download className="w-4 h-4" />
+              GENERATE REPORT
+            </button>
+            <div className="flex gap-2">
+              <button className="flex-1 flex items-center justify-center gap-2 p-2 bg-white/5 hover:bg-white/10 rounded-xl text-[10px] font-bold text-slate-400 transition-all uppercase tracking-widest">
+                <Share2 className="w-3 h-3" />
+                Collab
+              </button>
+              <button className="flex-1 flex items-center justify-center gap-2 p-2 bg-white/5 hover:bg-white/10 rounded-xl text-[10px] font-bold text-slate-400 transition-all uppercase tracking-widest">
+                <MoreHorizontal className="w-3 h-3" />
+                Clear
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
-}
+};
+
+export default EvidenceBag;

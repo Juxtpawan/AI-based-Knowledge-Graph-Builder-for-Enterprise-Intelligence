@@ -1,27 +1,36 @@
 import React from 'react';
 
-/**
- * StatusIndicator - Unified Pulse Indicator
- * Shows live status (Active Context, Researching, Online).
- */
-export default function StatusIndicator({ 
-    label, 
-    status = "active", // 'active', 'thinking', 'offline', 'error'
-    className = "" 
-}) {
-    const variants = {
-        active: { dot: "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]", text: "text-emerald-500", bg: "bg-emerald-500/10 border-emerald-500/20" },
-        thinking: { dot: "bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)] animate-pulse", text: "text-indigo-400", bg: "bg-indigo-500/10 border-indigo-500/20" },
-        offline: { dot: "bg-slate-600", text: "text-slate-600", bg: "bg-slate-900 border-white/5" },
-        error: { dot: "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]", text: "text-red-400", bg: "bg-red-500/10 border-red-500/20" }
-    };
+const StatusIndicator = ({ status, label }) => {
+  const getStatusCore = (s) => {
+    switch (s?.toLowerCase()) {
+      case 'active':
+      case 'online':
+      case 'healthy':
+        return { color: 'bg-emerald-500', pulse: 'bg-emerald-500/40', text: 'text-emerald-400' };
+      case 'busy':
+      case 'processing':
+        return { color: 'bg-indigo-500', pulse: 'bg-indigo-500/40', text: 'text-indigo-400' };
+      case 'warning':
+      case 'degraded':
+        return { color: 'bg-amber-500', pulse: 'bg-amber-500/40', text: 'text-amber-400' };
+      default:
+        return { color: 'bg-slate-500', pulse: 'bg-slate-500/40', text: 'text-slate-400' };
+    }
+  };
 
-    const config = variants[status];
+  const config = getStatusCore(status);
 
-    return (
-        <div className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-lg border text-[9px] font-bold uppercase tracking-widest ${config.bg} ${className}`}>
-             <div className={`size-1.5 rounded-full ${config.dot}`} />
-             <span className={config.text}>{label}</span>
-        </div>
-    );
-}
+  return (
+    <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/5 shadow-inner">
+      <div className="relative flex items-center justify-center w-2 h-2">
+        <div className={`absolute inset-0 rounded-full animate-ping ${config.pulse}`} />
+        <div className={`relative w-2 h-2 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.3)] ${config.color}`} />
+      </div>
+      <span className={`text-[10px] font-bold uppercase tracking-widest ${config.text}`}>
+        {label || status}
+      </span>
+    </div>
+  );
+};
+
+export default StatusIndicator;

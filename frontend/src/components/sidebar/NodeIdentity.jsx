@@ -1,83 +1,57 @@
 import React from 'react';
-import { User, Tag, ArrowRightLeft, Mail, Scale, Calendar, Lightbulb, Fingerprint } from 'lucide-react';
+import { User, Building2, Globe, Mail, Fingerprint, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-export default function NodeIdentity({ element }) {
-    if (!element) return null;
-    
-    const isNode = !element.isRelationship;
-    
-    // Forensic Mapping (Sync with BloomGraphCanvas)
-    const resolveForensicType = () => {
-        if (!isNode) return 'Link';
-        const rawLabel = element.labels?.[0] || 'Entity';
-        const entityType = element.properties?.entity_type?.toUpperCase() || '';
+const NodeIdentity = ({ node }) => {
+  if (!node) return null;
+
+  const getIcon = (label) => {
+    switch (label?.toLowerCase()) {
+      case 'person': return User;
+      case 'organization': return Building2;
+      case 'email': return Mail;
+      default: return Globe;
+    }
+  };
+
+  const Icon = getIcon(node.label);
+  const typeColor = node.label === 'Person' ? 'text-indigo-400' : 
+                    node.label === 'Organization' ? 'text-emerald-400' : 'text-amber-400';
+
+  return (
+    <div className="p-6 border-b border-white/5 relative overflow-hidden group">
+      {/* Background glow based on type */}
+      <div className={`absolute -top-10 -right-10 w-32 h-32 blur-3xl opacity-10 rounded-full bg-current ${typeColor}`} />
+      
+      <div className="flex items-start gap-4 relative z-10">
+        <motion.div 
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className={`w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 bg-white/5 ${typeColor} shadow-2xl group-hover:scale-105 transition-transform duration-500`}
+        >
+          <Icon className="w-8 h-8" />
+        </motion.div>
         
-        if (['Employee', 'Email', 'Topic', 'Event', 'Legal'].includes(rawLabel)) return rawLabel;
-
-        if (entityType.includes('LEGAL') || entityType.includes('REGULATION') || entityType.includes('CASE')) return 'Legal';
-        if (entityType.includes('DATE') || entityType.includes('TIME') || entityType.includes('MEETING') || entityType.includes('EVENT')) return 'Event';
-        if (entityType.includes('PERSON') || entityType.includes('ORG') || entityType.includes('EMPLOYEE')) return 'Employee';
-        if (entityType.includes('PRICE') || entityType.includes('METRIC') || entityType.includes('COMMODITY') || entityType.includes('INDUSTRY')) return 'Topic';
-        if (entityType.includes('SUBJECT') || entityType.includes('EMAIL') || entityType.includes('COMMUNICATION')) return 'Email';
-
-        return rawLabel === 'Entity' ? 'Entity' : rawLabel;
-    };
-
-    const forensicType = resolveForensicType();
-
-    // Visual Palette Mapping
-    const typeConfig = {
-        Employee: { color: '#6366f1', icon: User, glow: 'shadow-indigo-500/20', label: 'Personnel' },
-        Email:    { color: '#f59e0b', icon: Mail, glow: 'shadow-amber-500/20', label: 'Communication' },
-        Topic:    { color: '#14b8a6', icon: Lightbulb, glow: 'shadow-teal-500/20', label: 'Semantic' },
-        Event:    { color: '#10b981', icon: Calendar, glow: 'shadow-emerald-500/20', label: 'Temporal' },
-        Legal:    { color: '#ef4444', icon: Scale, glow: 'shadow-red-500/20', label: 'Compliance' },
-        Entity:   { color: '#0ea5e9', icon: Tag, glow: 'shadow-sky-500/20', label: 'Categorical' },
-        Link:     { color: '#64748b', icon: ArrowRightLeft, glow: 'shadow-slate-500/20', label: 'Relationship' },
-        Default:  { color: '#0ea5e9', icon: Fingerprint, glow: 'shadow-sky-500/20', label: 'Investigation' }
-    };
-
-    const config = typeConfig[forensicType] || typeConfig.Default;
-    const Icon = config.icon;
-
-    return (
-        <div className="mb-8 flex items-start gap-6 group">
-            <div 
-                className={`p-5 rounded-3xl border shadow-2xl transition-all duration-500 scale-110 flex items-center justify-center ${config.glow}`}
-                style={{ 
-                    backgroundColor: `${config.color}15`, 
-                    borderColor: `${config.color}40`,
-                    color: config.color
-                }}
-            >
-                <Icon size={28} className="group-hover:scale-110 transition-transform duration-500" />
-            </div>
-            
-            <div className="flex-1 min-w-0 pt-1">
-                <h3 className="font-bold text-white text-2xl leading-tight font-display tracking-tight mb-2 truncate">
-                    {isNode ? (element.properties?.name || element.properties?.subject || element.id) : element.type}
-                </h3>
-                
-                <div className="flex items-center gap-2.5">
-                    <div 
-                        className="size-2 rounded-full animate-pulse" 
-                        style={{ backgroundColor: config.color, boxShadow: `0 0 10px ${config.color}` }}
-                    />
-                    <span 
-                        className="text-[10px] uppercase tracking-[0.25em] font-black"
-                        style={{ color: `${config.color}cc` }}
-                    >
-                        {isNode ? (
-                            [
-                                config.label, 
-                                element.properties?.entity_type || element.properties?.role || 'Entity'
-                            ].filter(Boolean).join(' • ')
-                        ) : (
-                            `Intelligence Link • ${element.type || 'Structural'}`
-                        )}
-                    </span>
-                </div>
-            </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <span className={`px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest ${typeColor}`}>
+              {node.label || 'Entity'}
+            </span>
+            {node.properties?.verified && (
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+            )}
+          </div>
+          <h2 className="text-xl font-bold text-white truncate leading-tight tracking-tight">
+            {node.properties?.name || node.properties?.subject || 'Unnamed Entity'}
+          </h2>
+          <p className="text-xs text-slate-500 font-mono flex items-center gap-1.5 mt-1 overflow-hidden">
+            <Fingerprint className="w-3 h-3 flex-shrink-0" />
+            <span className="truncate opacity-60">ID: {node.id || 'N/A'}</span>
+          </p>
         </div>
-    );
-}
+      </div>
+    </div>
+  );
+};
+
+export default NodeIdentity;

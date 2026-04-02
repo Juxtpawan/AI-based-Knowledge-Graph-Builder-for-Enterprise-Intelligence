@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { kgService } from '../services/apiClient';
 import { useIntelStore } from '../store/useIntelStore';
 import { 
-  Bot, LayoutGrid, Sparkles, Send, Terminal, 
-  Search, Globe, FileSearch, Fingerprint, Zap 
+  Bot, LayoutGrid, Terminal, 
+  Search, Globe, ShieldCheck, Zap 
 } from 'lucide-react';
 
 // Modular Components
@@ -15,7 +15,7 @@ import IntelligenceSidebar from '../components/chat/IntelligenceSidebar';
 
 /**
  * RagAgentChat - High-Fidelity Forensic Investigator
- * Restored with Dual-Mode (Graph/Probe) Tab Logic and AI Context Sync.
+ * Updated with modular components and premium Vidzai aesthetics.
  */
 export default function RagAgentChat() {
   const { 
@@ -27,55 +27,46 @@ export default function RagAgentChat() {
 
   const [messages, setMessages] = useState([
     { 
-        id: 2, 
+        id: 1, 
         role: 'agent', 
         content: 'I have analyzed the Enron metadata corpus and mapped semantic triplets to the vector space. We are ready to begin the forensic audit. What specific entities or events should we probe first?' 
     }
   ]);
   const [inputVal, setInputVal] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [stepperPhase, setStepperPhase] = useState(null);
-  const [isSubgraphOpen, setIsSubgraphOpen] = useState(window.innerWidth >= 1280);
+  const [isLoading, setIsLoading] = useState(false);
+  const [thoughtStep, setThoughtStep] = useState(0);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1280);
   const [activeTab, setActiveTab] = useState('graph');
   const scrollRef = useRef(null);
 
-  // Auto-scroll logic
   useEffect(() => {
     if (scrollRef.current) {
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, isProcessing]);
+  }, [messages, isLoading]);
 
-  // Sync: Switch to 'Probe' mode when an entity is selected
   useEffect(() => {
     if (selectedElement) {
         setActiveTab('probe');
-        setIsSubgraphOpen(true);
+        setIsSidebarOpen(true);
     }
   }, [selectedElement]);
 
   const simulateThoughtProcess = async () => {
-    const phases = [
-      'Extracting semantic embeddings...',
-      'Traversing structural Neo4j triplets...',
-      'Synthesizing hybrid RAG response...'
-    ];
-    for (const phase of phases) {
-      setStepperPhase(phase);
+    for (let i = 0; i <= 3; i++) {
+      setThoughtStep(i);
       await new Promise(r => setTimeout(r, 800));
     }
-    setStepperPhase(null);
   };
 
-  const handleSend = async (e) => {
-    if(e) e.preventDefault();
+  const handleSend = async () => {
     if (!inputVal.trim()) return;
 
     const userMsg = { id: Date.now(), role: 'user', content: inputVal };
     setMessages(prev => [...prev, userMsg]);
     setInputVal('');
-    setIsProcessing(true);
-    setActiveTab('graph'); // Reset to graph view for new answer
+    setIsLoading(true);
+    setThoughtStep(0);
 
     try {
       const [response] = await Promise.all([
@@ -91,8 +82,6 @@ export default function RagAgentChat() {
         id: Date.now() + 1,
         role: 'agent',
         content: response.answer,
-        citations: response.citations || [],
-        graph: response.graph
       }]);
     } catch (err) {
       setMessages(prev => [...prev, {
@@ -101,75 +90,74 @@ export default function RagAgentChat() {
         content: "Operational Error: Intelligence link severed. Verify backend stability and Neo4j connectivity."
       }]);
     }
-    setIsProcessing(false);
+    setIsLoading(false);
   };
 
   return (
-    <div className="flex h-full p-4 lg:p-8 gap-6 bg-slate-950 relative overflow-hidden font-sans">
+    <div className="flex h-full p-4 lg:p-8 gap-6 bg-[#020617] relative overflow-hidden font-sans">
       
-      {/* --- 1. PRIMARY INVESTIGATION RAIL --- */}
-      <div className="flex-1 flex flex-col vidzai-glass rounded-4xl overflow-hidden relative z-10 border-white/5">
+      {/* 1. Main Chat Interface */}
+      <div className="flex-1 flex flex-col bg-slate-900/40 backdrop-blur-3xl rounded-[2.5rem] border border-white/5 overflow-hidden relative z-10 shadow-2xl">
         
-        {/* Header: AI Terminal Branding */}
-        <div className="p-6 border-b border-white/5 bg-slate-950/40 flex items-center justify-between backdrop-blur-xl">
+        {/* Header */}
+        <div className="px-8 py-6 border-b border-white/5 bg-slate-950/40 flex items-center justify-between backdrop-blur-xl shrink-0">
             <div className="flex items-center gap-5">
-               <div className="p-3 bg-primary/15 rounded-2xl border border-primary/30 shadow-2xl shadow-primary/10">
-                  <Bot className="text-primary" size={26} />
+               <div className="w-12 h-12 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 flex items-center justify-center shadow-lg shadow-indigo-500/10">
+                  <Bot className="text-indigo-400" size={26} />
                </div>
                <div>
-                 <h2 className="text-lg font-black font-display text-white tracking-widest uppercase">Forensic Analyst</h2>
+                  <h2 className="text-sm font-black text-white tracking-[0.3em] uppercase">Intelligence Analyst</h2>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest flex items-center gap-2">
+                     <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                     Gemini 1.5 Flash Connected
+                  </p>
                </div>
             </div>
-            <div className="flex items-center gap-3">
-               <button 
-                   onClick={() => setIsSubgraphOpen(!isSubgraphOpen)}
-                   className="p-3 bg-slate-900 border border-white/5 hover:border-white/20 rounded-xl text-slate-400 transition-all active:scale-95"
-                   title="Toggle Intelligence Sidebar"
-               >
-                   <LayoutGrid size={20} />
-               </button>
-            </div>
+            <button 
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className="p-3 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl text-slate-400 transition-all hover:scale-105 active:scale-95"
+            >
+                <LayoutGrid size={20} />
+            </button>
         </div>
 
-        {/* Dialogue Stream: Scroll Space */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 lg:p-10 space-y-12 custom-scrollbar scroll-smooth">
+        {/* Message Stream */}
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-8 py-10 space-y-8 no-scrollbar scroll-smooth">
           <AnimatePresence initial={false}>
             {messages.map((m) => (
-              <ChatMessage key={m.id} message={m} />
+              <ChatMessage key={m.id} role={m.role} content={m.content} />
             ))}
           </AnimatePresence>
 
           <ThoughtStepper 
-            isProcessing={isProcessing} 
-            phase={stepperPhase} 
+            isThinking={isLoading} 
+            step={thoughtStep} 
           />
         </div>
 
-        {/* Intelligent Input Zone */}
-        <ChatInput 
-          value={inputVal}
-          onChange={setInputVal}
-          onSubmit={handleSend}
-          disabled={isProcessing}
-        />
+        {/* Input Bar */}
+        <div className="p-8 pt-0 mt-auto">
+          <ChatInput 
+            input={inputVal}
+            setInput={setInputVal}
+            onSend={handleSend}
+            isLoading={isLoading}
+          />
+        </div>
       </div>
 
-      {/* --- 2. INTELLIGENCE STACK (SIDEBAR) --- */}
+      {/* 2. Intelligence Sidebar */}
       <IntelligenceSidebar 
-        isOpen={isSubgraphOpen}
-        onClose={() => setIsSubgraphOpen(false)}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        messages={messages}
         selectedElement={selectedElement}
-        setSelectedElement={setSelectedElement}
-        expandNode={expandNode}
       />
 
-      {/* Atmospheric Overlays */}
-      <div className="absolute top-[-10%] left-[-10%] size-[600px] bg-primary/5 rounded-full blur-[160px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-[-10%] right-[-10%] size-[500px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
-      
+      {/* Atmospheric Decorations */}
+      <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
     </div>
   );
 }
