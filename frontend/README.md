@@ -1,16 +1,91 @@
-# React + Vite
+# Vidzai Frontend — React Intelligence Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application built with Vite that provides an interactive interface for exploring enterprise knowledge graphs and AI-powered insights.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Intelligence Chat**: Conversational AI interface with context-aware responses
+- **Graph Visualization**: Interactive Neo4j graph rendering with Bloom-like canvas
+- **Analytics Dashboard**: Real-time metrics and KPI monitoring
+- **Unified Search**: Hybrid search combining vector and graph retrieval
+- **Responsive Design**: Modern UI with Tailwind CSS and Framer Motion animations
 
-## React Compiler
+## 🛠️ Technology Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19**: Latest React with modern hooks and concurrent features
+- **Vite 8.0**: Lightning-fast build tool and dev server
+- **Tailwind CSS 4.2**: Utility-first CSS framework
+- **Framer Motion 12.38**: Smooth animations and transitions
+- **Neo4j NVL**: Native graph visualization library
+- **Recharts 3.8**: Data visualization components
+- **React Router 7.13**: Client-side routing
+- **Zustand 5.0**: Lightweight state management
+- **Axios 1.13**: HTTP client for API communication
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js 18 or higher
+- Backend API running (see backend README)
+
+### Installation
+```bash
+cd frontend
+npm install
+```
+
+### Development
+```bash
+npm run dev
+```
+Starts the development server at `http://localhost:5173`
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Preview Production Build
+```bash
+npm run preview
+```
+
+### Linting
+```bash
+npm run lint
+```
+
+## 📁 Project Structure
+
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── chat/           # Intelligence chat components
+│   │   ├── dashboard/      # Analytics and metrics
+│   │   ├── graph/          # Graph visualization
+│   │   ├── search/         # Search and investigation
+│   │   ├── sidebar/        # Context panels
+│   │   └── ui/             # Reusable UI components
+│   ├── pages/              # Main application pages
+│   ├── services/           # API client and utilities
+│   └── store/              # Zustand state management
+├── public/                 # Static assets
+└── package.json            # Dependencies and scripts
+```
+
+## 🔧 Configuration
+
+The frontend connects to the backend API. Make sure the backend is running and accessible. The API base URL can be configured in `src/services/apiClient.js`.
+
+## 🤝 Contributing
+
+1. Follow the existing code style
+2. Use TypeScript for type safety (types are in devDependencies)
+3. Test components thoroughly
+4. Follow React best practices
+
+## 📚 Related Documentation
+
+- [Backend API Documentation](../backend/README.md)
+- [Main Project README](../README.md)

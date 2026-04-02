@@ -8,16 +8,71 @@ Thumbs.db
 .agents/
 brain/
 tmp/
+*.tmp
+*.bak
+*.swp
+*.swo
 
 # Frontend
 frontend/node_modules/
 frontend/dist/
 frontend/.env
 frontend/*.log
+frontend/.vite/
 
 # Backend
 backend/.venv/
 backend/.env
+backend/__pycache__/
+backend/**/*.pyc
+backend/**/*.pyo
+backend/.pytest_cache/
+backend/.coverage
+backend/coverage.xml
+backend/*.log
+backend/extraction_checkpoint.json
+backend/notebooks/.ipynb_checkpoints/
+
+# Data (sensitive or large files)
+backend/datasets/
+backend/final_datasets/
+backend/sample_email_by_category/
+backend/NER/
+backend/logs/
+data/raw/*.csv
+data/kg_data/*.csv
+*.csv
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+logs/
+backend/logs/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+tmp/
+temp/
 backend/__pycache__/
 backend/datasets/
 backend/final_datasets/

@@ -93,8 +93,6 @@ PINECONE_API_KEY=your_pinecone_key
 - `miles3hybridRAG.py`: Interactive Hybrid RAG development.
 
 ### 📊 Data & Knowledge
-- `sample_email_by_category/`: Core cleaned and enriched dataset (CSV).
-- `NER/`: Structured intelligence triples (Entities & Relationships).
-- `final_datasets/`: Intermediate processed datasets.
-- `datasets/`: Raw input CSVs (Enron corpus).
+- `../data/processed/raw/`: Core cleaned and enriched dataset (CSV files).
+- `../data/kg_data/`: Structured intelligence triples (Entities & Relationships CSVs).
 - `logs/`: Pipeline execution logs.
