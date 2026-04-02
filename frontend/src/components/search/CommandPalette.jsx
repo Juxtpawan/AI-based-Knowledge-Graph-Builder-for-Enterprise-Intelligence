@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Command, X, ArrowRight, BrainCircuit, Users, FileText } from 'lucide-react';
-import { kgService } from '../services/apiClient';
+import { kgService } from '../../services/apiClient';
 import { useNavigate } from 'react-router-dom';
 
 export default function CommandPalette({ isOpen, onClose }) {
@@ -56,9 +56,9 @@ export default function CommandPalette({ isOpen, onClose }) {
   const handleSelect = (item) => {
     // For now, navigate to Graph with search phrase or Topic Explorer
     if (item.label === 'Employee') {
-        navigate(`/graph?q=${encodeURIComponent(item.name)}`);
+        navigate(`/explore?q=${encodeURIComponent(item.name)}`);
     } else {
-        navigate(`/topics?q=${encodeURIComponent(item.name)}&id=${item.id}`);
+        navigate(`/graph-studio?q=${encodeURIComponent(item.name)}&id=${item.id}`);
     }
     onClose();
   };
@@ -72,13 +72,13 @@ export default function CommandPalette({ isOpen, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-100"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-2xl bg-slate-900 border border-white/10 rounded-2xl shadow-2xl z-[101] overflow-hidden"
+            className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-2xl bg-slate-900 border border-white/10 rounded-2xl shadow-2xl z-101 overflow-hidden"
           >
             <div className="p-4 border-b border-white/5 flex items-center gap-4">
               <Search className="text-slate-500" size={20} />

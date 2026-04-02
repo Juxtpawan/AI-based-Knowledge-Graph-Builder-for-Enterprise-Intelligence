@@ -12,15 +12,35 @@ import sys
 import time
 import asyncio
 import pandas as pd
+from pathlib import Path
+
+# --- NLTK Setup (Optimized to prevent hangs) ---
 import nltk
+def ensure_nltk_data():
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        print("[NLTK] Downloading punkt...")
+        nltk.download('punkt', quiet=True)
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        print("[NLTK] Downloading stopwords...")
+        nltk.download('stopwords', quiet=True)
+
+# Run once during module load
+try:
+    ensure_nltk_data()
+except Exception as e:
+    print(f"[NLTK] Warning: Could not verify or download NLTK data: {e}")
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from dotenv import load_dotenv
-from pathlib import Path
-
 
 # Neo4j and Pinecone core
 from neo4j import GraphDatabase, AsyncGraphDatabase
+from neo4j.graph import Node, Relationship
 from pinecone import Pinecone, ServerlessSpec
 
 # LangChain components
@@ -41,8 +61,24 @@ NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")
 
+# --- OPTIMIZED CACHED ACCESS ---
+_embeddings_instance = None
+_vectorstore_instance = None
+
 def get_embeddings():
-    return PineconeEmbeddings(model=EMBED_MODEL_NAME)
+    global _embeddings_instance
+    if _embeddings_instance is None:
+        print("[INIT] Loading Embedding Model...")
+        _embeddings_instance = PineconeEmbeddings(model=EMBED_MODEL_NAME)
+    return _embeddings_instance
+
+def get_vectorstore():
+    global _vectorstore_instance
+    if _vectorstore_instance is None:
+        embeddings = get_embeddings()
+        print("[INIT] Connecting to Pinecone Index...")
+        _vectorstore_instance = PineconeVectorStore(index_name=PINECONE_INDEX_NAME, embedding=embeddings)
+    return _vectorstore_instance
 
 def get_text_splitter():
     return RecursiveCharacterTextSplitter(
@@ -63,9 +99,6 @@ def get_neo4j_driver():
         raise
 
 def get_async_neo4j_driver():
-    # Note: verify_connectivity is harder in a simple factory for async, 
-    # but the driver itself will handle the URI we pass.
-    # We will try to be smart about the protocol.
     return AsyncGraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 
 def format_pinecone_id(text):
@@ -138,115 +171,196 @@ def build_vector_index(email_csv):
 # --- RETRIEVAL ---
 
 def retrieve_vector_context(query, top_k=5):
-    embeddings = get_embeddings()
-    vectorstore = PineconeVectorStore(index_name=PINECONE_INDEX_NAME, embedding=embeddings)
-    return vectorstore.similarity_search(query, k=top_k)
+    """Synchronous vector search wrapper."""
+    try:
+        vstore = get_vectorstore()
+        return vstore.similarity_search(query, k=top_k)
+    except Exception as e:
+        print(f"[RETR] Vector Retrieval Error: {e}")
+        return []
+
+def sanitize_data(data):
+    """Recursively converts non-serializable types (Neo4j objects, etc.) to JSON-safe formats."""
+    if isinstance(data, dict):
+        return {k: sanitize_data(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [sanitize_data(i) for i in data]
+    elif isinstance(data, (int, float, bool, str)) or data is None:
+        return data
+    else:
+        return str(data)
 
 def filter_keywords(query):
-    """Processes query into high-signal keywords using NLTK."""
+    """Processes query into high-signal keywords using NLTK or fallback."""
     try:
         stop_words = set(stopwords.words('english'))
         word_tokens = word_tokenize(query)
         return [w for w in word_tokens if not w.lower() in stop_words and len(w) > 2]
     except Exception as e:
-        print(f"NLTK Processing Error: {e}. Falling back to simple split.")
+        print(f"[RETR] NLTK Fallback Used: {e}")
         return [word.strip() for word in query.split() if len(word) > 3]
 
-async def retrieve_graph_context_async(query):
-    driver = get_async_neo4j_driver()
+async def retrieve_graph_context_async(query, driver=None):
+    # Use global driver if provided, else create temporary (fallback)
+    active_driver = driver or get_async_neo4j_driver()
     knowledge_triples = []
+    nodes_map = {}
+    rels_list = []
     
-    # Advanced NLTK Tokenization & Stopword Removal
     keywords = filter_keywords(query)
 
+    def add_node_to_graph(node):
+        if not node: return
+        n_id = str(node.element_id)
+        if n_id not in nodes_map:
+            nodes_map[n_id] = {
+                "id": n_id,
+                "labels": list(node.labels),
+                "properties": sanitize_data(dict(node))
+            }
+
+    def add_rel_to_graph(rel):
+        if not rel: return
+        r_id = str(rel.element_id)
+        if any(r["id"] == r_id for r in rels_list): return
+        
+        s_id = str(rel.start_node.element_id)
+        t_id = str(rel.end_node.element_id)
+        
+        rels_list.append({
+            "id": r_id, "type": rel.type,
+            "from": s_id, "to": t_id,
+            "properties": sanitize_data(dict(rel))
+        })
+        add_node_to_graph(rel.start_node)
+        add_node_to_graph(rel.end_node)
+
     try:
-        async with driver.session() as session:
+        async with active_driver.session() as session:
+            query_tasks = []
             for kw in keywords:
-                # 1: Semantic Entity Triples
-                res = await session.run("""
+                # Semantic Entity Triples
+                query_tasks.append(session.run("""
                     MATCH (n:Entity)
                     WHERE toLower(n.name) CONTAINS toLower($kw)
                     MATCH (n)-[r]->(related:Entity)
-                    RETURN n.name AS source, type(r) AS rel, related.name AS target
-                    LIMIT 5
-                """, kw=kw)
-                async for record in res:
-                    knowledge_triples.append(f"Fact: {record['source']} -[{record['rel']}]-> {record['target']}")
+                    RETURN n, r, related
+                    LIMIT 3
+                """, kw=kw))
 
-                # 2: Communication Network
-                res2 = await session.run("""
+                # Communication Network
+                query_tasks.append(session.run("""
                     MATCH (e:Employee)
                     WHERE toLower(e.name) CONTAINS toLower($kw) OR toLower(e.email) CONTAINS toLower($kw)
                     MATCH (e)-[r:COMMUNICATES_WITH]->(other:Employee)
-                    RETURN e.name AS source, type(r) AS rel, other.name AS target, r.frequency AS freq
-                    ORDER BY r.frequency DESC LIMIT 5
-                """, kw=kw)
-                async for record in res2:
-                    knowledge_triples.append(f"Fact: {record['source']} -[{record['rel']} x{record['freq']}]-> {record['target']}")
+                    RETURN e, r, other
+                    ORDER BY r.frequency DESC LIMIT 3
+                """, kw=kw))
+            
+            if query_tasks:
+                results = await asyncio.gather(*query_tasks)
+                for res in results:
+                    async for record in res:
+                        # Extract based on flexible return types
+                        r = record.get('r')
+                        n = record.get('n') or record.get('e')
+                        related = record.get('related') or record.get('other')
+                        
+                        if n and r and related:
+                            # Update text context
+                            if 'name' in n and 'name' in related:
+                                knowledge_triples.append(f"Fact: {n['name']} -[{r.type}]-> {related['name']}")
+                            # Update graph visualization
+                            add_rel_to_graph(r)
     except Exception as e:
-        print(f"Graph Retrieval Error: {e}")
+        print(f"[RETR] Graph Retrieval Error: {e}")
     finally:
-        await driver.close()
+        if not driver:
+            await active_driver.close()
 
-    return list(set(knowledge_triples))
+    graph_data = {
+        "nodes": list(nodes_map.values()),
+        "relationships": rels_list
+    }
+    return list(set(knowledge_triples)), graph_data
 
-# For legacy sync support
-def retrieve_graph_context(query):
-    return asyncio.run(retrieve_graph_context_async(query))
-
-async def retrieve_hybrid_context_async(query):
-    # Parallelize context retrieval for performance
-    print(f"Pulling Intelligence for: {query}")
+async def retrieve_hybrid_context_async(query, driver=None):
+    # Parallelize context retrieval for maximum performance
+    print(f"\n[PHASE 1] Pulling Intelligence for: {query}")
+    start_all = time.perf_counter()
     
-    # 1. Vector Search (LangChain Pinecone is synchronous)
+    # 1. Vector Search (Offloaded to thread as it holds GIL/I/O)
+    vector_task = asyncio.to_thread(retrieve_vector_context, query)
+    
+    # 2. Graph Retrieval (Async native)
+    graph_task = retrieve_graph_context_async(query, driver=driver)
+
+    print("[SYSTEM] Firing simultaneous Vector & Graph probes...")
+    
     try:
-        vector_docs = retrieve_vector_context(query)
-        vector_context = "\n".join([f"- {doc.page_content}" for doc in vector_docs])
+        vector_res, (graph_facts, graph_data) = await asyncio.gather(vector_task, graph_task)
+        vector_context = "\n".join([f"- {doc.page_content}" for doc in vector_res])
+        graph_context = "\n".join(graph_facts)
     except Exception as e:
-        print(f"Vector Retrieval Error: {e}")
-        vector_context = "Vector store unavailable."
+        print(f"[ERROR] Hybrid Retrieval Exception: {e}")
+        vector_context = "Vector lookup error."
+        graph_context = "Graph lookup error."
+        graph_data = {"nodes": [], "relationships": []}
 
-    # 2. Graph Retrieval (Async)
-    graph_facts = await retrieve_graph_context_async(query)
-    graph_context = "\n".join(graph_facts)
-
-    return (
+    context_str = (
         f"--- STRUCTURED KNOWLEDGE (Neo4j) ---\n{graph_context}\n\n"
-        f"--- SEMANTIC SNIPPETS (Emails) ---\n{vector_context}"
+        f"--- SEMANTIC SNIPPETS ---\n{vector_context}"
     )
+    
+    total_latency = time.perf_counter() - start_all
+    print(f"[METRIC] Total Hybrid Retrieval Latency: {total_latency:.4f}s")
+    return context_str, graph_data
 
 # --- GENERATION ---
 
-async def generate_answer_async(query):
-    context = await retrieve_hybrid_context_async(query)
+async def generate_answer_async(query, driver=None):
+    context_str, graph_data = await retrieve_hybrid_context_async(query, driver=driver)
     
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-3-flash-preview",
-        google_api_key=os.getenv("GEMINI_AI_API_KEY"),
-        temperature=0
-    )
+    print("[PHASE 2] Synthesizing Intelligence (Gemini)...")
+    gen_start = time.perf_counter()
     
-    system_prompt = """
-    You are an AI Enterprise Intelligence Assistant. 
-    Use the provided contexts to answer the user's question accurately.
-    - 'STRUCTURED KNOWLEDGE' contains direct facts from the Knowledge Graph.
-    - 'SEMANTIC SNIPPETS' contains broader context from emails.
-    
-    Synthesize information from BOTH sources. 
-    If the context doesn't contain enough information, state that clearly and do not hallucinate external information.
-    Your knowledge boundary is strictly limited to the provided internal data.
-    """
-    
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", system_prompt),
-        ("human", "Context:\n{context}\n\nQuestion: {query}")
-    ])
-    
-    parser = StrOutputParser()
-    chain = prompt | llm | parser
-    return await chain.ainvoke({"context": context, "query": query})
+    try:
+        llm = ChatGoogleGenerativeAI(
+            model="gemini-3-flash-preview", 
+            google_api_key=os.getenv("GEMINI_AI_API_KEY"),
+            temperature=0,
+            timeout=30 # Prevent long hangs
+        )
+        # Check if user specifically wanted gemini-3 and update if safe
+        # model="gemini-3-flash-preview"
+        
+        system_prompt = """
+        You are an AI Enterprise Intelligence Assistant. 
+        Use the provided contexts to answer the user's question accurately.
+        - 'STRUCTURED KNOWLEDGE' contains direct facts from the Knowledge Graph.
+        - 'SEMANTIC SNIPPETS' contains broader context from emails.
+        
+        Synthesize information from BOTH sources. 
+        If the context doesn't contain enough information, state that clearly and do not hallucinate external information.
+        Your knowledge boundary is strictly limited to the provided internal data.
+        """
+        
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", system_prompt),
+            ("human", "Context:\n{context}\n\nQuestion: {query}")
+        ])
+        
+        parser = StrOutputParser()
+        chain = prompt | llm | parser
+        answer = await chain.ainvoke({"context": context_str, "query": query})
+        
+        print(f"Synthesis Duration: {time.perf_counter() - gen_start:.4f}s")
+        print("-" * 50)
+        return {"answer": answer, "graph": graph_data}
+    except Exception as e:
+        print(f"[ERROR] LLM Synthesis Error: {e}")
+        return {"answer": f"Intelligence synthesis failed: {str(e)}", "graph": graph_data}
 
-# Sync wrapper for existing calls
 def generate_answer(query):
     return asyncio.run(generate_answer_async(query))
 
@@ -254,9 +368,7 @@ if __name__ == "__main__":
     BASE_DIR = Path(__file__).resolve().parent.parent
     EMAIL_PATH = str(BASE_DIR / "data" / "processed" / "emails" / "sample_email.csv")
     
-    if "--build" in sys.argv:
-        build_vector_index(EMAIL_PATH)
-    elif "--query" in sys.argv:
+    if "--query" in sys.argv:
         question = " ".join(sys.argv[sys.argv.index("--query") + 1:])
-        answer = generate_answer(question)
-        print(f"Result:\n{answer}")
+        res = generate_answer(question)
+        print(f"Result:\n{res['answer']}")

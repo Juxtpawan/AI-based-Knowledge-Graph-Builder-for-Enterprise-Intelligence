@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import NetworkView from './pages/NetworkView';
 import TopicExplorer from './pages/TopicExplorer';
 import RagAgentChat from './pages/RagAgentChat';
-import DashboardMetrics from './components/DashboardMetrics';
-import CommandPalette from './components/CommandPalette';
+import DashboardMetrics from './components/dashboard/DashboardMetrics';
+import CommandPalette from './components/search/CommandPalette';
 import { 
   Bell,
   Search,

@@ -4,10 +4,22 @@ const BASE_URL = 'http://localhost:8000';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
+  timeout: 60000, 
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+// Resiliency Interceptor
+apiClient.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.code === 'ECONNABORTED') {
+      console.error('Neural Link Timeout: The backend is taking too long to respond.');
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const kgService = {
   // Module 4: Analytics
@@ -66,7 +78,10 @@ export const kgService = {
   // Module 2 & 3: Graph Discovery Services
   getGraphData: async (params = { limit: 150 }) => {
     try {
-      const response = await apiClient.get('/graph', { params });
+      const response = await apiClient.get('/graph', { 
+        params,
+        timeout: 90000 
+      });
       return response.data;
     } catch (error) {
        console.error('Error fetching initial graph:', error);

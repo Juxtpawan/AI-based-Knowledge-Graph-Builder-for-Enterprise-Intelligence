@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, Loader2, ArrowRight, Terminal, Play } from 'lucide-react';
-import { kgService } from '../services/apiClient';
+import { kgService } from '../../services/apiClient';
 
 /**
  * Omni-Search Component with Autocomplete
@@ -90,7 +90,6 @@ export default function ContextualSearch({
                   setSuggestions([]);
                   // Trigger Bloom search update
                   if (onAIPhraseSubmit) onAIPhraseSubmit(s.name);
-                  console.log('Navigating to:', s.name, s.id);
                }}
             >
                <div className="flex flex-col">

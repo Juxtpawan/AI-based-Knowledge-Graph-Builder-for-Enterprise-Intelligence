@@ -49,6 +49,18 @@ body {
   border-color: rgba(16, 185, 129, 0.4) !important;
 }
 
+.vidzai-cursor-grab {
+  cursor: grab !important;
+}
+
+.vidzai-cursor-grabbing {
+  cursor: grabbing !important;
+}
+
+.glow-emerald {
+  box-shadow: 0 0 8px #10b981;
+}
+
 .text-glow {
   text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
 }
