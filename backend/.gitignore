@@ -1,4 +1,4 @@
-# Python
+# --- Python Environment ---
 __pycache__/
 *.py[cod]
 *$py.class
@@ -6,24 +6,36 @@ __pycache__/
 .Python
 env/
 venv/
-.env
 .venv/
 build/
 dist/
 *.egg-info/
+.pytest_cache/
+.coverage
+coverage.xml
 
-# Data & Persistence
+# --- Environment Variables ---
+.env
+.env.local
+
+# --- Datasets & Extraction ---
 datasets/
 final_datasets/
 extraction_checkpoint.json
-logs/
+sample_email_by_category/
+NER/
 *.csv
+
+# --- Logs ---
+logs/
 *.log
 
-# Jupyter
+# --- Jupyter Notebooks ---
 .ipynb_checkpoints/
 
-# Tools
+# --- Tools & OS ---
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
 .gemini/
@@ -31,3 +43,4 @@ logs/
 .agents/
 brain/
 tmp/
+temp/

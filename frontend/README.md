@@ -1,95 +1,54 @@
-# Vidzai Intelligence — React Intelligence Dashboard
+# Vidzai Frontend — Intelligence Visualization & Forensics Dashboard
 
-A modern React application built with Vite that provides an interactive interface for exploring enterprise knowledge graphs and AI-powered insights. Built with **React 19**, **Vite 8.0**, and **Tailwind CSS 4.2**.
+The **Vidzai Frontend** is a professional-grade, high-fidelity **React** application built with **Vite**. It provides a window into the complex enterprise knowledge graph, offering interactive exploration and AI-powered investigation.
 
-## 🚀 Features
+## 🚀 Key Features
 
-- **Knowledge Graph Explorer**: Interactive Network Visualisation using `@neo4j-nvl/react`.
-- **Hybrid RAG Assistant**: Context-aware AI chat integrated with graph data.
-- **Forensic Intelligence Inspector**: Deep-dive into node metadata and behavioural analytics.
-- **Live Metrics Dashboard**: Real-time intelligence throughput and anomaly detection.
-- **Unified Search**: Hybrid search combining vector and graph retrieval.
-- **Responsive Design**: Modern UI with Tailwind CSS and Framer Motion animations.
+### 🔍 Bloom Graphic Forensic Engine
+- **Interactive High-Fidelity Canvas**: Powered by `@neo4j-nvl`, featuring real-time node highlighting and relationship pathing.
+- **Probe Mode**: Contextual subgraphs centered around your search query.
+- **Global Mode**: A high-density constellation view of the entire enterprise dataset.
+- **Forensic Inspector**: Sidebar panels for entity identity, behavioral forensics, and deep metadata deep-dives.
+
+### 📊 Cognitive Analytics
+- **Dynamic Metrics**: Real-time throughput and anomaly detection via **Recharts**.
+- **Stateful Intelligence**: Unified state management using **Zustand** ensuring synchronised selection across all views.
+- **Glassmorphism UI**: Beautiful, modern design using **Tailwind CSS 4** and **Framer Motion 12**.
 
 ## 🛠️ Technology Stack
+- **Framework**: React 19 (Concurrent Mode)
+- **Tooling**: Vite 8, ESLint (Modern Config)
+- **Styling**: Tailwind CSS 4, Framer Motion
+- **Visuals**: `@neo4j-nvl/react`, Recharts
+- **State**: Zustand (Custom Store)
 
-- **React 19**: Latest React with modern hooks and concurrent features
-- **Vite 8.0**: Lightning-fast build tool and dev server
-- **Tailwind CSS 4.2**: Utility-first CSS framework
-- **Framer Motion 12.38**: Smooth animations and transitions
-- **Neo4j NVL**: Native graph visualization library
-- **Recharts 3.8**: Data visualization components
-- **React Router 7.13**: Client-side routing
-- **Zustand 5.0**: Lightweight state management
-- **Axios 1.13**: HTTP client for API communication
+## 📁 Directory Structure
+- **`src/components/graph/`**: All Bloom graph logic, canvas wrapper, and terminal.
+- **`src/components/chat/`**: Intelligence assistant interface and thought stepping.
+- **`src/components/dashboard/`**: Analytics metrics and chart fabric.
+- **`src/pages/`**: Main views including NetworkView, TopicExplorer, and RagChat.
+- **`src/store/`**: Atomic state management (`useIntelStore`).
 
-## 🚀 Getting Started
+## 🚀 Setting Up the Development Client
 
-### Prerequisites
-- Node.js 18 or higher
+### 1. Prerequisites
+- Node.js 18+
 - Backend API running (see backend README)
 
-### Installation
+### 2. Installation
 ```bash
-cd frontend
 npm install
 ```
 
-### Development
+### 3. Development
 ```bash
 npm run dev
 ```
-Starts the development server at `http://localhost:5173`
+Starts the development server on `http://localhost:5173`.
 
-### Build for Production
+### 4. Production Build
 ```bash
 npm run build
 ```
 
-### Preview Production Build
-```bash
-npm run preview
-```
-
-### Linting
-```bash
-npm run lint
-```
-
-## 📁 Project Structure
-
-```
-frontend/
-├── src/
-│   ├── components/
-│   │   ├── chat/           # Intelligence chat components
-│   │   ├── dashboard/      # Analytics and metrics
-│   │   ├── graph/          # Graph visualization
-│   │   ├── search/         # Search and investigation
-│   │   ├── sidebar/        # Context panels
-│   │   └── ui/             # Reusable UI components
-│   ├── pages/              # Main application pages
-│   ├── services/           # API client and utilities
-│   └── store/              # Zustand state management
-├── public/                 # Static assets
-└── package.json            # Dependencies and scripts
-```
-
-## 🔧 Configuration
-
-The frontend connects to the backend API. Make sure the backend is running and accessible. The API base URL can be configured in `src/services/apiClient.js`.
-
-## 🤝 Contributing
-
-1. Follow the existing code style
-2. Use TypeScript for type safety (types are in devDependencies)
-3. Test components thoroughly
-4. Follow React best practices
-
-## 📚 Related Documentation
-
-- [Backend API Documentation](../backend/README.md)
-- [Main Project README](../README.md)
-
 ---
-*© 2026 Vidzai Enterprise | Advanced Forensic Intelligence*
