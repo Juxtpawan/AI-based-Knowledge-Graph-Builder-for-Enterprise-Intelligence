@@ -36,12 +36,12 @@ export default function IntelligenceFilterPanel({
   if (!isOpen) return null;
 
   return (
-    <div className="absolute top-16 left-0 w-[380px] z-50">
+    <div className="absolute top-16 right-0 sm:left-0 w-[calc(100vw-2rem)] max-w-[380px] z-50">
       <motion.div 
         initial={{ opacity: 0, scale: 0.95, y: -20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: -20 }}
-        className="vidzai-glass rounded-4xl border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] overflow-hidden bg-slate-900/60 backdrop-blur-3xl"
+        className="vidzai-glass rounded-3xl sm:rounded-4xl border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] overflow-hidden bg-slate-900/80 backdrop-blur-3xl"
       >
         {/* Header */}
         <div className="p-6 border-b border-white/5 flex items-center justify-between bg-slate-950/40">

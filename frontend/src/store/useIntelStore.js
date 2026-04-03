@@ -20,7 +20,20 @@ export const useIntelStore = create((set, get) => ({
   isExpanding: false,
   viewMode: 'probe', // 'probe' or 'global'
   
+  // Auth State
+  user: null,
+  isAuthenticated: localStorage.getItem('vidzai_auth') === 'true',
+  
   // Actions
+  login: (userData) => {
+    localStorage.setItem('vidzai_auth', 'true');
+    set({ user: userData, isAuthenticated: true });
+  },
+  logout: () => {
+    localStorage.removeItem('vidzai_auth');
+    set({ user: null, isAuthenticated: false });
+  },
+  
   setViewMode: (mode) => set({ viewMode: mode }),
   setSelectedElement: (el) => set({ selectedElement: el }),
   setActiveSearchPhrase: (phrase) => set({ activeSearchPhrase: phrase, customGraphData: null }),

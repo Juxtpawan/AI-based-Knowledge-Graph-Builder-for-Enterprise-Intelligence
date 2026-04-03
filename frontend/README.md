@@ -10,17 +10,20 @@ The **Vidzai Frontend** is a professional-grade, high-fidelity **React** applica
 - **Global Mode**: A high-density constellation view of the entire enterprise dataset.
 - **Forensic Inspector**: Sidebar panels for entity identity, behavioral forensics, and deep metadata deep-dives.
 
-### 📊 Cognitive Analytics
+### 📊 Cognitive Analytics & Curation
 - **Dynamic Metrics**: Real-time throughput and anomaly detection via **Recharts**.
+- **Alert Fabric**: Real-time intelligence feed for forensic signals with circular branding and interactive triage.
+- **Forensic Curation Sidebar**: High-density investigative forms for validating and flagging intelligence.
+- **Thought Stepper**: Transparent UI showing the AI's step-by-step reasoning during investigations.
 - **Stateful Intelligence**: Unified state management using **Zustand** ensuring synchronised selection across all views.
 - **Glassmorphism UI**: Beautiful, modern design using **Tailwind CSS 4** and **Framer Motion 12**.
 
 ## 🛠️ Technology Stack
 - **Framework**: React 19 (Concurrent Mode)
 - **Tooling**: Vite 8, ESLint (Modern Config)
-- **Styling**: Tailwind CSS 4, Framer Motion
-- **Visuals**: `@neo4j-nvl/react`, Recharts
-- **State**: Zustand (Custom Store)
+- **Styling**: Tailwind CSS 4.2, Framer Motion 12.38
+- **Visuals**: `@neo4j-nvl/react` 2.10, Recharts 2.x
+- **State**: Zustand 5.0 (Custom Atomic Store)
 
 ## 📁 Directory Structure
 - **`src/components/graph/`**: All Bloom graph logic, canvas wrapper, and terminal.

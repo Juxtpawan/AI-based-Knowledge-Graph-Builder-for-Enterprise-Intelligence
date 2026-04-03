@@ -1,12 +1,13 @@
 import React from 'react';
 import { Database, TrendingUp, AlertTriangle, Activity } from 'lucide-react';
 
-import { useAnalytics } from './useAnalytics';
+import { useRealtimeAnalytics } from '../../store/useRealtimeAnalytics';
 import KpiCard from './KpiCard';
 import CognitiveFluxChart from './CognitiveFluxChart';
 import AlertFabric from './AlertFabric';
-
-
+import EntityDistributionChart from './EntityDistributionChart';
+import TopCommunicatorsChart from './TopCommunicatorsChart';
+import ProcessingStatus from './ProcessingStatus';
 
 const KPI_CONFIG = [
   {
@@ -18,7 +19,7 @@ const KPI_CONFIG = [
     sublabel: 'MATCH ()-[r]->() · total relationships',
   },
   {
-    key: 'forensicVelocity',
+    key: 'forensic_velocity',
     label: 'Forensic Velocity',
     icon: TrendingUp,
     color: 'text-sky-400',
@@ -26,7 +27,7 @@ const KPI_CONFIG = [
     sublabel: 'V = (2·E/V) / 20 · avg degree normalized',
   },
   {
-    key: 'anomalyScore',
+    key: 'anomaly_score',
     label: 'Anomaly Score',
     icon: AlertTriangle,
     color: 'text-amber-500',
@@ -34,7 +35,7 @@ const KPI_CONFIG = [
     sublabel: 'S = (flagged / total) × 10 · risk saturation',
   },
   {
-    key: 'neuralUptime',
+    key: 'neural_uptime',
     label: 'Neural Uptime',
     icon: Activity,
     color: 'text-indigo-400',
@@ -44,13 +45,22 @@ const KPI_CONFIG = [
 ];
 
 export default function DashboardMetrics() {
-  const { kpis, chartData, alerts, isLoading } = useAnalytics();
+  const { 
+    kpis, 
+    chartData, 
+    entityBreakdown, 
+    topCommunicators, 
+    processingInfo,
+    alerts, 
+    isLoading, 
+    isLive 
+  } = useRealtimeAnalytics();
 
   return (
     <div className="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-8 font-sans">
 
       {/* 1. KPI Matrix (4 cards)*/}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {KPI_CONFIG.map((cfg, idx) => (
           <KpiCard
             key={cfg.key}
@@ -66,16 +76,25 @@ export default function DashboardMetrics() {
         ))}
       </div>
 
-      {/* 2. Chart + Alert Feed */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-        {/* Cognitive Flux Area Chart (real Enron data) */}
-        <CognitiveFluxChart data={chartData} loading={isLoading} />
-
-        {/* Alert Fabric (live flagged elements feed) */}
-        <AlertFabric alerts={alerts} loading={isLoading} />
-
+      {/* 2. Middle Grid: Ingestion + Taxonomy + Interaction */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+         <ProcessingStatus 
+            total={processingInfo.total}
+            processed={processingInfo.processed}
+            percentage={processingInfo.percentage}
+            loading={isLoading}
+            isLive={isLive}
+         />
+         <EntityDistributionChart data={entityBreakdown} loading={isLoading} />
+         <TopCommunicatorsChart data={topCommunicators} loading={isLoading} />
       </div>
+
+      {/* 3. Bottom Row: Flux + Alert Feed */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <CognitiveFluxChart data={chartData} loading={isLoading} />
+        <AlertFabric alerts={alerts} loading={isLoading} />
+      </div>
+
     </div>
   );
 }

@@ -52,6 +52,12 @@ Vidzai leverages a **Hybrid RAG (Retrieval-Augmented Generation)** architecture 
 ### 📊 Cognitive Analytics Dashboard
 - **Flux Charts**: Real-time visualization of entity distributions and communication patterns via Recharts.
 - **KPI Fabric**: Critical metrics for data throughput, extraction health, and anomaly detection.
+- **Intelligence Alerts**: Real-time forensic signal broadcasting via WebSocket for immediate situational awareness.
+
+### ⚖️ Forensic Curation Protocol
+- **Three-Tiered Triage**: Unified protocol supporting `Validated Intel`, `Flagged Anomaly`, and `Severe Risk` states.
+- **Actionable Metadata**: High-density investigative forms that persist status and metadata directly into the graph.
+- **Persistence Layer**: Seamless integration with Neo4j for storage and stateful forensic history.
 
 ### 🏗️ Enterprise Backend Architecture
 - **FastAPI Engine**: High-performance, production-grade async service.
@@ -104,7 +110,7 @@ graph TD
         I[(Pinecone Vector DB)] --- E
     end
 
-    Client <==>|REST API| Server
+    Client <==>|REST / WebSockets| Server
 ```
 
 ### Data Processing Pipeline (The "Miles" Series)
@@ -168,10 +174,14 @@ GEMINI_AI_API_KEY=your_key
 ```
 
 ### 4. Run the Project
-**Windows:** `.\start_project.ps1`
-**Manual:**
-- Terminal 1 (Backend): `cd backend && python main.py`
-- Terminal 2 (Frontend): `cd frontend && npm run dev`
+**Recommended (One-Click):**
+```powershell
+.\start_project.ps1
+```
+
+**Manual Execution:**
+- **Terminal 1 (Backend):** `cd backend && python main.py`
+- **Terminal 2 (Frontend):** `cd frontend && npm run dev`
 
 ---
 

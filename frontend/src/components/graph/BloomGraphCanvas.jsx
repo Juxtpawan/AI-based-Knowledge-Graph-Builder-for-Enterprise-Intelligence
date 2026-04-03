@@ -287,7 +287,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
 
 
             {/* ── CYPHER TERMINAL TOGGLE ── */}
-            <div className="absolute top-6 left-6 z-50">
+            <div className="absolute top-16 left-6 z-40">
                 <button
                     onClick={() => setIsCypherOpen(!isCypherOpen)}
                     title="Open Cypher Terminal"
@@ -308,7 +308,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
                         initial={{ opacity: 0, x: -30, scale: 0.95 }}
                         animate={{ opacity: 1, x: 0, scale: 1 }}
                         exit={{ opacity: 0, x: -30, scale: 0.95 }}
-                        className="absolute top-6 left-24 z-40 bg-slate-900/95 backdrop-blur-3xl border border-white/10 rounded-3xl w-[450px] h-[380px] shadow-[0_30px_100px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col pointer-events-auto"
+                        className="absolute top-28 left-24 z-40 bg-slate-900/95 backdrop-blur-3xl border border-white/10 rounded-3xl w-[450px] h-[380px] shadow-[0_30px_100px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col pointer-events-auto"
                     >
                         <CypherTerminal 
                             query={cypherQuery} 

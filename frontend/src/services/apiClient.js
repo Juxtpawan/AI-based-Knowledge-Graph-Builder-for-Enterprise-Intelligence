@@ -109,6 +109,16 @@ export const kgService = {
       console.error('Error fetching suggestions:', error);
       return { suggestions: [] };
     }
+  },
+
+  getNodePulse: async (nodeId) => {
+    try {
+      const response = await apiClient.get(`/node/${encodeURIComponent(nodeId)}/pulse`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching node pulse:', error);
+      throw error;
+    }
   }
 };
 

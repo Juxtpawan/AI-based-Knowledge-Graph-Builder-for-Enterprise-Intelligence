@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldAlert, Clock, ChevronRight, AlertTriangle } from 'lucide-react';
+import { ShieldAlert, Clock, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
@@ -35,24 +35,24 @@ export default function AlertFabric({ alerts = [], loading = false }) {
   };
 
   return (
-    <div className="vidzai-glass p-8 rounded-4xl border border-white/5 flex flex-col bg-slate-900/40">
+    <div className="vidzai-glass p-5 sm:p-8 rounded-4xl border border-white/5 flex flex-col bg-slate-900/40">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-2">
-        <div className="p-2.5 bg-amber-500/10 rounded-2xl">
-          <ShieldAlert className="text-amber-500" size={22} />
+      <div className="flex items-center gap-3 sm:gap-4 mb-2">
+        <div className="p-2 sm:p-2.5 bg-amber-500/10 rounded-2xl">
+          <ShieldAlert className="text-amber-500" size={20} />
         </div>
         <div>
-          <h3 className="text-lg font-black text-white uppercase tracking-widest leading-none">
-            Alert Fabric
+          <h3 className="text-base sm:text-lg font-black text-white uppercase tracking-widest leading-none">
+            Intelligence Alerts
           </h3>
-          <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold mt-1">
+          <p className="text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold mt-1">
             {loading ? 'Syncing...' : `${alerts.length} active signal${alerts.length !== 1 ? 's' : ''}`}
           </p>
         </div>
       </div>
 
-      {/* Alert list */}
-      <div className="flex-1 space-y-3 overflow-y-auto pr-1 custom-scrollbar mt-6 max-h-[280px]">
+      {/* Alert list - Fixed height for scrollable section */}
+      <div className="flex-1 space-y-3 overflow-y-auto pr-2 custom-scrollbar mt-6 h-[420px]">
         {loading ? (
           // Shimmer skeleton
           Array.from({ length: 3 }).map((_, i) => (
@@ -83,10 +83,6 @@ export default function AlertFabric({ alerts = [], loading = false }) {
                   transition={{ delay: idx * 0.05 }}
                   className={`group p-4 bg-slate-950/40 hover:bg-slate-900/60 transition-all rounded-3xl border border-white/5 ${cfg.border} cursor-pointer overflow-hidden relative shadow-lg ${cfg.glow}`}
                 >
-                  {/* Arrow decoration */}
-                  <div className="absolute -right-2 top-0">
-                    <ChevronRight size={40} className="text-white/5 group-hover:text-amber-500/20 transition-colors" />
-                  </div>
 
                   {/* Title row */}
                   <div className="flex items-center gap-2.5 mb-1.5">
@@ -110,11 +106,6 @@ export default function AlertFabric({ alerts = [], loading = false }) {
         )}
       </div>
 
-      {/* Footer action */}
-      <button className="w-full mt-5 py-3.5 bg-slate-900 hover:bg-slate-800 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-white rounded-2xl border border-white/5 hover:border-white/10 flex items-center justify-center gap-3 transition-all shadow-xl">
-        <Clock size={13} />
-        Full Investigation History
-      </button>
     </div>
   );
 }

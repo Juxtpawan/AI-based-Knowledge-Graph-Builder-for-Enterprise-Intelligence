@@ -20,7 +20,7 @@ export default function KpiCard({ label, value, icon: Icon, color, bg, sublabel,
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08, duration: 0.4, ease: 'easeOut' }}
-      className="vidzai-glass p-6 rounded-3xl border border-white/5 relative overflow-hidden group shadow-2xl"
+      className="vidzai-glass p-4 sm:p-6 rounded-3xl border border-white/5 relative overflow-hidden group shadow-2xl"
     >
       {/* Hover glow backdrop */}
       <div className={`absolute -right-4 -bottom-4 p-8 ${bg} blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-500`} />

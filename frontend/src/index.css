@@ -98,22 +98,28 @@ body {
 }
 
 /* Scrollbar refinement */
-::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.1);
+  border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb {
+.custom-scrollbar::-webkit-scrollbar-thumb {
   background: rgba(16, 185, 129, 0.1);
   border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(16, 185, 129, 0.3);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
 }
 
 /* Animations */

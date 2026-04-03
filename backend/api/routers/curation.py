@@ -68,40 +68,49 @@ async def get_alerts(request: Request):
     alerts: List[AlertItem] = []
     try:
         async with driver.session() as session:
-            # Flagged nodes
+            # Query for all curated elements (nodes)
             node_res = await session.run("""
-                MATCH (n) WHERE n.curation_status = 'flagged'
+                MATCH (n) WHERE n.curation_status IN ['flagged', 'severe', 'verified']
                 RETURN
                     n.name AS name,
+                    n.curation_status    AS status,
                     n.curation_severity  AS severity,
                     n.curation_category  AS category,
                     n.curation_note      AS note,
                     labels(n)            AS labels
             """)
+            
+            status_map = {'severe': 'critical', 'flagged': 'warning', 'verified': 'info'}
+            
             async for rec in node_res:
+                st = rec["status"]
                 alerts.append(AlertItem(
-                    title=f"Node Anomaly: {rec['name'] or rec['labels'][0]}",
-                    severity=rec["severity"] or "Low",
-                    category=rec["category"] or "Unknown",
+                    title=f"{st.capitalize()}: {rec['name'] or rec['labels'][0]}",
+                    severity=rec["severity"] or "Medium",
+                    type=status_map.get(st, 'info'),
+                    category=rec["category"] or "Audit",
                     detail=rec["note"] or "",
                 ))
 
-            # Flagged relationships
+            # Query for curated relationships
             rel_res = await session.run("""
-                MATCH (s)-[r]->(t) WHERE r.curation_status = 'flagged'
+                MATCH (s)-[r]->(t) WHERE r.curation_status IN ['flagged', 'severe', 'verified']
                 RETURN
-                    type(r)             AS type,
-                    r.curation_severity AS severity,
-                    r.curation_category AS category,
-                    r.curation_note     AS note,
+                    type(r)              AS type,
+                    r.curation_status    AS status,
+                    r.curation_severity  AS severity,
+                    r.curation_category  AS category,
+                    r.curation_note      AS note,
                     s.name              AS source,
                     t.name              AS target
             """)
             async for rec in rel_res:
+                st = rec["status"]
                 alerts.append(AlertItem(
-                    title=f"Rel Anomaly: {rec['source']} → {rec['type']} → {rec['target']}",
-                    severity=rec["severity"] or "Low",
-                    category=rec["category"] or "Unknown",
+                    title=f"{st.capitalize()}: {rec['source']} → {rec['target']}",
+                    severity=rec["severity"] or "Medium",
+                    type=status_map.get(st, 'info'),
+                    category=rec["category"] or "Audit",
                     detail=rec["note"] or "",
                 ))
         return alerts

@@ -39,27 +39,27 @@ export default function CognitiveFluxChart({ data = [], loading = false }) {
   const isPopulated = data.some(d => d.volume > 0);
 
   return (
-    <div className="lg:col-span-2 vidzai-glass p-8 rounded-4xl border border-white/5 bg-slate-900/40">
+    <div className="lg:col-span-2 vidzai-glass p-5 sm:p-8 rounded-4xl border border-white/5 bg-slate-900/40">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-4">
-          <div className="p-2.5 bg-vidzai-emerald/10 rounded-2xl">
-            <FlaskConical className="text-vidzai-emerald" size={22} />
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+        <div className="flex items-center gap-3 sm:gap-4">
+          <div className="p-2 sm:p-2.5 bg-vidzai-emerald/10 rounded-2xl">
+            <FlaskConical className="text-vidzai-emerald" size={20} />
           </div>
           <div>
-            <h3 className="text-lg font-black text-white uppercase tracking-widest leading-none">
+            <h3 className="text-base sm:text-lg font-black text-white uppercase tracking-widest leading-none">
               Cognitive Flux
             </h3>
-            <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold mt-1.5">
+            <p className="text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold mt-1.5">
               {isPopulated
-                ? 'Live Enron Email Volume vs. Flagged Risk — Day of Week'
+                ? 'Email Volume vs. Flagged Risk'
                 : 'Loading real graph activity...'}
             </p>
           </div>
         </div>
 
-        {/* View toggle (cosmetic for now, "week" is the real data) */}
-        <div className="flex items-center gap-2 bg-slate-950 p-1 rounded-xl border border-white/5">
+        {/* View toggle */}
+        <div className="flex items-center gap-2 bg-slate-950 p-1 rounded-xl border border-white/5 self-end sm:self-auto">
           {['week', 'all'].map((tab) => (
             <button
               key={tab}

@@ -70,3 +70,18 @@ class AnalyticsResponse(BaseModel):
     top_communicators: List[MetricItem]
     # Chart series
     cognitive_flux_series: List[FluxDataPoint]
+    # Pipeline status
+    data_info: DataInfo
+
+
+class NodePulse(BaseModel):
+    """
+    Real-time behavioral pulse for a specific node.
+    Calculated on-demand for the Sidebar 'Activity Pulse' tab.
+    """
+    interaction_velocity: float    # e.g. 1.24 (rel creation speed)
+    influence_momentum: float     # e.g. +12.5 (%)
+    burst_pattern: float          # e.g. 0.85 (temporal clustering score)
+    risk_coefficient: float       # e.g. 64.2 (%)
+    top_interactors: List[MetricItem]
+    burst_series: List[int]       # 10-point sparkline data (recent activity)

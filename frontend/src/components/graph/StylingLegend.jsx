@@ -24,7 +24,7 @@ export default function StylingLegend({ isOpen, onClose, viewMode = 'global' }) 
                     initial={{ opacity: 0, scale: 0.9, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                    className="absolute top-16 right-0 w-72 vidzai-glass-frame p-6 shadow-2xl z-50 border-white/10 bg-slate-900/95 backdrop-blur-2xl"
+                    className="absolute top-16 right-0 w-[calc(100vw-2rem)] max-w-[288px] vidzai-glass-frame p-5 sm:p-6 shadow-2xl z-50 border-white/10 bg-slate-900/95 backdrop-blur-3xl"
                 >
                     <div className="flex items-center justify-between mb-6 pb-2 border-b border-white/5">
                         <div className="flex items-center gap-2">

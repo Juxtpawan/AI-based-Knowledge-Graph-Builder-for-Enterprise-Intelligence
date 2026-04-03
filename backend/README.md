@@ -9,6 +9,7 @@ The **Vidzai Backend** is a high-performance **FastAPI** application designed to
 - **Hybrid RAG Orchestrator**: Merges structured graph context (Neo4j) with semantic vector context (Pinecone).
 - **Gemini 3 Flash Interface**: Powers the Named Entity Recognition (NER) and final answer synthesis.
 - **Async Services**: Dedicated background tasks for large-scale data ingestion and metrics computation.
+- **WebSocket Gateway**: Real-time broadcasting of forensic signals and intelligence alerts to connected clients.
 
 ## 📁 Directory Structure
 - **`main.py`**: Entry point and middleware configuration.
@@ -17,6 +18,9 @@ The **Vidzai Backend** is a high-performance **FastAPI** application designed to
 - **`services/`**: Focused business logic, including the `AnalyticsEngine`.
 - **`models/`**: Pydantic schemas for strict data validation and documentation.
 - **`notebooks/`**: The "Miles" series for step-by-step data transformation.
+  - `miles1`: Data preprocessing & enrichment.
+  - `miles2`: AI-driven entity & relationship extraction.
+  - `miles3`: Hybrid RAG implementation and query logic.
 
 ## 🚀 Setting Up the Environment
 
@@ -45,7 +49,13 @@ Vidzai's RAG doesn't just search text; it understands the topology of your data.
 - **Step 2**: Graph traversal explores 2-3 hops from those nodes to gather deep relationship context.
 - **Step 3**: LLM (Gemini) synthesizes a unified answer from both direct matches and structural paths.
 
-### Real-Time Analytics
+### Real-Time Analytics & Curation
 Background services compute forensic distribution metrics over your Neo4j graph, powering the cognitive dashboards in the frontend.
+
+The **Forensic Curation Protocol** (`/api/curation`) allows investigators to:
+- **Validate** intelligence nodes with high-confidence markers.
+- **Flag** anomalies for further manual review.
+- **Mark** severe risks for immediate escalation.
+- **Persist** metadata and audit trails directly into the knowledge graph.
 
 ---

@@ -89,16 +89,16 @@ export default function NetworkView() {
                   <h3 className="text-sm font-bold text-white tracking-widest uppercase">Knowledge Graph</h3>
                </div>
 
-               <div className="flex items-center gap-4">
-                  <div className="hidden lg:flex items-center gap-5 mr-6 border-r border-white/5 pr-6">
+               <div className="flex items-center gap-1 sm:gap-4">
+                  <div className="flex items-center gap-3 sm:gap-6 mr-2 sm:mr-6">
                      <div className="flex flex-col items-center cursor-pointer group relative">
-                        <Sliders size={14} className={`${isFilterPanelOpen ? 'text-vidzai-emerald' : 'text-slate-500'} group-hover:text-vidzai-emerald transition-colors`} onClick={() => setIsFilterPanelOpen(!isFilterPanelOpen)} />
-                        <span className="text-[8px] uppercase font-bold text-slate-600 mt-1 select-none">Filters</span>
+                        <Sliders size={18} className={`${isFilterPanelOpen ? 'text-vidzai-emerald' : 'text-slate-500'} group-hover:text-vidzai-emerald transition-colors p-1`} onClick={() => setIsFilterPanelOpen(!isFilterPanelOpen)} />
+                        <span className="hidden sm:block text-[8px] uppercase font-bold text-slate-600 mt-1 select-none">Filters</span>
                         <IntelligenceFilterPanel isOpen={isFilterPanelOpen} onClose={() => setIsFilterPanelOpen(false)} activeFilters={activeFilters} setActiveFilters={setActiveFilters} applyFilters={applyFilters} />
                      </div>
                      <div className="flex flex-col items-center cursor-pointer group relative" onClick={() => setIsStylingLegendOpen(!isStylingLegendOpen)}>
-                        <Layers size={14} className={`${isStylingLegendOpen ? 'text-vidzai-emerald' : 'text-slate-500'} group-hover:text-vidzai-emerald transition-colors`} />
-                        <span className="text-[8px] uppercase font-bold text-slate-600 mt-1 select-none">Styling</span>
+                        <Layers size={18} className={`${isStylingLegendOpen ? 'text-vidzai-emerald' : 'text-slate-500'} group-hover:text-vidzai-emerald transition-colors p-1`} />
+                        <span className="hidden sm:block text-[8px] uppercase font-bold text-slate-600 mt-1 select-none">Styling</span>
                         <StylingLegend isOpen={isStylingLegendOpen} onClose={() => setIsStylingLegendOpen(false)} viewMode={viewMode} />
                      </div>
                   </div>
@@ -117,6 +117,22 @@ export default function NetworkView() {
                   }}
                />
 
+               {/* Floating Inspector Reopen Button (On Canvas) */}
+               <AnimatePresence>
+                  {!isIntelligenceRailOpen && selectedElement && (
+                     <motion.button
+                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                        onClick={() => setIsIntelligenceRailOpen(true)}
+                        className="absolute bottom-6 right-6 z-50 p-4 bg-slate-900/90 backdrop-blur-2xl border border-white/5 rounded-2xl text-vidzai-emerald hover:text-white transition-all shadow-2xl flex items-center justify-center group lg:bottom-8 lg:right-8"
+                        title="Open Intelligence Inspector"
+                     >
+                        <Network size={20} className="group-hover:scale-110 transition-transform" />
+                     </motion.button>
+                  )}
+               </AnimatePresence>
+
                {/* Canvas Context Overlay (Redundant stats removed, handled by canvas) */}
             </div>
          </div>
@@ -124,49 +140,52 @@ export default function NetworkView() {
          {/* Intelligence Stack (Right Rail) */}
          <AnimatePresence>
             {isIntelligenceRailOpen && (
-               <motion.div initial={{ x: 400, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: 400, opacity: 0 }} transition={{ type: 'spring', damping: 25, stiffness: 200 }} className="w-[420px] h-full flex flex-col pt-6 pr-6 pb-6 z-45">
-                  <div className="flex-1 vidzai-glass-frame rounded-2xl flex flex-col overflow-hidden bg-slate-900/40">
+               <>
+                  {/* Mobile Backdrop */}
+                  <motion.div
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: 1 }}
+                     exit={{ opacity: 0 }}
+                     onClick={() => setIsIntelligenceRailOpen(false)}
+                     className="lg:hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50"
+                  />
+                  <motion.div
+                     initial={{ x: 400, opacity: 0 }}
+                     animate={{ x: 0, opacity: 1 }}
+                     exit={{ x: 400, opacity: 0 }}
+                     transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                     className="fixed inset-y-0 right-0 lg:relative lg:inset-auto w-full sm:w-[420px] h-full flex flex-col p-4 sm:p-6 lg:pt-6 lg:pr-6 lg:pb-6 z-50 lg:z-45"
+                  >
+                     <div className="flex-1 vidzai-glass-frame rounded-2xl flex flex-col overflow-hidden bg-slate-900/40">
 
-                     {/* 1. Intelligence Inspector Header */}
-                     <div className="px-8 py-6 border-b border-white/5 flex items-center justify-between bg-slate-900/40 backdrop-blur-3xl shrink-0">
-                        <div className="flex items-center gap-3">
-                           <div className="size-2 bg-vidzai-emerald rounded-full animate-pulse" />
-                           <h2 className="text-xs font-black uppercase tracking-[0.3em] text-white">Intelligence Inspector</h2>
+                        {/* 1. Intelligence Inspector Header */}
+                        <div className="px-8 py-6 border-b border-white/5 flex items-center justify-between bg-slate-900/40 backdrop-blur-3xl shrink-0">
+                           <div className="flex items-center gap-3">
+                              <div className="size-2 bg-vidzai-emerald rounded-full animate-pulse" />
+                              <h2 className="text-xs font-black uppercase tracking-[0.3em] text-white">Intelligence Inspector</h2>
+                           </div>
+                           <button
+                              onClick={() => setIsIntelligenceRailOpen(false)}
+                              className="p-2 hover:bg-white/5 rounded-lg text-slate-500 hover:text-white transition-all group"
+                              title="Minimize Inspector"
+                           >
+                              <X size={16} />
+                           </button>
                         </div>
-                        <button
-                           onClick={() => setIsIntelligenceRailOpen(false)}
-                           className="p-2 hover:bg-white/5 rounded-lg text-slate-500 hover:text-white transition-all group"
-                           title="Minimize Inspector"
-                        >
-                           <X size={16} />
-                        </button>
-                     </div>
 
-                     {/* 2. Modular Inspector Section */}
-                     <div className="flex-1 overflow-hidden">
-                        <SidebarNodeInfo
-                           element={selectedElement}
-                           onExpand={(node) => expandNode(node.id)}
-                           onClose={() => setSelectedElement(null)}
-                        />
+                        {/* 2. Modular Inspector Section */}
+                        <div className="flex-1 overflow-hidden">
+                           <SidebarNodeInfo
+                              element={selectedElement}
+                              onExpand={(node) => expandNode(node.id)}
+                              onClose={() => setSelectedElement(null)}
+                           />
+                        </div>
                      </div>
-                  </div>
-               </motion.div>
+                  </motion.div>
+               </>
             )}
          </AnimatePresence>
-
-         {/* Floating Inspector Reopen Button (Bottom-Right Minimalist) */}
-         {!isIntelligenceRailOpen && selectedElement && (
-            <motion.button
-               initial={{ opacity: 0, scale: 0.8, y: 20 }}
-               animate={{ opacity: 1, scale: 1, y: 0 }}
-               onClick={() => setIsIntelligenceRailOpen(true)}
-               className="fixed bottom-10 right-10 z-50 p-4 bg-slate-900/90 backdrop-blur-2xl border border-white/5 rounded-2xl text-vidzai-emerald hover:text-white transition-all shadow-2xl flex items-center justify-center group"
-               title="Open Intelligence Inspector"
-            >
-               <Network size={20} className="group-hover:scale-110 transition-transform" />
-            </motion.button>
-         )}
       </div>
    );
 }

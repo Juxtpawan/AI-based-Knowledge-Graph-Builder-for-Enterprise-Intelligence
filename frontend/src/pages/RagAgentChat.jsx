@@ -105,10 +105,10 @@ export default function RagAgentChat() {
   };
 
   return (
-    <div className="flex h-full p-4 lg:p-8 gap-6 bg-slate-950 relative overflow-hidden font-sans">
+    <div className="flex flex-col lg:flex-row h-full p-2 sm:p-4 lg:p-8 gap-4 lg:gap-6 bg-slate-950 relative overflow-hidden font-sans">
 
       {/* --- 1. PRIMARY INVESTIGATION RAIL --- */}
-      <div className="flex-1 flex flex-col vidzai-glass rounded-4xl overflow-hidden relative z-10 border-white/5">
+      <div className="flex-1 flex flex-col vidzai-glass rounded-3xl sm:rounded-4xl overflow-hidden relative z-10 border-white/5">
 
         {/* Header: AI Terminal Branding */}
         <div className="p-6 border-b border-white/5 bg-slate-950/40 flex items-center justify-between backdrop-blur-xl">

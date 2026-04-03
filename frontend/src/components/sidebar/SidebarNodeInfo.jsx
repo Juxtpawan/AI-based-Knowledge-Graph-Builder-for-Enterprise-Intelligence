@@ -27,8 +27,8 @@ export default function SidebarNodeInfo({ element, onClose, onExpand }) {
   const isPinned = evidenceBag.some(item => item.id === element.id);
 
   const tabs = [
-    { id: 'metadata', label: 'Inspector', icon: Info },
-    { id: 'analytics', label: 'Dynamics', icon: Activity },
+    { id: 'metadata', label: 'Inspect', icon: Info },
+    { id: 'analytics', label: 'Metrics', icon: Activity },
     { id: 'forensics', label: 'Curation', icon: Fingerprint }
   ];
 

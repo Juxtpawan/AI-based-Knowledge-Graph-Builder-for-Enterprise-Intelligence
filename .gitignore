@@ -10,6 +10,11 @@ Thumbs.db
 .idea/
 *.sublime-project
 *.sublime-workspace
+.pytest_cache/
+.coverage
+coverage.xml
+
+# --- Agent & AI Metadata ---
 .gemini/
 .agent/
 .agents/
@@ -24,6 +29,9 @@ temp/
 *.bak
 *.swp
 *.swo
+__pycache__/
+*.py[cod]
+*$py.class
 
 # --- Environment ---
 .env
@@ -48,11 +56,16 @@ backend/extraction_checkpoint.json
 backend/notebooks/.ipynb_checkpoints/
 
 # --- Data (Proprietary/Large) ---
-data/raw/*.csv
-data/kg_data/*.csv
+data/raw/
+data/kg_data/
 backend/datasets/
 backend/final_datasets/
 backend/sample_email_by_category/
 backend/NER/
-backend/logs/ 
+backend/extraction_checkpoint.json
 *.csv
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!pyproject.toml

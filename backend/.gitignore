@@ -17,6 +17,9 @@ coverage.xml
 # --- Environment Variables ---
 .env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # --- Datasets & Extraction ---
 datasets/
@@ -25,6 +28,8 @@ extraction_checkpoint.json
 sample_email_by_category/
 NER/
 *.csv
+*.json
+!requirements.txt
 
 # --- Logs ---
 logs/
@@ -32,15 +37,3 @@ logs/
 
 # --- Jupyter Notebooks ---
 .ipynb_checkpoints/
-
-# --- Tools & OS ---
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-.gemini/
-.agent/
-.agents/
-brain/
-tmp/
-temp/
