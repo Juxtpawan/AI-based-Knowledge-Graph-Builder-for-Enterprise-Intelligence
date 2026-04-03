@@ -25,6 +25,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
         setGraphStats,
         customGraphData,
         setSelectedElement,
+        selectedElement,
         expandNode,
         cypherQuery,
         setCypherQuery,
@@ -83,7 +84,20 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
                 const isFocus = viewMode === 'probe' && searchPhrase && 
                                 caption.toLowerCase().includes(searchPhrase.toLowerCase());
                 
-                if (isFocus) {
+                // 4. Selection detection
+                const isSelected = selectedElement && !selectedElement.isRelationship && String(selectedElement.id) === String(n.id);
+                
+                if (isSelected) {
+                    nodeStyle = {
+                        ...nodeStyle,
+                        color: '#ffffff',
+                        size: 50,
+                        borderColor: '#6366f1', 
+                        borderWidth: 12,
+                        shadowColor: 'rgba(99, 102, 241, 0.95)', 
+                        shadowBlur: 50
+                    };
+                } else if (isFocus) {
                     nodeStyle = {
                         ...nodeStyle,
                         color: '#ffffff', 
@@ -100,6 +114,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
                     id: String(n.id),
                     caption,
                     isFocusNode: isFocus,
+                    isSelected,
                     // Direct Style Injection (Ensures colors work across all NVL versions)
                     ...nodeStyle,
                     properties: {
@@ -109,23 +124,35 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
                 };
             }),
             relationships: rawRels.map(r => {
+                const isSelected = selectedElement && selectedElement.isRelationship && String(selectedElement.id) === String(r.id);
                 // UNIFORM LINK STYLING (Slate Blue Palette Sync)
-                const relStyle = { 
+                let relStyle = { 
                     color: '#64748b', 
                     width: r.type === 'COMMUNICATES_WITH' ? 2 : 1.5,
                     opacity: 0.6 
                 };
+
+                if (isSelected) {
+                    relStyle = {
+                        ...relStyle,
+                        color: '#818cf8', 
+                        width: 4, 
+                        opacity: 1.0
+                    };
+                }
+
                 return {
                     ...r,
                     id:      String(r.id),
                     from:    String(r.from),
                     to:      String(r.to),
                     caption: r.type,
+                    isSelected,
                     ...relStyle
                 };
             }),
         };
-    }, [sourceData, viewMode, searchPhrase]);
+    }, [sourceData, viewMode, searchPhrase, selectedElement]);
 
     useEffect(() => {
         // External prop (RAG response graph) → highest priority
@@ -186,14 +213,6 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
             },
             // Forensic Style Engine (Dynamic High-Priority Overrides)
             styleRules: [
-                // Highlight Focus (Search Anchor Halos) - Highest Priority
-                { 
-                    condition: (node) => node.isFocusNode === true,     
-                    style: { 
-                        color: '#ffffff', size: 55, borderColor: '#10b981', borderWidth: 8, 
-                        shadowColor: 'rgba(16,185,129, 0.8)', shadowBlur: 35, shadowAlpha: 0.9
-                    } 
-                },
                 // Category Overrides (Adding Shadows to Data-Level Styles)
                 { condition: (node) => node.properties?.forensicType === 'Employee', style: { shadowColor: 'rgba(99, 102, 241, 0.4)', shadowBlur: 10 } },
                 { condition: (node) => node.properties?.forensicType === 'Email',    style: { shadowColor: 'rgba(245, 158, 11, 0.4)', shadowBlur: 8 } },
@@ -204,7 +223,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
                 { condition: { type: '*' }, style: { color: '#64748b', width: 1.5, opacity: 0.5 } }
             ]
         };
-    }, [viewMode]);
+    }, [viewMode, selectedElement]);
 
     // ─── 4. INTERACTION HANDLERS ──────────────────────────────────────────────
     // Node click → set as selectedElement → Sidebar opens Inspector tab

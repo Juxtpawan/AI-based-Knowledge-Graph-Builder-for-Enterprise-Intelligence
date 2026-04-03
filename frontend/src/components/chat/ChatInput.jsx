@@ -1,47 +1,39 @@
 import React from 'react';
-import { Send, Sparkles } from 'lucide-react';
+import { Send, MessageSquare } from 'lucide-react';
 
-const ChatInput = ({ input, setInput, onSend, isLoading }) => {
+/**
+ * ChatInput - Multi-Input Field with Context Indicators
+ * Handles user input, submit actions, and metadata display.
+ */
+export default function ChatInput({ value, onChange, onSubmit, disabled }) {
   return (
-    <div className="relative group">
-      {/* Decorative gradient glow */}
-      <div className="absolute -inset-0.5 bg-linear-to-r from-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-10 group-hover:opacity-20 transition-all duration-500" />
-      
-      <div className="relative bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex items-center gap-3">
-        <div className="flex-1">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && onSend()}
-            placeholder="Ask about employees, communication or entities..."
-            className="w-full bg-transparent border-none focus:outline-none text-white placeholder:text-slate-500 text-sm h-10"
-            disabled={isLoading}
-          />
+    <div className="p-8 bg-slate-950/40 border-t border-white/5 backdrop-blur-2xl">
+      <form onSubmit={onSubmit} className="relative flex items-center max-w-5xl mx-auto group">
+        {/* Input Suffix Icon */}
+        <div className="absolute left-6 text-slate-600 group-focus-within:text-primary transition-colors">
+          <MessageSquare size={20} />
         </div>
-        
+
+        {/* Core Field */}
+        <input
+          type="text"
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          placeholder="Query the Intel Fabric (Partnerships, Anomalies, Key Players)..."
+          className="w-full bg-slate-900/40 border border-white/5 rounded-3xl py-5 pl-16 pr-20 text-slate-100 focus:outline-none focus:border-primary/50 transition-all shadow-2xl placeholder-slate-600 text-lg sm:text-base font-sans"
+          disabled={disabled}
+        />
+
+        {/* Interaction Trigger */}
         <button
-          onClick={onSend}
-          disabled={!input.trim() || isLoading}
-          className={`p-2.5 rounded-xl transition-all duration-300 flex items-center justify-center 
-            ${!input.trim() || isLoading 
-              ? 'bg-white/5 text-slate-600' 
-              : 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 hover:bg-indigo-600 hover:scale-105 active:scale-95'}`}
+          type="submit"
+          disabled={disabled || !value.trim()}
+          className="absolute right-3 bg-primary hover:bg-primary/80 disabled:bg-slate-800 text-white size-12 rounded-2xl transition-all shadow-xl shadow-primary/10 active:scale-90 flex items-center justify-center group/btn"
         >
-          <Send className="w-5 h-5" />
+          <Send size={20} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
         </button>
-      </div>
-      
-      {/* Footer hint */}
-      <div className="flex justify-between items-center mt-3 px-2">
-        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold flex items-center gap-2">
-          <Sparkles className="w-3 h-3 text-amber-500/50" />
-          Enterprise RAG Nexus
-        </p>
-        <span className="text-[10px] text-slate-600 font-medium tracking-wide">Press Enter to dispatch query</span>
-      </div>
+      </form>
+
     </div>
   );
-};
-
-export default ChatInput;
+}

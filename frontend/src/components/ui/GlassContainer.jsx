@@ -1,27 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const GlassContainer = ({ children, className = '', delay = 0 }) => {
+/**
+ * GlassContainer - Unified Glassmorphism Wrapper
+ * Ensures consistent blur, border, and background across the suite.
+ */
+export default function GlassContainer({
+  children,
+  className = "",
+  animate = true,
+  intensity = "medium", // 'low', 'medium', 'heavy'
+  hover = false
+}) {
+  const intensities = {
+    low: "bg-slate-900/40 backdrop-blur-md border-white/5",
+    medium: "bg-slate-900/60 backdrop-blur-xl border-white/10",
+    heavy: "bg-slate-950/80 backdrop-blur-2xl border-white/20 shadow-2xl shadow-black/50"
+  };
+
+  const baseClass = `rounded-3xl border transition-all duration-300 ${intensities[intensity]} ${className} ${hover ? 'hover:border-primary/30 hover:bg-slate-900/80' : ''}`;
+
+  if (!animate) {
+    return <div className={baseClass}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay, duration: 0.5, ease: 'easeOut' }}
-      className={`relative overflow-hidden bg-slate-900/40 backdrop-blur-3xl border border-white/10 rounded-[2rem] shadow-2xl ${className}`}
+      className={baseClass}
     >
-      {/* Decorative inner glow */}
-      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute inset-y-0 left-0 w-px bg-linear-to-b from-transparent via-white/5 to-transparent" />
-      
-      {/* Dynamic light trace in the corner */}
-      <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 blur-[80px] rounded-full" />
-      <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-emerald-500/5 blur-[80px] rounded-full" />
-      
-      <div className="relative z-10 w-full h-full">
-        {children}
-      </div>
+      {children}
     </motion.div>
   );
-};
-
-export default GlassContainer;
+}

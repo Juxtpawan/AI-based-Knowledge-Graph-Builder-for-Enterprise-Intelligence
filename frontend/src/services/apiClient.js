@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost:8000';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
-  timeout: 60000, 
+  timeout: 60000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -78,14 +78,14 @@ export const kgService = {
   // Module 2 & 3: Graph Discovery Services
   getGraphData: async (params = { limit: 150 }) => {
     try {
-      const response = await apiClient.get('/graph', { 
+      const response = await apiClient.get('/graph', {
         params,
-        timeout: 90000 
+        timeout: 90000
       });
       return response.data;
     } catch (error) {
-       console.error('Error fetching initial graph:', error);
-       return { nodes: [], relationships: [] };
+      console.error('Error fetching initial graph:', error);
+      return { nodes: [], relationships: [] };
     }
   },
 

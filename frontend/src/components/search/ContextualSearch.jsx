@@ -1,97 +1,142 @@
-import React, { useState } from 'react';
-import { Search, Loader2, Sparkles, Filter, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { Search, Loader2, ArrowRight, Terminal, Play } from 'lucide-react';
+import { kgService } from '../../services/apiClient';
 
-const ContextualSearch = ({ onSearch, isLoading }) => {
+/**
+ * Omni-Search Component with Autocomplete
+ * It takes the current node context and allows the user to find related nodes via NLP search suggestions.
+ */
+export default function ContextualSearch({
+  selectedContext,
+  cypherInput,
+  setCypherInput,
+  onRunCypher,
+  onClearCypher,
+  onAIPhraseSubmit // Callback for Bloom integration
+}) {
   const [query, setQuery] = useState('');
-  const [showFilters, setShowFilters] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [suggestions, setSuggestions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const filters = [
-    { id: 'all', label: 'All Entities', color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
-    { id: 'person', label: 'People', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-    { id: 'org', label: 'Organizations', color: 'text-amber-400', bg: 'bg-amber-500/10' },
-    { id: 'email', label: 'Communications', color: 'text-rose-400', bg: 'bg-rose-500/10' }
-  ];
+  // Suggested keywords based on input (Autocomplete)
+  useEffect(() => {
+    if (query.length < 2) {
+      setSuggestions([]);
+      return;
+    }
 
-  const handleSearch = () => {
-    if (!query.trim()) return;
-    onSearch(query, activeFilter);
-  };
+    const timer = setTimeout(async () => {
+      setLoading(true);
+      try {
+        const { suggestions } = await kgService.getSuggestions(query);
+        setSuggestions(suggestions);
+      } catch (err) {
+        console.error('Autocomplete failed:', err);
+      } finally {
+        setLoading(false);
+      }
+    }, 300); // Debounce
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  // Handle outside click to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setSuggestions([]);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
-    <div className="w-full space-y-3">
-      <div className="relative group/search">
-        {/* Glow effect */}
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/20 to-purple-600/20 rounded-2xl blur-md opacity-0 group-hover/search:opacity-100 transition-all duration-700" />
-        
-        <div className="relative flex items-center bg-[#1e293b]/60 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl transition-all group-focus-within/search:border-indigo-500/50">
-          <div className="p-4 flex items-center justify-center text-slate-500">
-            {isLoading ? <Loader2 className="w-5 h-5 animate-spin text-indigo-400" /> : <Search className="w-5 h-5" />}
-          </div>
-          
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            placeholder="Search for entities, names, or key terms..."
-            className="flex-1 bg-transparent border-none text-white focus:outline-none text-sm h-12"
-          />
-          
-          <div className="flex items-center gap-2 p-2 pr-4 border-l border-white/5">
-            <button 
-              onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-3 py-1.5 hover:bg-white/5 rounded-xl transition-all text-xs font-bold text-slate-400 group-hover/search:text-slate-200"
-            >
-              <Filter className="w-3.5 h-3.5" />
-              <span className="uppercase tracking-widest">{filters.find(f => f.id === activeFilter)?.label.split(' ')[0]}</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${showFilters ? 'rotate-180' : ''}`} />
-            </button>
-            <button 
-              onClick={handleSearch}
-              className="p-1.5 bg-indigo-500 hover:bg-indigo-600 rounded-lg text-white transition-all shadow-lg shadow-indigo-500/20"
-            >
-              <Sparkles className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
+    <div className="p-4 border-b border-slate-800 bg-slate-900/50 relative">
+      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-3">Enterprise Discovery</p>
 
-        {/* Filter Dropdown */}
-        <AnimatePresence>
-          {showFilters && (
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="absolute top-full left-0 right-0 mt-3 p-3 bg-[#0f172a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl z-20 shadow-2xl overflow-hidden"
-            >
-              <div className="text-[10px] text-slate-500 font-bold uppercase tracking-widest px-3 mb-2">Scope Search</div>
-              <div className="grid grid-cols-2 gap-2">
-                {filters.map((f) => (
-                  <button
-                    key={f.id}
-                    onClick={() => { setActiveFilter(f.id); setShowFilters(false); }}
-                    className={`flex items-center gap-3 p-3 rounded-xl transition-all border 
-                      ${activeFilter === f.id ? `${f.bg} ${f.color} border-white/10` : 'bg-transparent text-slate-400 border-transparent hover:bg-white/5 hover:text-slate-200'}`}
-                  >
-                    <div className={`w-2 h-2 rounded-full ${f.id === activeFilter ? 'bg-current animate-pulse' : 'bg-slate-700'}`} />
-                    <span className="text-xs font-bold tracking-wide uppercase">{f.label}</span>
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="relative group">
+        <input
+          type="text"
+          className="w-full bg-slate-950 border border-slate-800 rounded-lg py-2 pl-10 pr-4 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors placeholder-slate-600"
+          placeholder="Search for Person, Company, Entity..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && query.trim() !== '') {
+              if (onAIPhraseSubmit) onAIPhraseSubmit(query);
+              setSuggestions([]);
+            }
+          }}
+        />
+        <Search className="absolute left-3 top-2.5 size-4 text-slate-600 group-focus-within:text-emerald-500 transition-colors" />
+
+        {loading && <Loader2 className="absolute right-3 top-2.5 size-4 text-emerald-500 animate-spin" />}
       </div>
-      
-      {query && (
-        <p className="text-[10px] text-slate-500 px-4 font-medium italic">
-          Tip: Exploring <span className="text-indigo-400">"{query}"</span> across {activeFilter === 'all' ? 'all organizational dimensions' : `the ${activeFilter} domain`}.
-        </p>
+
+      {/* Suggestions Dropdown */}
+      {suggestions.length > 0 && (
+        <div
+          ref={dropdownRef}
+          className="absolute top-full left-4 right-4 z-100 mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+        >
+          {suggestions.map((s, idx) => (
+            <button
+              key={idx}
+              className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-slate-800 transition-colors border-b border-slate-800 last:border-0 group"
+              onClick={() => {
+                setQuery('');
+                setSuggestions([]);
+                // Trigger Bloom search update
+                if (onAIPhraseSubmit) onAIPhraseSubmit(s.name);
+              }}
+            >
+              <div className="flex flex-col">
+                <span className="text-sm font-medium text-slate-100">{s.name}</span>
+                <span className="text-[10px] text-slate-500 uppercase tracking-wider">{s.label}</span>
+              </div>
+              <ArrowRight className="size-4 text-slate-700 group-hover:text-emerald-500 transform group-hover:translate-x-1 transition-all" />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Cypher Console Integration */}
+      <div className="mt-5 pt-4 border-t border-slate-800/80">
+        <div className="flex items-center gap-2 mb-3">
+          <Terminal size={12} className="text-blue-500" />
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Raw Cypher Console</span>
+        </div>
+        <textarea
+          value={cypherInput}
+          onChange={(e) => setCypherInput(e.target.value)}
+          placeholder="MATCH (n) RETURN n LIMIT 50..."
+          className="w-full bg-slate-950/50 border border-slate-800/60 rounded-lg text-[11px] font-mono text-emerald-400 p-3 h-20 outline-none resize-none placeholder-slate-700 focus:border-blue-500/50 transition-colors"
+        />
+        <div className="flex justify-between items-center mt-2">
+          <button
+            onClick={onClearCypher}
+            className="text-[9px] font-bold uppercase tracking-widest text-slate-600 hover:text-red-400 transition-colors"
+          >
+            Reset Graph
+          </button>
+          <button
+            onClick={onRunCypher}
+            className="bg-blue-600/20 hover:bg-blue-500/30 border border-blue-500/30 text-blue-400 px-3 py-1.5 rounded-md text-[9px] font-bold uppercase tracking-widest transition-all flex items-center gap-1.5"
+          >
+            <Play size={10} /> Execute
+          </button>
+        </div>
+      </div>
+
+      {/* Selected Node Status */}
+      {selectedContext && (
+        <div className="mt-4 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg flex items-center gap-3">
+          <div className="size-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+          <p className="text-xs text-emerald-400 font-mono truncate">Active Probe: {selectedContext.properties.name || selectedContext.id}</p>
+        </div>
       )}
     </div>
   );
-};
-
-export default ContextualSearch;
+}

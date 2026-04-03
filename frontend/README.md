@@ -1,32 +1,15 @@
-<<<<<<< HEAD
-# React + Vite
+# Vidzai Intelligence — React Intelligence Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Vidzai Frontend — React Intelligence Dashboard
-
-A modern React application built with Vite that provides an interactive interface for exploring enterprise knowledge graphs and AI-powered insights.
+A modern React application built with Vite that provides an interactive interface for exploring enterprise knowledge graphs and AI-powered insights. Built with **React 19**, **Vite 8.0**, and **Tailwind CSS 4.2**.
 
 ## 🚀 Features
 
-- **Intelligence Chat**: Conversational AI interface with context-aware responses
-- **Graph Visualization**: Interactive Neo4j graph rendering with Bloom-like canvas
-- **Analytics Dashboard**: Real-time metrics and KPI monitoring
-- **Unified Search**: Hybrid search combining vector and graph retrieval
-- **Responsive Design**: Modern UI with Tailwind CSS and Framer Motion animations
+- **Knowledge Graph Explorer**: Interactive Network Visualisation using `@neo4j-nvl/react`.
+- **Hybrid RAG Assistant**: Context-aware AI chat integrated with graph data.
+- **Forensic Intelligence Inspector**: Deep-dive into node metadata and behavioural analytics.
+- **Live Metrics Dashboard**: Real-time intelligence throughput and anomaly detection.
+- **Unified Search**: Hybrid search combining vector and graph retrieval.
+- **Responsive Design**: Modern UI with Tailwind CSS and Framer Motion animations.
 
 ## 🛠️ Technology Stack
 
@@ -107,4 +90,6 @@ The frontend connects to the backend API. Make sure the backend is running and a
 
 - [Backend API Documentation](../backend/README.md)
 - [Main Project README](../README.md)
->>>>>>> recovery-branch
+
+---
+*© 2026 Vidzai Enterprise | Advanced Forensic Intelligence*

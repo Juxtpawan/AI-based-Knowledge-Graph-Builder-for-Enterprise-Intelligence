@@ -1,7 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-<<<<<<< HEAD
+  --font-sans: 'Inter', 'Outfit', system-ui, sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  
+  --color-background-deep: #050505;
+  --color-surface-glass: rgba(15, 23, 42, 0.4);
+  --color-vidzai-emerald: #10b981;
+  --color-vidzai-glow: rgba(16, 185, 129, 0.2);
+  
   --color-background: #0f172a;
   --color-surface: #1e293b;
   --color-primary: #6366f1;
@@ -12,51 +19,33 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: dark;
-  color: var(--color-text-main);
-  background-color: var(--color-background);
+  color: #f8fafc;
+  background-color: var(--color-background-deep);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-=======
-  --font-sans: 'Inter', 'Outfit', system-ui, sans-serif;
-  --font-display: 'Outfit', sans-serif;
-  
-  --color-background-deep: #050505;
-  --color-surface-glass: rgba(15, 23, 42, 0.4);
-  --color-vidzai-emerald: #10b981;
-  --color-vidzai-glow: rgba(16, 185, 129, 0.2);
-}
-
-:root {
-  font-family: var(--font-sans);
-  color-scheme: dark;
-  background-color: var(--color-background-deep);
-  color: #f8fafc;
->>>>>>> recovery-branch
 }
 
 body {
   margin: 0;
-<<<<<<< HEAD
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
 
 #root {
+  height: 100%;
   width: 100%;
-  height: 100vh;
 }
 
-/* Glassmorphism utility */
+/* Glassmorphism utilities */
 .glass {
   background: rgba(30, 41, 59, 0.7);
   backdrop-filter: blur(12px);
@@ -69,27 +58,6 @@ body {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.3);
-=======
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
-}
-
-#root {
-  height: 100%;
 }
 
 /* --- Vidzai Enterprise Layout & Effects --- */
@@ -135,25 +103,16 @@ body {
   height: 4px;
 }
 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 ::-webkit-scrollbar-thumb {
   background: rgba(16, 185, 129, 0.1);
->>>>>>> recovery-branch
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-<<<<<<< HEAD
-  background: rgba(99, 102, 241, 0.5);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
-=======
   background: rgba(16, 185, 129, 0.3);
 }
 
@@ -163,7 +122,15 @@ body {
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .animate-window-entry {
   animation: window-entry 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
->>>>>>> recovery-branch
 }
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}

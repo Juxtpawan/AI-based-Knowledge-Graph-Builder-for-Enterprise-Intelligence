@@ -56,7 +56,7 @@ async def lifespan(app: FastAPI):
         print("[DB] Neo4j connected successfully.")
     except Exception as e:
         print(f"[DB] Primary connection failed: {e}")
-        # ── Protocol fallback (neo4j:// → bolt://) ────────────────────────
+        # Protocol fallback (neo4j:// → bolt://)
         if NEO4J_URI.startswith("neo4j://"):
             fallback_uri = NEO4J_URI.replace("neo4j://", "bolt://")
             try:
@@ -66,7 +66,7 @@ async def lifespan(app: FastAPI):
             except Exception as e2:
                 print(f"[DB] Fallback also failed: {e2}")
 
-    # ── Schema hardening ──────────────────────────────────────────────────
+    # Schema hardening
     if driver:
         try:
             print("[DB] Building schema indices...")
