@@ -99,7 +99,11 @@ def get_neo4j_driver():
         raise
 
 def get_async_neo4j_driver():
-    return AsyncGraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
+    return AsyncGraphDatabase.driver(
+        NEO4J_URI, 
+        auth=(NEO4J_USER, NEO4J_PASSWORD),
+        max_connection_lifetime=600
+    )
 
 def format_pinecone_id(text):
     clean_id = text.encode("ascii", "ignore").decode()
@@ -170,7 +174,7 @@ def build_vector_index(email_csv):
 
 # --- RETRIEVAL ---
 
-def retrieve_vector_context(query, top_k=5):
+def retrieve_vector_context(query, top_k=10):
     """Synchronous vector search wrapper."""
     try:
         vstore = get_vectorstore()
@@ -197,24 +201,29 @@ def filter_keywords(query):
         word_tokens = word_tokenize(query)
         return [w for w in word_tokens if not w.lower() in stop_words and len(w) > 2]
     except Exception as e:
-        print(f"[RETR] NLTK Fallback Used: {e}")
-        return [word.strip() for word in query.split() if len(word) > 3]
+        # Reduced print to avoid clutter, using simple split
+        return [word.strip(",.!?") for word in query.split() if len(word) > 3]
 
 async def retrieve_graph_context_async(query, driver=None):
-    # Use global driver if provided, else create temporary (fallback)
+    # Determine the driver to use
     active_driver = driver or get_async_neo4j_driver()
     knowledge_triples = []
     nodes_map = {}
     rels_list = []
     
     keywords = filter_keywords(query)
+    if not keywords:
+        return [], {"nodes": [], "relationships": []}
 
     def add_node_to_graph(node):
         if not node: return
         n_id = str(node.element_id)
         if n_id not in nodes_map:
+            # Determine a friendly display name for the node
+            display_name = node.get('name') or node.get('subject') or node.get('email') or f"{list(node.labels)[0]}"
             nodes_map[n_id] = {
                 "id": n_id,
+                "display_name": display_name,
                 "labels": list(node.labels),
                 "properties": sanitize_data(dict(node))
             }
@@ -236,45 +245,40 @@ async def retrieve_graph_context_async(query, driver=None):
         add_node_to_graph(rel.end_node)
 
     try:
+        # HIGH-PERFORMANCE SEARCH: Using Neo4j Full-Text Index
         async with active_driver.session() as session:
-            query_tasks = []
-            for kw in keywords:
-                # Semantic Entity Triples
-                query_tasks.append(session.run("""
-                    MATCH (n:Entity)
-                    WHERE toLower(n.name) CONTAINS toLower($kw)
-                    MATCH (n)-[r]->(related:Entity)
-                    RETURN n, r, related
-                    LIMIT 3
-                """, kw=kw))
-
-                # Communication Network
-                query_tasks.append(session.run("""
-                    MATCH (e:Employee)
-                    WHERE toLower(e.name) CONTAINS toLower($kw) OR toLower(e.email) CONTAINS toLower($kw)
-                    MATCH (e)-[r:COMMUNICATES_WITH]->(other:Employee)
-                    RETURN e, r, other
-                    ORDER BY r.frequency DESC LIMIT 3
-                """, kw=kw))
+            # Combine keywords into a Lucene query string (e.g., "keyword1 OR keyword2")
+            lucene_query = " OR ".join(keywords)
             
-            if query_tasks:
-                results = await asyncio.gather(*query_tasks)
-                for res in results:
-                    async for record in res:
-                        # Extract based on flexible return types
-                        r = record.get('r')
-                        n = record.get('n') or record.get('e')
-                        related = record.get('related') or record.get('other')
-                        
-                        if n and r and related:
-                            # Update text context
-                            if 'name' in n and 'name' in related:
-                                knowledge_triples.append(f"Fact: {n['name']} -[{r.type}]-> {related['name']}")
-                            # Update graph visualization
-                            add_rel_to_graph(r)
+            res = await session.run("""
+                CALL db.index.fulltext.queryNodes("global_search_index", $lucene_query) 
+                YIELD node AS n, score
+                MATCH (n)-[r]-(related)
+                RETURN n, r, related, score
+                ORDER BY score DESC
+                LIMIT 200
+            """, lucene_query=lucene_query)
+            
+            async for record in res:
+                r = record["r"]
+                n = record["n"]
+                related = record["related"]
+                
+                if n and r and related:
+                    # Robust Fact Generation for LLM
+                    # High-fidelity extraction: Provide the full property set to the LLM
+                    n_json = sanitize_data(dict(n))
+                    rel_json = sanitize_data(dict(related))
+                    r_json = sanitize_data(dict(r))
+                    knowledge_triples.append(f"Fact: {n_json} -[{r.type}]-> {rel_json} [Props: {r_json}]")
+                    
+                    # Update graph visualization
+                    add_rel_to_graph(r)
+                    
     except Exception as e:
-        print(f"[RETR] Graph Retrieval Error: {e}")
+        print(f"[RETR] Broad Graph Retrieval Error: {e}")
     finally:
+        # Only close if we created a temporary driver
         if not driver:
             await active_driver.close()
 
@@ -289,26 +293,41 @@ async def retrieve_hybrid_context_async(query, driver=None):
     print(f"\n[PHASE 1] Pulling Intelligence for: {query}")
     start_all = time.perf_counter()
     
-    # 1. Vector Search (Offloaded to thread as it holds GIL/I/O)
-    vector_task = asyncio.to_thread(retrieve_vector_context, query)
-    
-    # 2. Graph Retrieval (Async native)
-    graph_task = retrieve_graph_context_async(query, driver=driver)
+    # 1. Vector Search
+    async def safe_vector_search():
+        v_start = time.perf_counter()
+        try:
+            res = await asyncio.to_thread(retrieve_vector_context, query)
+            latency = time.perf_counter() - v_start
+            print(f"[RETR] Vector probe complete: {latency:.4f}s")
+            return res
+        except Exception as e:
+            print(f"[RETR] Vector failure: {e}")
+            return []
 
-    print("[SYSTEM] Firing simultaneous Vector & Graph probes...")
-    
-    try:
-        vector_res, (graph_facts, graph_data) = await asyncio.gather(vector_task, graph_task)
-        vector_context = "\n".join([f"- {doc.page_content}" for doc in vector_res])
-        graph_context = "\n".join(graph_facts)
-    except Exception as e:
-        print(f"[ERROR] Hybrid Retrieval Exception: {e}")
-        vector_context = "Vector lookup error."
-        graph_context = "Graph lookup error."
-        graph_data = {"nodes": [], "relationships": []}
+    # 2. Graph Retrieval
+    async def safe_graph_search():
+        g_start = time.perf_counter()
+        try:
+            res = await retrieve_graph_context_async(query, driver=driver)
+            latency = time.perf_counter() - g_start
+            print(f"[RETR] Graph probe complete: {latency:.4f}s")
+            return res
+        except Exception as e:
+            print(f"[RETR] Graph failure: {e}")
+            return [], {"nodes": [], "relationships": []}
+
+    print("[SYSTEM] Firing independent Vector & Graph probes...")
+    vector_res, (graph_facts, graph_data) = await asyncio.gather(
+        safe_vector_search(),
+        safe_graph_search()
+    )
+
+    vector_context = "\n".join([f"- {doc.page_content}" for doc in vector_res]) if vector_res else "No semantic snippets found."
+    graph_context = "\n".join(graph_facts) if graph_facts else "No structured facts found."
 
     context_str = (
-        f"--- STRUCTURED KNOWLEDGE (Neo4j) ---\n{graph_context}\n\n"
+        f"--- STRUCTURED KNOWLEDGE ---\n{graph_context}\n\n"
         f"--- SEMANTIC SNIPPETS ---\n{vector_context}"
     )
     
@@ -335,14 +354,32 @@ async def generate_answer_async(query, driver=None):
         # model="gemini-3-flash-preview"
         
         system_prompt = """
-        You are an AI Enterprise Intelligence Assistant. 
-        Use the provided contexts to answer the user's question accurately.
-        - 'STRUCTURED KNOWLEDGE' contains direct facts from the Knowledge Graph.
-        - 'SEMANTIC SNIPPETS' contains broader context from emails.
-        
-        Synthesize information from BOTH sources. 
-        If the context doesn't contain enough information, state that clearly and do not hallucinate external information.
-        Your knowledge boundary is strictly limited to the provided internal data.
+        You are the Senior Forensic Intelligence Lead for an Enterprise Intelligence Suite. 
+        Your mission is to provide an exhaustive, deep-dive analysis for any query related to the internal dataset. 
+
+        ### CORE OBJECTIVE:
+        Extract and synthesize EVERY RELEVANT DETAIL from the provided contexts. Do not summarize so much that important nuances are lost. If the data contains specific dates, names, amounts, or technical IDs, include them.
+
+        ### DATA SOURCES:
+        1. **STRUCTURED KNOWLEDGE (GraphDatabase)**: Contains verified entities, relationships, and property-based facts. This is the "Skeleton" of the truth.
+        2. **SEMANTIC SNIPPETS (VectorStore)**: Contains natural language context from emails and documents. This is the "Muscle and Skin" (narrative, intent, tone).
+
+        ### ANALYSIS GUIDELINES:
+        - **Zero-Loss Synthesis**: If multiple sources mention the same event, combine their details for a richer picture.
+        - **Relational Mapping**: Use the Knowledge Graph facts to explain how different people, companies, or projects are connected.
+        - **Strict Evidence Grounding**: Your answer must be DERIVED ONLY from the provided contexts. If the query asks for something not in the data, state: "The current intelligence repository does not contain records for [X]."
+        - **Analytical Depth**: Look for hidden connections. If Person A emailed Person B about Project X, and the Graph shows Project X is owned by Company C, connect those dots.
+
+        ### MANDATORY REPORT STRUCTURE:
+        1. **Executive Intelligence Summary**: A high-level overview of the findings.
+        2. **Comprehensive Detailed Findings**: An exhaustive list of facts, bulleted for clarity.
+        3. **Relational & Network Context**: A breakdown of how entities involved relate to each other (leverage Graph triples here).
+        4. **Data Sources**: Briefly list which sources (Emails vs. Graph) contributed to this report.
+
+        ### VISUAL DESIGN & FORMATTING:
+        - Use **Bold** for key entities, organizations, and critical dates.
+        - Use `inline code` for technical identifiers (message IDs, extensions, etc.).
+        - Use tables if comparing multiple entities or structured properties.
         """
         
         prompt = ChatPromptTemplate.from_messages([

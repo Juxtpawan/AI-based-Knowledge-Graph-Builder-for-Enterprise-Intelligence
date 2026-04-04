@@ -16,6 +16,8 @@ class CurationRequest(BaseModel):
 
 
 class AlertItem(BaseModel):
+    element_id: str
+    is_node: bool
     title: str
     severity: str
     type: str            # 'critical' | 'warning' | 'info'

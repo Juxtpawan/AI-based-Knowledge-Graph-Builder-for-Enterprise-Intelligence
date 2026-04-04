@@ -20,7 +20,7 @@ import NodeIdentity from './NodeIdentity';
  */
 export default function SidebarNodeInfo({ element, onClose, onExpand }) {
   const { pinNode, unpinNode, evidenceBag } = useIntelStore();
-  const [activeTab, setActiveTab] = useState('metadata'); // 'metadata', 'analytics', 'forensics'
+  const [activeTab, setActiveTab] = useState(element?.initialTab || 'metadata'); // 'metadata', 'analytics', 'forensics'
 
   if (!element) return null;
 

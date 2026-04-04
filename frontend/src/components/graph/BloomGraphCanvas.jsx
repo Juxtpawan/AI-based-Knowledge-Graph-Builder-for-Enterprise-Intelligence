@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import CypherTerminal from './CypherTerminal';
 
 /**
- * BloomGraphCanvas - High-Fidelity Forensic Graph Engine
+ * BloomGraphCanvas -Neo4j enabled Graph Engine
  */
 export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData: externalData }) {
     const nvlRef = useRef();
@@ -37,12 +37,12 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
         setCypherError
     } = useIntelStore();
 
-    // ─── 1. DATA BRIDGE ───────────────────────────────────────────────────────
+    // 1. DATA BRIDGE
     const processedData = useMemo(() => {
         const rawNodes = sourceData?.nodes || [];
         const rawRels  = sourceData?.relationships || sourceData?.links || [];
 
-        // FORENSIC DESIGN TOKENS (Canonical Palette Sync)
+        // NODE DESIGNS
         const PALETTE = {
             Employee: { color: '#6366f1', size: 40, borderColor: '#818cf8', borderWidth: 2 },
             Email:    { color: '#f59e0b', size: 30, borderColor: '#fbbf24', borderWidth: 1.5 },
@@ -53,15 +53,15 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
             Default:  { color: '#0ea5e9', size: 25, borderColor: '#38bdf8', borderWidth: 1 }
         };
 
-        // 1. Forensic Category Resolution Logic
+        // 1. Category Logic
         const resolveForensicType = (node) => {
             const rawLabel = node.labels?.[0] || 'Entity';
             const entityType = node.properties?.entity_type?.toUpperCase() || '';
             
-            // Priority 1: Label matches canon
+            // Priority 1: Label matches
             if (['Employee', 'Email', 'Topic', 'Event', 'Legal'].includes(rawLabel)) return rawLabel;
 
-            // Priority 2: Granular Entity Mapping (Keyword Search)
+            // Priority 2: Entity Mapping (Keyword Search)
             if (entityType.includes('LEGAL') || entityType.includes('REGULATION') || entityType.includes('CASE')) return 'Legal';
             if (entityType.includes('DATE') || entityType.includes('TIME') || entityType.includes('MEETING') || entityType.includes('EVENT')) return 'Event';
             if (entityType.includes('PERSON') || entityType.includes('ORG') || entityType.includes('EMPLOYEE')) return 'Employee';
@@ -84,7 +84,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
                 const isFocus = viewMode === 'probe' && searchPhrase && 
                                 caption.toLowerCase().includes(searchPhrase.toLowerCase());
                 
-                // 4. Selection detection
+                // 4. Selection of node and relationship
                 const isSelected = selectedElement && !selectedElement.isRelationship && String(selectedElement.id) === String(n.id);
                 
                 if (isSelected) {
@@ -115,7 +115,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
                     caption,
                     isFocusNode: isFocus,
                     isSelected,
-                    // Direct Style Injection (Ensures colors work across all NVL versions)
+                    // Direct Style Injection
                     ...nodeStyle,
                     properties: {
                         ...n.properties,
@@ -125,7 +125,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
             }),
             relationships: rawRels.map(r => {
                 const isSelected = selectedElement && selectedElement.isRelationship && String(selectedElement.id) === String(r.id);
-                // UNIFORM LINK STYLING (Slate Blue Palette Sync)
+                // BLUE PALETTE LINK STYLING
                 let relStyle = { 
                     color: '#64748b', 
                     width: r.type === 'COMMUNICATES_WITH' ? 2 : 1.5,
@@ -155,13 +155,13 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
     }, [sourceData, viewMode, searchPhrase, selectedElement]);
 
     useEffect(() => {
-        // External prop (RAG response graph) → highest priority
+        // External prop (RAG response graph) → 1st priority
         if (externalData) {
             setSourceData(externalData);
             setGraphStats({ nodes: externalData.nodes.length, edges: (externalData.relationships || externalData.links || []).length });
             return;
         }
-        // Cypher terminal result → second priority
+        // Cypher terminal result → 2nd priority
         if (customGraphData) {
             setSourceData(customGraphData);
             setGraphStats({ nodes: customGraphData.nodes.length, edges: customGraphData.relationships.length });
@@ -188,7 +188,7 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
         syncFabric();
     }, [viewMode, searchPhrase, externalData, customGraphData, setGraphStats]);
 
-    // ─── 2. PHYSICS & STYLING ARCHETYPES ──────────────────────────────────────
+    // 2. PHYSICS & STYLING
     const nvlOptions = useMemo(() => {
         const isProbe = viewMode === 'probe';
         return {
@@ -334,10 +334,6 @@ export default function BloomGraphCanvas({ searchPhrase, onNodeClick, graphData:
                     nvlOptions={nvlOptions}
                     mouseEventCallbacks={mouseEventCallbacks}
                     interaction={{ pan: true, zoom: true, drag: true }} 
-                    allowPan={true}
-                    allowZoom={true}
-                    allowDrag={true}
-                    useCommands={true}
                     style={{ cursor: 'grab', width: '100%', height: '100%' }}
                 />
             </div>

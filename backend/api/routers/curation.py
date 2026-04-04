@@ -77,7 +77,8 @@ async def get_alerts(request: Request):
                     n.curation_severity  AS severity,
                     n.curation_category  AS category,
                     n.curation_note      AS note,
-                    labels(n)            AS labels
+                    labels(n)            AS labels,
+                    elementId(n)         AS id
             """)
             
             status_map = {'severe': 'critical', 'flagged': 'warning', 'verified': 'info'}
@@ -85,6 +86,8 @@ async def get_alerts(request: Request):
             async for rec in node_res:
                 st = rec["status"]
                 alerts.append(AlertItem(
+                    element_id=rec["id"],
+                    is_node=True,
                     title=f"{st.capitalize()}: {rec['name'] or rec['labels'][0]}",
                     severity=rec["severity"] or "Medium",
                     type=status_map.get(st, 'info'),
@@ -102,11 +105,14 @@ async def get_alerts(request: Request):
                     r.curation_category  AS category,
                     r.curation_note      AS note,
                     s.name              AS source,
-                    t.name              AS target
+                    t.name              AS target,
+                    elementId(r)        AS id
             """)
             async for rec in rel_res:
                 st = rec["status"]
                 alerts.append(AlertItem(
+                    element_id=rec["id"],
+                    is_node=False,
                     title=f"{st.capitalize()}: {rec['source']} → {rec['target']}",
                     severity=rec["severity"] or "Medium",
                     type=status_map.get(st, 'info'),

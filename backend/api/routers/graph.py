@@ -18,6 +18,7 @@ from models.graph import (
 )
 from database import get_driver
 from config import GRAPH_LIMIT_GLOBAL, GRAPH_LIMIT_PROBE, HEAVY_PROPS
+from miles3hybridRAG import generate_answer_async
 
 router = APIRouter(tags=["Graph"])
 

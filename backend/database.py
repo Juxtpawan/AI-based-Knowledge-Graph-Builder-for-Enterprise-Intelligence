@@ -21,12 +21,18 @@ _SCHEMA_QUERIES = [
     "CREATE INDEX email_msg_id_idx   IF NOT EXISTS FOR (n:Email)    ON (n.message_id)",
     "CREATE INDEX email_subject_idx  IF NOT EXISTS FOR (n:Email)    ON (n.subject)",
     "CREATE CONSTRAINT email_unique_msg_id IF NOT EXISTS FOR (n:Email) REQUIRE n.message_id IS UNIQUE",
+    "CREATE FULLTEXT INDEX global_search_index IF NOT EXISTS FOR (n:Email|Employee|Entity|Person|ExtractedNode) ON EACH [n.name, n.email, n.subject]",
 ]
 
 
 async def _connect(uri: str) -> AsyncGraphDatabase.driver:
     """Attempt to connect to Neo4j and verify with a ping."""
-    driver = AsyncGraphDatabase.driver(uri, auth=(NEO4J_USER, NEO4J_PASSWORD))
+    driver = AsyncGraphDatabase.driver(
+        uri, 
+        auth=(NEO4J_USER, NEO4J_PASSWORD),
+        max_connection_lifetime=600,
+        connection_acquisition_timeout=30.0
+    )
     async with driver.session() as session:
         await session.run("RETURN 1")
     return driver

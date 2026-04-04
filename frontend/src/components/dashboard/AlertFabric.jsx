@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldAlert, Clock, AlertTriangle } from 'lucide-react';
+import { ShieldAlert, Clock, AlertTriangle, Trash2, Target } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion';
  *  - alerts   (array) — [{id, type, title, description, time}]
  *  - loading  (bool)  — shows skeleton rows when true
  */
-export default function AlertFabric({ alerts = [], loading = false }) {
+export default function AlertFabric({ alerts = [], loading = false, onSelect, onDelete }) {
   const severityConfig = {
     critical: {
       dot: 'bg-red-500',
@@ -79,13 +79,26 @@ export default function AlertFabric({ alerts = [], loading = false }) {
                 <motion.div
                   key={alert.id}
                   initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
+                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
+                  onClick={() => onSelect && onSelect(alert)}
                   className={`group p-4 bg-slate-950/40 hover:bg-slate-900/60 transition-all rounded-3xl border border-white/5 ${cfg.border} cursor-pointer overflow-hidden relative shadow-lg ${cfg.glow}`}
                 >
+                  {/* Delete/Check Action (visible on hover) */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onDelete && onDelete(alert);
+                    }}
+                    className="absolute top-4 right-4 p-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-xl transition-all z-10 border border-red-500/20"
+                    title="Remove from Intelligence Alerts"
+                  >
+                    <Trash2 size={12} />
+                  </button>
 
                   {/* Title row */}
-                  <div className="flex items-center gap-2.5 mb-1.5">
+                  <div className="flex items-center gap-2.5 mb-1.5 pt-0.5">
+                    <Target size={12} className="text-slate-500 group-hover:text-amber-500 transition-colors" />
                     <span className={`size-1.5 rounded-full ${cfg.dot} animate-pulse`} />
                     <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${cfg.badge}`}>
                       {alert.type}

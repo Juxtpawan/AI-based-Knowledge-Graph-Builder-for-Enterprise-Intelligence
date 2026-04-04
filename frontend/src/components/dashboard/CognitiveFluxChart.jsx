@@ -92,7 +92,7 @@ export default function CognitiveFluxChart({ data = [], loading = false }) {
       </div>
 
       {/* Chart Area */}
-      <div className="h-[260px] w-full relative">
+      <div className="h-[260px] min-h-[260px] w-full relative overflow-hidden">
         {loading ? (
           <div className="w-full h-full bg-slate-800/40 animate-pulse rounded-2xl" />
         ) : !isPopulated ? (
@@ -108,7 +108,7 @@ export default function CognitiveFluxChart({ data = [], loading = false }) {
             </p>
           </div>
         ) : (
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height="100%" minWidth={0}>
             <AreaChart data={data} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="gradVolume" x1="0" y1="0" x2="0" y2="1">

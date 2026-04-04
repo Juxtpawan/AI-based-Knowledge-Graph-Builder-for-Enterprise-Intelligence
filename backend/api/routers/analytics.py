@@ -241,13 +241,15 @@ async def fetch_real_time_snapshot(driver, start_time):
             node_res = await session.run("""
                 MATCH (n) WHERE n.curation_status IN ['flagged', 'severe', 'verified']
                 RETURN n.name AS name, labels(n)[0] AS lbl, n.curation_status AS st, 
-                       n.curation_severity AS sev, n.curation_category AS cat, n.curation_note AS note 
+                       n.curation_severity AS sev, n.curation_category AS cat, n.curation_note AS note,
+                       elementId(n) AS id
                 LIMIT 10
             """)
             rel_res = await session.run("""
                 MATCH (s)-[r]->(t) WHERE r.curation_status IN ['flagged', 'severe', 'verified']
                 RETURN type(r) AS type, s.name AS src, t.name AS tgt, r.curation_status AS st, 
-                       r.curation_severity AS sev, r.curation_category AS cat, r.curation_note AS note 
+                       r.curation_severity AS sev, r.curation_category AS cat, r.curation_note AS note,
+                       elementId(r) AS id
                 LIMIT 10
             """)
             
@@ -257,7 +259,8 @@ async def fetch_real_time_snapshot(driver, start_time):
             async for rec in node_res:
                 st = rec["st"]
                 alerts.append({
-                    "id": f"node_{rec['name']}_{st}",
+                    "element_id": rec["id"],
+                    "is_node": True,
                     "type": status_map.get(st, 'info'),
                     "title": f"{st.capitalize()}: {rec['name'] or rec['lbl']}",
                     "description": rec["note"] or rec["cat"] or "Manual audit",
@@ -266,7 +269,8 @@ async def fetch_real_time_snapshot(driver, start_time):
             async for rec in rel_res:
                 st = rec["st"]
                 alerts.append({
-                    "id": f"rel_{rec['src']}_{st}",
+                    "element_id": rec["id"],
+                    "is_node": False,
                     "type": status_map.get(st, 'info'),
                     "title": f"{st.capitalize()}: {rec['src']} -> {rec['tgt']}",
                     "description": rec["note"] or rec["cat"] or "Manual audit",

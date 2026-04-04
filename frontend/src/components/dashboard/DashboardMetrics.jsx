@@ -2,6 +2,9 @@ import React from 'react';
 import { Database, TrendingUp, AlertTriangle, Activity } from 'lucide-react';
 
 import { useRealtimeAnalytics } from '../../services/useRealtimeAnalytics';
+import { useIntelStore } from '../../store/useIntelStore';
+import { useNavigate } from 'react-router-dom';
+import { kgService } from '../../services/apiClient';
 import KpiCard from './KpiCard';
 import CognitiveFluxChart from './CognitiveFluxChart';
 import AlertFabric from './AlertFabric';
@@ -53,8 +56,44 @@ export default function DashboardMetrics() {
     processingInfo,
     alerts, 
     isLoading, 
-    isLive 
+    isLive,
+    removeAlert
   } = useRealtimeAnalytics();
+
+  const setSelectedElement = useIntelStore(s => s.setSelectedElement);
+  const navigate = useNavigate();
+
+  const handleAlertSelect = (alert) => {
+    // Set the element in the global store so NetworkView can highlight it
+    setSelectedElement({
+        id: alert.element_id,
+        isNode: alert.is_node,
+        isRelationship: !alert.is_node,
+        name: alert.title.split(': ')[1], // Extract name from title
+        initialTab: 'forensics' // Tell Sidebar to open Curation tab directly
+    });
+    // Redirect to the Grapg view
+    navigate('/explore');
+  };
+
+  const handleAlertDelete = async (alert) => {
+    try {
+        // 1. Optimistically remove from UI for instant feedback
+        removeAlert(alert.element_id);
+        
+        // 2. Tell backend to neutralize the flag
+        await kgService.curateElement({
+            element_id: alert.element_id, 
+            is_node: alert.is_node, 
+            status: 'neutral',
+            severity: 'Low',
+            category: 'Verified',
+            note: 'Cleared from dashboard'
+        });
+    } catch (err) {
+        console.error("Failed to neutralize alert:", err);
+    }
+  };
 
   return (
     <div className="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-8 font-sans">
@@ -92,7 +131,12 @@ export default function DashboardMetrics() {
       {/* 3. Bottom Row: Flux + Alert Feed */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <CognitiveFluxChart data={chartData} loading={isLoading} />
-        <AlertFabric alerts={alerts} loading={isLoading} />
+        <AlertFabric 
+            alerts={alerts} 
+            loading={isLoading} 
+            onSelect={handleAlertSelect}
+            onDelete={handleAlertDelete}
+        />
       </div>
 
     </div>

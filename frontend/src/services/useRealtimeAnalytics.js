@@ -59,9 +59,11 @@ export function useRealtimeAnalytics() {
             percentage: d.data_info ? round((d.data_info.processed_records / d.data_info.total_records) * 100, 1) : 0
         },
         chartData: d.cognitive_flux_series || [],
-        alerts: (alertsRes.data || []).map((a, i) => ({
-          id: i,
-          type: a.severity?.toLowerCase() === 'critical' ? 'critical' : 'warning',
+        alerts: (alertsRes.data || []).map((a) => ({
+          id: a.element_id,
+          element_id: a.element_id,
+          is_node: a.is_node,
+          type: a.type || (a.severity?.toLowerCase() === 'critical' ? 'critical' : 'warning'),
           title: a.title,
           description: a.detail || a.category,
           time: 'Live',
@@ -130,6 +132,13 @@ export function useRealtimeAnalytics() {
     };
   }, []);
 
+  const removeAlert = useCallback((id) => {
+    setData(prev => ({
+      ...prev,
+      alerts: prev.alerts.filter(a => a.element_id !== id)
+    }));
+  }, []);
+
   useEffect(() => {
     fetchInitialData();
     connectWS();
@@ -140,5 +149,5 @@ export function useRealtimeAnalytics() {
     };
   }, [fetchInitialData, connectWS]);
 
-  return data;
+  return { ...data, removeAlert };
 }

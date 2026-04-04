@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Bot, User, Sparkles } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 /**
  * ChatMessage - Individual Message Node
@@ -43,7 +45,9 @@ export default function ChatMessage({ message }) {
           : 'bg-slate-900/40 text-slate-200 rounded-tl-sm border border-white/5 backdrop-blur-md hover:bg-slate-900/60'
         }`}>
         <div className="prose prose-sm prose-invert max-w-none">
-          {message.content}
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {message.content}
+          </ReactMarkdown>
         </div>
 
         {/* Citations Indicator (If applicable) */}

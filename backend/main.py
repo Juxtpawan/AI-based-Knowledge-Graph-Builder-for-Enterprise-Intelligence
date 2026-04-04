@@ -16,11 +16,12 @@ All business logic lives in the modules imported below:
   api/routers/analytics.py → /analytics, /analytics/pulse, /metrics
   api/routers/curation.py  → /curate, /alerts, /elements
 """
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 
-from database import lifespan
+from database import lifespan as database_lifespan
 from config import API_TITLE, CORS_ORIGINS
 from api.routers import graph as graph_router
 from api.routers import analytics as analytics_router
@@ -31,6 +32,19 @@ from api.routers.analytics import fetch_real_time_snapshot
 import asyncio
 
 # Application factory
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Unified lifespan handler for the entire application.
+    1. Initialize Database Context (driver, schema)
+    2. Start Background Workers (Analytics Pulse)
+    3. Yield control to the app
+    """
+    async with database_lifespan(app):
+        # Start background workers
+        asyncio.create_task(analytics_pulse_worker())
+        yield
+
 app = FastAPI(title=API_TITLE, lifespan=lifespan)
 
 # Middleware
@@ -53,21 +67,27 @@ app.include_router(node_analytics_router.router)
 @app.websocket("/ws/analytics")
 async def websocket_analytics(websocket: WebSocket):
     await manager.connect(websocket)
+    print(f"[WS] Client connected: {websocket.client}")
     try:
-        # Send initial snapshot on connect
-        driver = app.state.driver
-        start_time = app.state.start_time
-        if driver:
-            snapshot = await fetch_real_time_snapshot(driver, start_time)
+        # Send initial snapshot on connect if driver is ready
+        if hasattr(app.state, 'driver') and app.state.driver:
+            snapshot = await fetch_real_time_snapshot(app.state.driver, app.state.start_time)
             if snapshot:
                 await websocket.send_json(snapshot)
         
         while True:
-            # Keep connection alive, listen for client pings if needed
-            data = await websocket.receive_text()
-    except Exception:
-        pass
+            # Keep connection alive, listen for client messages (or pings)
+            # Using a small sleep to avoid blocking if just waiting for broadcast
+            await asyncio.sleep(1)
+            try:
+                # Optional: check if client sent anything
+                data = await asyncio.wait_for(websocket.receive_text(), timeout=0.1)
+            except asyncio.TimeoutError:
+                continue
+    except Exception as e:
+        print(f"[WS] Connection Error: {e}")
     finally:
+        print(f"[WS] Client disconnected: {websocket.client}")
         manager.disconnect(websocket)
 
 # Background Intelligence Pulse
@@ -88,9 +108,7 @@ async def analytics_pulse_worker():
         
         await asyncio.sleep(5) # Pulse every 5 seconds
 
-@app.on_event("startup")
-async def start_pulse_worker():
-    asyncio.create_task(analytics_pulse_worker())
+# Note: Startup worker is now managed via unified lifespan handler above.
 
 
 @app.get("/", tags=["Health"])

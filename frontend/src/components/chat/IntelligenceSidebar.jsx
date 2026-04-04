@@ -36,7 +36,7 @@ export default function IntelligenceSidebar({
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 100, opacity: 0 }}
-            className="fixed inset-y-4 right-4 xl:relative xl:inset-auto w-[calc(100%-2rem)] max-w-[400px] flex flex-col glass-panel-heavy rounded-4xl shadow-2xl z-50 overflow-hidden bg-slate-900/60 transition-all"
+            className="fixed inset-y-4 right-4 xl:relative xl:inset-auto w-[calc(100%-2rem)] xl:max-w-none xl:w-[40%] flex flex-col glass-panel-heavy rounded-4xl shadow-2xl z-50 overflow-hidden bg-slate-900/60 transition-all"
           >
           {/* Sidebar Navigation */}
           <div className="p-6 border-b border-white/5 flex items-center justify-between bg-slate-950/40 backdrop-blur-md">
