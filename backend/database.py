@@ -49,7 +49,7 @@ async def lifespan(app: FastAPI):
     app.state.start_time = time.time()
     driver = None
 
-    # ── Primary connection ────────────────────────────────────────────────
+    # Primary connection
     try:
         print(f"[DB] Connecting to Neo4j: {NEO4J_URI}")
         driver = await _connect(NEO4J_URI)
@@ -78,7 +78,7 @@ async def lifespan(app: FastAPI):
     app.state.driver = driver
     yield
 
-    # ── Shutdown ──────────────────────────────────────────────────────────
+    # Shutdown
     if driver:
         await driver.close()
         print("[DB] Neo4j driver closed.")

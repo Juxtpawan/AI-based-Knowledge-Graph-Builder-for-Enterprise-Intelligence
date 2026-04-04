@@ -8,11 +8,11 @@ This file is intentionally minimal. Its only responsibilities are:
   4. Start uvicorn when run directly.
 
 All business logic lives in the modules imported below:
-  database.py            → Neo4j lifecycle + connection
-  config.py              → all environment variables & constants
-  models/                → Pydantic schemas
-  services/              → pure computation functions
-  api/routers/graph.py   → /graph, /node, /cypher, /search, /query
+  database.py             → Neo4j lifecycle + connection
+  config.py               → all environment variables & constants
+  models/                 → Pydantic schemas
+  services/               → pure computation functions
+  api/routers/graph.py    → /graph, /node, /cypher, /search, /query
   api/routers/analytics.py → /analytics, /analytics/pulse, /metrics
   api/routers/curation.py  → /curate, /alerts, /elements
 """
@@ -30,10 +30,10 @@ from api.socket_manager import manager
 from api.routers.analytics import fetch_real_time_snapshot
 import asyncio
 
-# ── Application factory ────────────────────────────────────────────────────
+# Application factory
 app = FastAPI(title=API_TITLE, lifespan=lifespan)
 
-# ── Middleware ─────────────────────────────────────────────────────────────
+# Middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
@@ -43,13 +43,13 @@ app.add_middleware(
 )
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
-# ── Routers ────────────────────────────────────────────────────────────────
+# Routers
 app.include_router(graph_router.router)
 app.include_router(analytics_router.router)
 app.include_router(curation_router.router)
 app.include_router(node_analytics_router.router)
 
-# ── WebSocket Analytics Stream ─────────────────────────────────────────────
+# WebSocket Analytics Stream
 @app.websocket("/ws/analytics")
 async def websocket_analytics(websocket: WebSocket):
     await manager.connect(websocket)
@@ -70,7 +70,7 @@ async def websocket_analytics(websocket: WebSocket):
     finally:
         manager.disconnect(websocket)
 
-# ── Background Intelligence Pulse ─────────────────────────────────────────
+# Background Intelligence Pulse
 async def analytics_pulse_worker():
     """
     Background worker that broadcasts Neo4j & Pipeline updates
@@ -98,7 +98,7 @@ async def root():
     return {"message": "AI Knowledge Graph Builder API is running.", "version": "2.0"}
 
 
-# ── Dev entry point ────────────────────────────────────────────────────────
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

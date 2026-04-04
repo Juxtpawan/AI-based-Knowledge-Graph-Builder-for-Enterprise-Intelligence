@@ -1,7 +1,7 @@
 import React from 'react';
 import { Database, TrendingUp, AlertTriangle, Activity } from 'lucide-react';
 
-import { useRealtimeAnalytics } from '../../store/useRealtimeAnalytics';
+import { useRealtimeAnalytics } from '../../services/useRealtimeAnalytics';
 import KpiCard from './KpiCard';
 import CognitiveFluxChart from './CognitiveFluxChart';
 import AlertFabric from './AlertFabric';

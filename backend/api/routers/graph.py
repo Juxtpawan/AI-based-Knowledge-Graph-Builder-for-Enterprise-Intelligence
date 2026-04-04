@@ -218,7 +218,6 @@ async def query_rag(request: Request, body: QueryRequest):
     """Run a question through the hybrid RAG agent and return the answer."""
     driver = get_driver(request)
     try:
-        from miles3hybridRAG import generate_answer_async
         result = await generate_answer_async(body.query, driver=driver)
         return QueryResponse(
             answer=result["answer"],

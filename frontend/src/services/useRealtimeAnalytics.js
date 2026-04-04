@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import apiClient from '../services/apiClient';
+import apiClient from './apiClient.js';
 
 /**
  * useRealtimeAnalytics — WebSocket-powered hook for the live dashboard.

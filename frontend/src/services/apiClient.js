@@ -100,7 +100,7 @@ export const kgService = {
     }
   },
 
-  // NEW: Omni-Search suggestions
+  // NEW: Search suggestions
   getSuggestions: async (query) => {
     try {
       const response = await apiClient.get('/search/suggest', { params: { q: query } });

@@ -9,16 +9,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# ── Base paths ──────────────────────────────────────────────────────────────
+# Base paths
 BASE_DIR: Path = Path(__file__).resolve().parent
 PROJECT_ROOT: Path = BASE_DIR.parent
 
-# ── Neo4j ───────────────────────────────────────────────────────────────────
+# Neo4j
 NEO4J_URI: str = os.getenv("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_USER: str = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD: str = os.getenv("NEO4J_PASSWORD", "password")
 
-# ── Data files ──────────────────────────────────────────────────────────────
+# Data files
 DATA_FILE_PATH: str = os.getenv(
     "DATA_FILE_PATH",
     str(PROJECT_ROOT / "data" / "raw" / "emails.csv")
@@ -26,15 +26,15 @@ DATA_FILE_PATH: str = os.getenv(
 CHECKPOINT_FILE: str = os.getenv("CHECKPOINT_FILE", "extraction_checkpoint.json")
 TOTAL_EMAIL_RECORDS: int = 517_401   # known Enron corpus size
 
-# ── LLM / Vector DB ─────────────────────────────────────────────────────────
+# LLM / Vector DB
 PINECONE_API_KEY: str = os.getenv("PINECONE_API_KEY", "")
 GEMINI_API_KEY: str = os.getenv("GEMINI_AI_API_KEY", "")
 
-# ── API settings ─────────────────────────────────────────────────────────────
-API_TITLE: str = "AI Knowledge Graph Builder — NextGen Edition"
+# API settings
+API_TITLE: str = "AI Based Knowledge Graph Builder"
 CORS_ORIGINS: list = ["*"]
 
-# ── Graph query limits ───────────────────────────────────────────────────────
+# Graph query limits
 GRAPH_LIMIT_GLOBAL: int = 800
 GRAPH_LIMIT_PROBE: int = 300
 HEAVY_PROPS: list = ["body", "content", "text_content", "raw_data"]
