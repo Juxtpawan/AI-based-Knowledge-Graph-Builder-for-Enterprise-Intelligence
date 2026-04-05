@@ -345,7 +345,7 @@ async def generate_answer_async(query, driver=None):
     
     try:
         llm = ChatGoogleGenerativeAI(
-            model="gemini-3-flash-preview", # Stable and performant
+            model="gemini-3-flash-preview",
             google_api_key=GEMINI_API_KEY, 
             temperature=0,
             timeout=30 # Prevent long hangs
