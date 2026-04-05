@@ -32,7 +32,8 @@ GEMINI_API_KEY: str = os.getenv("GEMINI_AI_API_KEY") or os.getenv("GOOGLE_API_KE
 
 # API settings
 API_TITLE: str = "AI Based Knowledge Graph Builder"
-CORS_ORIGINS: list = ["*"]
+_cors = os.getenv("CORS_ORIGINS", "*")
+CORS_ORIGINS: list = [origin.strip() for origin in _cors.split(",")]
 
 # Graph query limits
 GRAPH_LIMIT_GLOBAL: int = 800

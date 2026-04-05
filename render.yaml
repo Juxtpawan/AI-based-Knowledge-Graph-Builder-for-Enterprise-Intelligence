@@ -24,12 +24,12 @@ services:
 
   # 2. Vite Frontend (Static Site)
   - type: web
-    name: ai-kbg-frontend
+    name: vidzai-digital
     runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
       - key: VITE_API_BASE_URL
-        # This will need to be your backend's public URL (e.g., https://ai-kbg-backend.onrender.com)
+        # This will need to be your backend's public URL (e.g., https://vidzai-digital.onrender.com)
         sync: false
