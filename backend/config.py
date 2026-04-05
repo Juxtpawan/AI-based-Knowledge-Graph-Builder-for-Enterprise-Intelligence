@@ -15,7 +15,7 @@ PROJECT_ROOT: Path = BASE_DIR.parent
 
 # Neo4j
 NEO4J_URI: str = os.getenv("NEO4J_URI", "bolt://localhost:7687")
-NEO4J_USER: str = os.getenv("NEO4J_USER", "neo4j")
+NEO4J_USER: str = os.getenv("NEO4J_USER") or os.getenv("NEO4J_USERNAME") or "neo4j"
 NEO4J_PASSWORD: str = os.getenv("NEO4J_PASSWORD", "password")
 
 # Data files
@@ -28,7 +28,7 @@ TOTAL_EMAIL_RECORDS: int = 517_401   # known Enron corpus size
 
 # LLM / Vector DB
 PINECONE_API_KEY: str = os.getenv("PINECONE_API_KEY", "")
-GEMINI_API_KEY: str = os.getenv("GEMINI_AI_API_KEY", "")
+GEMINI_API_KEY: str = os.getenv("GEMINI_AI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
 
 # API settings
 API_TITLE: str = "AI Based Knowledge Graph Builder"
