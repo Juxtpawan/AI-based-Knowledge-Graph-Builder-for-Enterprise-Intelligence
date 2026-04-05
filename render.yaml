@@ -13,7 +13,7 @@ services:
       # These must be set manually in the Render dashboard for security:
       - key: NEO4J_URI
         sync: false
-      - key: NEO4J_USERNAME
+      - key: NEO4J_USER
         sync: false
       - key: NEO4J_PASSWORD
         sync: false
