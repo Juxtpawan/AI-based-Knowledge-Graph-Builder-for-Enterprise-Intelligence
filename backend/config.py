@@ -28,7 +28,7 @@ TOTAL_EMAIL_RECORDS: int = 517_401   # known Enron corpus size
 
 # LLM / Vector DB
 PINECONE_API_KEY: str = os.getenv("PINECONE_API_KEY", "")
-GEMINI_API_KEY: str = os.getenv("GEMINI_AI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
+GEMINI_API_KEY: str = os.getenv("GEMINI_AI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GOOGLE_AI_API_KEY") or ""
 
 # API settings
 API_TITLE: str = "AI Based Knowledge Graph Builder"
