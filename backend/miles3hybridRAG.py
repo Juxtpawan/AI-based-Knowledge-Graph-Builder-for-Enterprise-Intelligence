@@ -51,15 +51,15 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore, PineconeEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-# Load sensitive keys from .env
-load_dotenv()
+# Centralized Configuration
+from config import (
+    GEMINI_API_KEY, PINECONE_API_KEY, 
+    NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD
+)
 
 # SETTINGS & EMBEDDING MODEL
 PINECONE_INDEX_NAME = "email-knowledge-graph"
 EMBED_MODEL_NAME = "llama-text-embed-v2"
-NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
-NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")
 
 # --- OPTIMIZED CACHED ACCESS ---
 _embeddings_instance = None
@@ -345,8 +345,8 @@ async def generate_answer_async(query, driver=None):
     
     try:
         llm = ChatGoogleGenerativeAI(
-            model="gemini-3-flash-preview", 
-            google_api_key=os.getenv("GEMINI_AI_API_KEY"),
+            model="gemini-3-flash-preview", # Stable and performant
+            google_api_key=GEMINI_API_KEY or os.getenv("GOOGLE_AI_API_KEY"), 
             temperature=0,
             timeout=30 # Prevent long hangs
         )

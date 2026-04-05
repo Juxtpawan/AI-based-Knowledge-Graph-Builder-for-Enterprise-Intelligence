@@ -21,6 +21,8 @@ services:
         sync: false
       - key: GOOGLE_API_KEY
         sync: false
+      - key: GEMINI_AI_API_KEY
+        sync: false
 
   # 2. Vite Frontend (Static Site)
   - type: web
