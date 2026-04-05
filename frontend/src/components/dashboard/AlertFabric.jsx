@@ -90,7 +90,7 @@ export default function AlertFabric({ alerts = [], loading = false, onSelect, on
                       e.stopPropagation();
                       onDelete && onDelete(alert);
                     }}
-                    className="absolute top-4 right-4 p-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-xl transition-all z-10 border border-red-500/20"
+                    className="absolute top-8 right-5 p-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-xl transition-all z-10 border border-red-500/20"
                     title="Remove from Intelligence Alerts"
                   >
                     <Trash2 size={12} />
@@ -103,7 +103,6 @@ export default function AlertFabric({ alerts = [], loading = false, onSelect, on
                     <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${cfg.badge}`}>
                       {alert.type}
                     </span>
-                    <span className="text-[9px] font-mono text-slate-700 ml-auto">{alert.time}</span>
                   </div>
 
                   <p className="text-[10px] font-black uppercase tracking-wider text-white leading-tight mb-1 pr-8 truncate">

@@ -23,7 +23,7 @@ export default function ThoughtStepper({ isProcessing, phase }) {
 
           {/* Phase Context */}
           <div className="px-6 py-4 rounded-3xl bg-slate-900/20 border border-white/5 border-dashed text-slate-500 text-[11px] font-mono italic flex items-center gap-3">
-            <span className="text-secondary font-bold">SYNT_SYS_v2.1:</span>
+            <span className="text-secondary font-bold">Agent:</span>
             {phase || 'Initializing synthesis engine...'}
           </div>
         </motion.div>

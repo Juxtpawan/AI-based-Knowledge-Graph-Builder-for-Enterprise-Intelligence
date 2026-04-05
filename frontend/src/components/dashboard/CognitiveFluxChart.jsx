@@ -165,11 +165,6 @@ export default function CognitiveFluxChart({ data = [], loading = false }) {
           </ResponsiveContainer>
         )}
       </div>
-
-      {/* Formula attribution */}
-      <p className="text-[9px] font-mono text-slate-800 mt-4 uppercase tracking-widest text-right">
-        Source: Neo4j Enron corpus — RFC-2822 date → day-of-week aggregation
-      </p>
     </div>
   );
 }

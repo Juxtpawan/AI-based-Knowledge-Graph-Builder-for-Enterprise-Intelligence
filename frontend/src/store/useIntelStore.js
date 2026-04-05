@@ -63,6 +63,18 @@ export const useIntelStore = create((set, get) => ({
     }
   },
   
+  // High-Fidelity Node Insight
+  fetchNodeDetails: async (nodeId) => {
+    try {
+      const details = await kgService.getNodeDetails(nodeId);
+      // Synchronize selection with full details without losing references
+      set({ selectedElement: details });
+      return details;
+    } catch (err) {
+      console.error("Store Detail Error:", err);
+    }
+  },
+  
   // Bloom Expansion Engine
   expandNode: async (nodeId) => {
     set({ isExpanding: true });

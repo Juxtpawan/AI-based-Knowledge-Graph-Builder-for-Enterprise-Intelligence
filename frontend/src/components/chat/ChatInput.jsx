@@ -19,7 +19,7 @@ export default function ChatInput({ value, onChange, onSubmit, disabled }) {
           type="text"
           value={value}
           onChange={e => onChange(e.target.value)}
-          placeholder="Query the Intel Fabric (Partnerships, Anomalies, Key Players)..."
+          placeholder="Ask your questions..."
           className="w-full bg-slate-900/40 border border-white/5 rounded-3xl py-5 pl-16 pr-20 text-slate-100 focus:outline-none focus:border-primary/50 transition-all shadow-2xl placeholder-slate-600 text-lg sm:text-base font-sans"
           disabled={disabled}
         />

@@ -136,6 +136,84 @@ async def get_neighbors(request: Request, element_id: str, limit: int = 300):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.get("/node/{element_id}", response_model=dict)
+async def get_node_details(request: Request, element_id: str):
+    """Fetch the absolute FULL fidelity properties of a node OR relationship."""
+    driver = get_driver(request)
+    try:
+        async with driver.session() as session:
+            # 1. Try to fetch as a Node with potential Email enrichment
+            res = await session.run(
+                "MATCH (n) WHERE elementId(n) = $id RETURN n, labels(n) as lbls",
+                id=element_id
+            )
+            record = await res.single()
+            
+            if record:
+                n = record["n"]
+                lbls = record["lbls"]
+                props = dict(n)
+                
+                # SPECIAL ENRICHMENT: Email Nodes (Source/Recipients from Relationships)
+                if "Email" in lbls:
+                    # Find Sender
+                    sender_res = await session.run(
+                        "MATCH (s:Employee)-[:SENT]->(e) WHERE elementId(e) = $id "
+                        "RETURN s.email as email, s.name as name LIMIT 1",
+                        id=element_id
+                    )
+                    sender = await sender_res.single()
+                    if sender:
+                        props["from_email"] = sender["email"]
+                        props["sender_name"] = sender["name"]
+                    
+                    # Find Recipients
+                    rec_res = await session.run(
+                        "MATCH (e)-[:TO]->(r:Employee) WHERE elementId(e) = $id "
+                        "RETURN r.email as email, r.name as name",
+                        id=element_id
+                    )
+                    recipients = []
+                    async for r in rec_res:
+                        recipients.append(r["email"] or r["name"])
+                    if recipients:
+                        props["to_emails"] = ", ".join(recipients)
+
+                return {
+                    "id": str(n.element_id),
+                    "labels": lbls,
+                    "properties": props,
+                    "isRelationship": False
+                }
+
+            # 2. Try to fetch as a Relationship
+            rel_res = await session.run(
+                "MATCH (s)-[r]->(t) WHERE elementId(r) = $id "
+                "RETURN r, type(r) as type, elementId(s) as from_id, elementId(t) as to_id, s.name as from_name, t.name as to_name",
+                id=element_id
+            )
+            rel_record = await rel_res.single()
+            if rel_record:
+                r = rel_record["r"]
+                return {
+                    "id": str(r.element_id),
+                    "type": rel_record["type"],
+                    "properties": dict(r),
+                    "from": rel_record["from_id"],
+                    "to": rel_record["to_id"],
+                    "from_name": rel_record["from_name"],
+                    "to_name": rel_record["to_name"],
+                    "isRelationship": True
+                }
+
+            raise HTTPException(status_code=404, detail="Element not found.")
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[NodeDetail] Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.post("/cypher", response_model=GraphResponse)
 async def run_cypher(request: Request, body: CypherRequest):
     """Execute an arbitrary Cypher query and return the result as a graph."""

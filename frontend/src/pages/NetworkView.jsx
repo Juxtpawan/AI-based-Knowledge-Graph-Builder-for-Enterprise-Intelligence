@@ -5,17 +5,13 @@ import SidebarNodeInfo from '../components/sidebar/SidebarNodeInfo';
 import { useIntelStore } from '../store/useIntelStore';
 import IntelligenceFilterPanel from '../components/graph/IntelligenceFilterPanel';
 import StylingLegend from '../components/graph/StylingLegend';
-import CypherTerminal from '../components/graph/CypherTerminal';
 import {
    Network,
-   MessageSquare,
-   Info,
    X,
    Layers,
    Sliders
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { kgService } from '../services/apiClient';
 
 
 export default function NetworkView() {
@@ -27,14 +23,11 @@ export default function NetworkView() {
       setActiveSearchPhrase,
       isIntelligenceRailOpen,
       setIsIntelligenceRailOpen,
-      graphStats,
-      setCustomGraphData,
-      customGraphData,
-      cypherHistory,
       expandNode,
       viewMode,
       setViewMode,
-      executeCypher
+      executeCypher,
+      fetchNodeDetails
    } = useIntelStore();
 
    const [isStylingLegendOpen, setIsStylingLegendOpen] = useState(false);
@@ -45,19 +38,20 @@ export default function NetworkView() {
       messageLength: [], minVolume: 0, showOnlyFlagged: false, diversity: 'All'
    });
 
-   const applyFilters = async () => {
+   const applyFilters = async (overrides = null) => {
+      const filters = overrides || activeFilters;
       let groupClauses = [];
-      if (activeFilters.entityTypes.length > 0) groupClauses.push(`n.entity_type IN ${JSON.stringify(activeFilters.entityTypes)}`);
-      if (activeFilters.categories.length > 0) groupClauses.push(`n.category IN ${JSON.stringify(activeFilters.categories)}`);
-      if (activeFilters.years.length > 0) groupClauses.push(`n.year IN [${activeFilters.years.join(', ')}]`);
-      if (activeFilters.timePatterns.length > 0) groupClauses.push(`n.time_category IN ${JSON.stringify(activeFilters.timePatterns)}`);
-      if (activeFilters.messageLength.length > 0) {
+      if (filters.entityTypes.length > 0) groupClauses.push(`n.entity_type IN ${JSON.stringify(filters.entityTypes)}`);
+      if (filters.categories.length > 0) groupClauses.push(`n.category IN ${JSON.stringify(filters.categories)}`);
+      if (filters.years.length > 0) groupClauses.push(`n.year IN [${filters.years.join(', ')}]`);
+      if (filters.timePatterns.length > 0) groupClauses.push(`n.time_category IN ${JSON.stringify(filters.timePatterns)}`);
+      if (filters.messageLength.length > 0) {
          const lengthMap = { 'Short': 1, 'Medium': 2, 'Long': 3 };
-         groupClauses.push(`n.email_length IN ${JSON.stringify(activeFilters.messageLength.map(l => lengthMap[l]))}`);
+         groupClauses.push(`n.email_length IN ${JSON.stringify(filters.messageLength.map(l => lengthMap[l]))}`);
       }
-      if (activeFilters.minVolume > 0) groupClauses.push(`n.sent_count > ${activeFilters.minVolume}`);
-      if (activeFilters.showOnlyFlagged) groupClauses.push(`n.curation_status = 'Flagged'`);
-      if (activeFilters.diversity !== 'All') groupClauses.push(`n.diversity_score > ${activeFilters.diversity === 'High' ? 0.6 : 0.3}`);
+      if (filters.minVolume > 0) groupClauses.push(`n.sent_count > ${filters.minVolume}`);
+      if (filters.showOnlyFlagged) groupClauses.push(`n.curation_status = 'Flagged'`);
+      if (filters.diversity !== 'All') groupClauses.push(`n.diversity_score > ${filters.diversity === 'High' ? 0.6 : 0.3}`);
 
       const wherePart = groupClauses.length > 0 ? 'WHERE ' + groupClauses.join(' AND ') : '';
       const query = `MATCH (n)-[r]-(m) ${wherePart} RETURN n, r, m LIMIT 300`;
@@ -113,7 +107,13 @@ export default function NetworkView() {
                   searchPhrase={activeSearchPhrase}
                   onNodeClick={(node) => {
                      setSelectedElement(node);
-                     setIsIntelligenceRailOpen(true); // Auto-expand on click
+                     setIsIntelligenceRailOpen(true);
+                     if (node?.id) fetchNodeDetails(node.id);
+                  }}
+                  onRelationshipClick={(rel) => {
+                     setSelectedElement(rel);
+                     setIsIntelligenceRailOpen(true);
+                     if (rel?.id) fetchNodeDetails(rel.id);
                   }}
                />
 
@@ -128,7 +128,7 @@ export default function NetworkView() {
                         className="absolute bottom-6 right-6 z-50 p-4 bg-slate-900/90 backdrop-blur-2xl border border-white/5 rounded-2xl text-vidzai-emerald hover:text-white transition-all shadow-2xl flex items-center justify-center group lg:bottom-8 lg:right-8"
                         title="Open Intelligence Inspector"
                      >
-                        <Network size={20} className="group-hover:scale-110 transition-transform" />
+                        <Network size={20} className="group-hover:scale-110 transition-transform"/>
                      </motion.button>
                   )}
                </AnimatePresence>
@@ -158,15 +158,15 @@ export default function NetworkView() {
                   >
                      <div className="flex-1 vidzai-glass-frame rounded-2xl flex flex-col overflow-hidden bg-slate-900/40">
 
-                        {/* 1. Intelligence Inspector Header */}
-                        <div className="px-8 py-6 border-b border-white/5 flex items-center justify-between bg-slate-900/40 backdrop-blur-3xl shrink-0">
+                        {/* 1. Metadata Header */}
+                        <div className="px-5 py-2 border-b border-white/5 flex items-center justify-between bg-slate-900/40 backdrop-blur-3xl shrink-0">
                            <div className="flex items-center gap-3">
                               <div className="size-2 bg-vidzai-emerald rounded-full animate-pulse" />
-                              <h2 className="text-xs font-black uppercase tracking-[0.3em] text-white">Intelligence Inspector</h2>
+                              <h2 className="text-xs font-black uppercase tracking-[0.3em] text-white">Metadata</h2>
                            </div>
                            <button
                               onClick={() => setIsIntelligenceRailOpen(false)}
-                              className="p-2 hover:bg-white/5 rounded-lg text-slate-500 hover:text-white transition-all group"
+                              className="p-2 border hover:bg-white/5 rounded-full text-slate-500 hover:text-gray-400 transition-all group"
                               title="Minimize Inspector"
                            >
                               <X size={16} />

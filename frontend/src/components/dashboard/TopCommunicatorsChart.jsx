@@ -24,7 +24,7 @@ export default function TopCommunicatorsChart({ data = [], loading = false }) {
         className="bg-slate-900/50 backdrop-blur-xl rounded-3xl border border-white/10 p-6 flex flex-col h-full min-h-[320px]"
       >
         <div className="mb-4">
-          <h3 className="text-[11px] font-black text-sky-400 uppercase tracking-[0.2em] mb-1">Interaction Heat</h3>
+          <h3 className="text-[11px] font-black text-sky-400 uppercase tracking-[0.2em] mb-1">Top Interactions</h3>
           <p className="text-[9px] text-slate-500 font-medium">Top active entities by relationship volume</p>
         </div>
   

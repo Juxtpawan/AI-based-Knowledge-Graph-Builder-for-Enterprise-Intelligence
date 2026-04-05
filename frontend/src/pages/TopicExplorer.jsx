@@ -34,7 +34,8 @@ export default function TopicExplorer() {
     clearInvestigation,
     expandNode,
     evidenceBag,
-    unpinNode
+    unpinNode,
+    fetchNodeDetails
   } = useIntelStore();
 
   useEffect(() => {
@@ -89,7 +90,7 @@ export default function TopicExplorer() {
             className="absolute top-6 left-6 z-40 p-4 bg-slate-900/90 backdrop-blur-2xl border border-white/5 rounded-[1.2rem] text-slate-400 hover:text-white transition-all shadow-2xl flex items-center gap-2 group"
           >
             <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
-            <span className="text-[10px] font-black uppercase tracking-widest pr-2">Topics</span>
+            <span className="text-[10px] font-black uppercase tracking-widest pr-2">Topic</span>
           </motion.button>
         )}
 
@@ -105,12 +106,20 @@ export default function TopicExplorer() {
             searchPhrase={selectedTopic?.name || ''}
             onNodeClick={(node) => {
               setSelectedElement(node);
-              setIsInspectorOpen(true); // Auto-open on click
-              if (node) addToPath({
-                id: node.id,
-                name: node.properties?.name || node.properties?.subject || node.id,
-                type: 'node'
-              });
+              setIsInspectorOpen(true);
+              if (node?.id) {
+                fetchNodeDetails(node.id);
+                addToPath({
+                  id: node.id,
+                  name: node.properties?.name || node.properties?.subject || node.id,
+                  type: 'node'
+                });
+              }
+            }}
+            onRelationshipClick={(rel) => {
+              setSelectedElement(rel);
+              setIsInspectorOpen(true);
+              if (rel?.id) fetchNodeDetails(rel.id);
             }}
           />
 
@@ -167,19 +176,19 @@ export default function TopicExplorer() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsInspectorOpen(false)}
-              className="lg:hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50"
+              className="lg:hidden fixed inset-0 bg-slate-950/60 z-50"
             />
             <motion.div
               initial={{ x: 400, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 400, opacity: 0 }}
-              className="fixed inset-y-0 right-0 lg:relative lg:inset-auto w-full sm:w-[400px] h-full flex flex-col bg-slate-900 border-l lg:border-l-0 border-white/5 backdrop-blur-3xl z-50 lg:z-45 shadow-2xl lg:shadow-none"
+              className="relative inset-y-0 right-0 lg:inset-auto w-full sm:w-[400px] h-full flex flex-col bg-slate-900 border-l lg:border-l-0 border-white/5 backdrop-blur-3xl z-50 lg:z-45 shadow-2xl lg:shadow-none"
             >
               {/* Inspector Header */}
-              <div className="px-6 sm:px-8 py-5 sm:py-6 border-b border-white/5 flex items-center justify-between bg-slate-950/40 shrink-0">
+              <div className="px-4 sm:px-4 py-3 sm:py-3 border-b border-white/5 flex items-center justify-between bg-slate-950/40 shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="size-2 bg-vidzai-emerald rounded-full animate-pulse" />
-                  <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-white">Intelligence Inspector</h2>
+                  <h2 className="text-[14px] sm:text-[14px] font-black uppercase tracking-[0.3em] text-white">MetaData</h2>
                 </div>
                 <button
                   onClick={() => setIsInspectorOpen(false)}

@@ -10,9 +10,22 @@ export default function SidebarMetadata({ element }) {
   const isNode = !element.isRelationship;
   const props = element.properties || {};
 
-  // Define Category Mappings
-  const identityKeys = ['name', 'subject', 'role', 'entity_type', 'job_title', 'department'];
-  const behavioralKeys = ['sentiment', 'risk_score', 'curation_status', 'volume', 'velocity', 'count'];
+  // Forensic Identity Archetypes (Synced with miles2neo4j_storage.ipynb)
+  const identityKeys = [
+    'name', 'email', 'subject', 'role', 'category', 'entity_type', 'job_title', 'department', 
+    'employee_id', 'message_id', 'date', 'weekday', 'time_category',
+    'from_email', 'to_emails', 'sender_name', 'communication_type'
+  ];
+  
+  // High-Signal Behavioral Metrics
+  const behavioralKeys = [
+    'sentiment', 'risk_score', 'curation_status', 
+    'sent_count', 'received_count', 'frequency',
+    'sent_to_unique', 'received_from_unique', 
+    'internal_sent', 'external_sent', 'total_unique_contacts',
+    'avg_word_count', 'diversity_score', 'word_count', 'email_length',
+    'first_contact', 'last_contact', 'timestamp'
+  ];
 
   const identityProps = Object.entries(props).filter(([k]) => identityKeys.includes(k.toLowerCase()));
   const behavioralProps = Object.entries(props).filter(([k]) => behavioralKeys.some(b => k.toLowerCase().includes(b)));
@@ -49,12 +62,16 @@ export default function SidebarMetadata({ element }) {
           </h4>
           <div className="grid grid-cols-2 gap-4">
             <div className="vidzai-glass p-5 rounded-3xl border-white/5 bg-slate-900/60 shadow-xl">
-              <span className="text-[7px] text-slate-700 font-black uppercase block mb-2 tracking-tighter">Initiator</span>
-              <span className="text-[10px] text-white font-mono break-all leading-tight">{element.from}</span>
+              <span className="text-[7px] text-slate-700 font-black uppercase block mb-2 tracking-tighter">Sender</span>
+              <span className="text-[10px] text-white font-mono break-all leading-tight">
+                {element.from_name || element.from}
+              </span>
             </div>
             <div className="vidzai-glass p-5 rounded-3xl border-white/5 bg-slate-900/60 shadow-xl">
               <span className="text-[7px] text-slate-700 font-black uppercase block mb-2 tracking-tighter">Recipient</span>
-              <span className="text-[10px] text-white font-mono break-all leading-tight">{element.to}</span>
+              <span className="text-[10px] text-white font-mono break-all leading-tight">
+                {element.to_name || element.to}
+              </span>
             </div>
           </div>
         </div>

@@ -29,10 +29,10 @@ export default function EvidenceBag({ items = [], onRemove, onClear, onSelect })
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-        className="vidzai-glass rounded-4xl border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.8)] overflow-hidden bg-slate-900/60 backdrop-blur-3xl flex flex-col"
+        className="vidzai-glass rounded-2xl border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.8)] overflow-hidden bg-slate-900/60 backdrop-blur-3xl flex flex-col"
       >
         {/* Header */}
-        <div className="p-5 border-b border-white/5 flex items-center justify-between bg-slate-950/40">
+        <div className="p-3 border-b border-white/5 flex items-center justify-between bg-slate-950/40">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-vidzai-emerald/15 rounded-xl border border-vidzai-emerald/20">
               <Pin className="text-vidzai-emerald" size={16} />
@@ -92,20 +92,6 @@ export default function EvidenceBag({ items = [], onRemove, onClear, onSelect })
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
-
-        {/* Footer Analysis Summary */}
-        <div className="p-5 bg-slate-950/60 border-t border-white/5">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-[8px] font-black uppercase tracking-[0.2em] text-slate-500">Bundle Integrity</span>
-            <div className="flex items-center gap-2">
-              <ShieldCheck size={10} className="text-emerald-500" />
-              <span className="text-[9px] font-mono text-emerald-500 font-bold uppercase tracking-widest">Verified</span>
-            </div>
-          </div>
-          <div className="w-full bg-slate-900 h-1 rounded-full overflow-hidden">
-            <div className="bg-vidzai-emerald h-full w-[85%] shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-          </div>
         </div>
       </motion.div>
     </div>

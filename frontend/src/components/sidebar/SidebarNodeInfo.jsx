@@ -36,7 +36,7 @@ export default function SidebarNodeInfo({ element, onClose, onExpand }) {
     <div className="h-full flex flex-col bg-slate-950/80 backdrop-blur-3xl overflow-hidden font-sans relative">
 
       {/* 1. ENTITY HEADER */}
-      <div className="p-8 border-b border-white/5 bg-slate-900/40 relative">
+      <div className="p-4 border-b border-white/5 bg-slate-900/40 relative">
         <div className="flex items-start justify-between">
           <NodeIdentity element={element} />
         </div>
@@ -61,12 +61,12 @@ export default function SidebarNodeInfo({ element, onClose, onExpand }) {
       </div>
 
       {/* 2. FORENSIC TABS */}
-      <div className="flex px-8 py-4 border-b border-white/5 gap-6">
+      <div className="flex px-4 py-2 border-b border-white/5 gap-6">
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2.5 py-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all relative border-b-2 ${activeTab === tab.id ? 'text-primary border-primary' : 'text-slate-600 border-transparent hover:text-slate-400'}`}
+            className={`flex items-center gap-2 py-2 text-[12px] font-black uppercase tracking-[0.2em] transition-all relative ${activeTab === tab.id ? 'text-primary border-primary' : 'text-slate-600 border-transparent hover:text-slate-400'}`}
           >
             <tab.icon size={12} /> {tab.label}
           </button>
@@ -74,7 +74,7 @@ export default function SidebarNodeInfo({ element, onClose, onExpand }) {
       </div>
 
       {/* 3. SCROLLABLE ANALYTICS DEPOT */}
-      <div className="flex-1 overflow-y-auto p-8 space-y-10 custom-scrollbar pb-32">
+      <div className="flex-1 overflow-y-auto p-6 space-y-10 custom-scrollbar pb-32">
         <AnimatePresence mode="wait">
           {activeTab === 'metadata' && (
             <motion.div key="meta" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }}>
@@ -95,7 +95,7 @@ export default function SidebarNodeInfo({ element, onClose, onExpand }) {
       </div>
 
       {/* 4. EXPORT UTILITIES */}
-      <div className="absolute bottom-0 left-0 w-full p-8 bg-linear-to-t from-slate-950 via-slate-950 to-transparent">
+      <div className="absolute bottom-0 left-0 w-full p-4 bg-linear-to-t from-slate-950 via-slate-950 to-transparent">
         <div className="flex gap-4">
           <button className="flex-1 flex items-center justify-center gap-3 py-4 bg-slate-900 border border-white/5 text-[10px] font-black uppercase text-slate-400 hover:text-white rounded-2xl transition-all group backdrop-blur-3xl shadow-3xl">
             <Share2 size={14} className="group-hover:scale-110 transition-transform" /> Share Intel

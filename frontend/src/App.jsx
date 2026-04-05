@@ -42,7 +42,7 @@ function MainLayout() {
               {/* Mobile Menu Trigger */}
               <button 
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2 text-slate-400 hover:text-white"
+                className="lg:hidden md:hidden p-2 text-slate-400 hover:text-white"
               >
                 <Menu size={20} />
               </button>
@@ -55,7 +55,7 @@ function MainLayout() {
               </div>
               
               {/* Desktop Nav */}
-              <nav className="hidden lg:flex gap-4">
+              <nav className="hidden lg:flex md:flex gap-4 md:gap-1">
                  {navLinks.map(link => (
                     <Link key={link.path} to={link.path} className={getNavClass(link.path)}>{link.name}</Link>
                  ))}
@@ -112,7 +112,7 @@ function MainLayout() {
                 className="fixed top-0 left-0 bottom-0 w-64 bg-slate-900 border-r border-white/10 z-50 p-6 flex flex-col"
               >
                 <div className="flex items-center justify-between mb-10">
-                   <h2 className="text-vidzai-emerald font-black uppercase tracking-tighter">Navigator</h2>
+                   <h2 className="text-vidzai-emerald font-black uppercase tracking-tighter">Vidzai Digital</h2>
                    <button onClick={() => setIsMobileMenuOpen(false)} className="text-slate-500 hover:text-white">
                       <X size={20} />
                    </button>

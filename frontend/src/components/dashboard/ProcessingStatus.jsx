@@ -13,26 +13,21 @@ export default function ProcessingStatus({
 
   return (
     <div className="bg-slate-900/50 backdrop-blur-xl rounded-3xl border border-white/5 p-6 h-full flex flex-col justify-between overflow-hidden relative group">
-      
-      {/* Background Pulse Effect */}
-      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-        <Activity size={80} strokeWidth={1} className="text-vidzai-emerald animate-pulse" />
-      </div>
 
       <div className="flex items-center justify-between mb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-             <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Ingestion Engine</h3>
+             <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Ingestion Engine Info</h3>
              <AnimatePresence>
                 {isLive ? (
                    <motion.span 
                      initial={{ opacity: 0, scale: 0.5 }}
                      animate={{ opacity: 1, scale: 1 }}
                      exit={{ opacity: 0, scale: 0.5 }}
-                     className="bg-vidzai-emerald/20 text-vidzai-emerald px-1.5 py-0.5 rounded-full text-[8px] font-black uppercase flex items-center gap-1 border border-vidzai-emerald/20"
+                     className="bg-vidzai-emerald/20 text-vidzai-emerald px-1.5 py-0.5 rounded-full text-[8px] font-black uppercase flex items-center gap-1.5 border border-vidzai-emerald/20"
                    >
                      <span className="size-1 rounded-full bg-vidzai-emerald animate-ping" />
-                     Live Stream
+                     Live
                    </motion.span>
                 ) : (
                     <motion.span 
@@ -49,8 +44,8 @@ export default function ProcessingStatus({
         </div>
         <div className="flex items-center gap-2">
             <div className="text-right">
-                <p className="text-[9px] font-mono text-slate-400 leading-none">{processed.toLocaleString()}</p>
-                <p className="text-[8px] font-mono text-slate-600 uppercase tracking-tighter">Records</p>
+                <p className="text-[11px] font-mono text-slate-400 leading-none">{processed.toLocaleString()}</p>
+                <p className="text-[9px] font-mono text-slate-600 uppercase tracking-tighter">Records</p>
             </div>
             <div className={`p-2 rounded-xl ${percentage === 100 ? 'bg-vidzai-emerald/10 text-vidzai-emerald' : 'bg-slate-800 text-slate-400'}`}>
                <CheckCircle2 size={16} />

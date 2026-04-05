@@ -2,10 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { kgService } from '../services/apiClient';
 import { useIntelStore } from '../store/useIntelStore';
-import {
-  Bot, LayoutGrid, Sparkles, Send, Terminal,
-  Search, Globe, FileSearch, Fingerprint, Zap
-} from 'lucide-react';
+import { Bot, LayoutGrid } from 'lucide-react';
 
 // Modular Components
 import ChatMessage from '../components/chat/ChatMessage';
@@ -29,13 +26,13 @@ export default function RagAgentChat() {
     {
       id: 2,
       role: 'agent',
-      content: 'I have analyzed the Enron metadata corpus and mapped semantic triplets to the vector space. We are ready to begin the forensic audit. What specific entities or events should we probe first?'
+      content: 'We have analyzed the Enron metadata corpus and mapped semantic triplets to the vector space. We are ready to begin the forensic audit. What specific entities or events should we probe first?'
     }
   ]);
   const [inputVal, setInputVal] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [stepperPhase, setStepperPhase] = useState(null);
-  const [isSubgraphOpen, setIsSubgraphOpen] = useState(window.innerWidth >= 1280);
+  const [isSubgraphOpen, setIsSubgraphOpen] = useState(window.innerWidth >= 1024);
   const [activeTab, setActiveTab] = useState('graph');
   const scrollRef = useRef(null);
 
@@ -58,7 +55,7 @@ export default function RagAgentChat() {
     const phases = [
       'Extracting semantic embeddings...',
       'Traversing structural Neo4j triplets...',
-      'Synthesizing hybrid RAG response...'
+      'Generating hybrid RAG response...'
     ];
     for (const phase of phases) {
       setStepperPhase(phase);
@@ -105,13 +102,13 @@ export default function RagAgentChat() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-full p-2 sm:p-4 lg:p-8 gap-4 lg:gap-6 bg-slate-950 relative overflow-hidden font-sans">
+    <div className="flex flex-col lg:flex-row h-full p-2 sm:p-2 lg:p-4 gap-4 lg:gap-6 bg-slate-950 relative overflow-hidden font-sans">
 
-      {/* --- 1. PRIMARY INVESTIGATION RAIL --- */}
+      {/* 1. PRIMARY INVESTIGATION RAIL */}
       <div className="flex-1 flex flex-col vidzai-glass rounded-3xl sm:rounded-4xl overflow-hidden relative z-10 border-white/5">
 
         {/* Header: AI Terminal Branding */}
-        <div className="p-6 border-b border-white/5 bg-slate-950/40 flex items-center justify-between backdrop-blur-xl">
+        <div className="p-4 border-b border-white/5 bg-slate-950/40 flex items-center justify-between backdrop-blur-xl">
           <div className="flex items-center gap-5">
             <div className="p-3 bg-primary/15 rounded-2xl border border-primary/30 shadow-2xl shadow-primary/10">
               <Bot className="text-primary" size={26} />

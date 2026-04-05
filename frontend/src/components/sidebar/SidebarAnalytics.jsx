@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  PieChart, Pie, Cell, ResponsiveContainer, Tooltip, 
-  AreaChart, Area, XAxis, YAxis 
+import {
+  PieChart, Pie, Cell, ResponsiveContainer, Tooltip,
+  AreaChart, Area, XAxis, YAxis
 } from 'recharts';
 import { Activity, Zap, TrendingUp, Users, Target } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -71,9 +71,9 @@ export default function SidebarAnalytics({ element }) {
           <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
             <Activity size={14} className="text-vidzai-emerald animate-pulse" /> Activity Pulse
           </h4>
-          <div className="flex items-center gap-2 px-3 py-1 bg-vidzai-emerald/10 rounded-lg border border-vidzai-emerald/20">
+          <div className="flex items-center gap-2 px-2 py-1 bg-vidzai-emerald/10 rounded-lg border border-vidzai-emerald/20">
             <div className="size-1.5 rounded-full bg-vidzai-emerald animate-ping" />
-            <span className="text-[9px] font-bold text-vidzai-emerald tracking-widest uppercase">Live Link</span>
+            <span className="text-[9px] font-bold text-vidzai-emerald tracking-widest uppercase">Live</span>
           </div>
         </div>
 
@@ -97,7 +97,7 @@ export default function SidebarAnalytics({ element }) {
           </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <AnimatePresence mode="wait">
-              <motion.span 
+              <motion.span
                 key={pulse.risk_coefficient}
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export default function SidebarAnalytics({ element }) {
                 {pulse.risk_coefficient}%
               </motion.span>
             </AnimatePresence>
-            <span className="text-[8px] text-slate-600 font-bold uppercase mt-1">Risk Coeff</span>
+            <span className="text-[8px] text-slate-600 font-bold uppercase mt-1">Risk Coeff.</span>
           </div>
         </div>
 
@@ -135,46 +135,46 @@ export default function SidebarAnalytics({ element }) {
           <Target size={14} className="text-amber-500" /> Interaction Burst Pattern
         </h4>
         <div className="h-20 w-full">
-           <ResponsiveContainer width="100%" height="100%">
-             <AreaChart data={sparkData}>
-               <defs>
-                 <linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1">
-                   <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3}/>
-                   <stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/>
-                 </linearGradient>
-               </defs>
-               <Area 
-                type="monotone" 
-                dataKey="val" 
-                stroke="#f59e0b" 
-                fillOpacity={1} 
-                fill="url(#colorVal)" 
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={sparkData}>
+              <defs>
+                <linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <Area
+                type="monotone"
+                dataKey="val"
+                stroke="#f59e0b"
+                fillOpacity={1}
+                fill="url(#colorVal)"
                 strokeWidth={2}
-               />
-             </AreaChart>
-           </ResponsiveContainer>
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         </div>
         <p className="text-[8px] text-slate-600 font-bold uppercase mt-4 tracking-widest text-center">
-            Recent Temporal Clustering Score: <span className="text-amber-500">{pulse.burst_pattern}</span>
+          Recent Temporal Clustering Score: <span className="text-amber-500">{pulse.burst_pattern}</span>
         </p>
       </div>
 
       {/* 3. Top Live Interactors */}
       <div className="bg-slate-900/60 p-6 rounded-4xl border border-white/5 backdrop-blur-3xl">
-         <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-            <Users size={14} className="text-vidzai-emerald" /> Primary Counterparties
-         </h4>
-         <div className="space-y-3">
-            {pulse.top_interactors.map((interactor, i) => (
-              <div key={i} className="flex items-center justify-between p-3 bg-slate-950/40 rounded-xl border border-white/5 hover:border-vidzai-emerald/20 transition-all cursor-crosshair group">
-                 <div className="flex items-center gap-3">
-                    <div className="size-1.5 rounded-full bg-slate-800 group-hover:bg-vidzai-emerald transition-colors" />
-                    <span className="text-[10px] font-black text-slate-300 uppercase truncate max-w-[120px]">{interactor.name}</span>
-                 </div>
-                 <span className="text-[9px] font-mono text-slate-600">{interactor.value} INTEL</span>
+        <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+          <Users size={14} className="text-vidzai-emerald" /> Primary Counterparties
+        </h4>
+        <div className="space-y-3">
+          {pulse.top_interactors.map((interactor, i) => (
+            <div key={i} className="flex items-center justify-between p-3 bg-slate-950/40 rounded-xl border border-white/5 hover:border-vidzai-emerald/20 transition-all cursor-crosshair group">
+              <div className="flex items-center gap-3">
+                <div className="size-1.5 rounded-full bg-slate-800 group-hover:bg-vidzai-emerald transition-colors" />
+                <span className="text-[10px] font-black text-slate-300 uppercase truncate max-w-[120px]">{interactor.name}</span>
               </div>
-            ))}
-         </div>
+              <span className="text-[9px] font-mono text-slate-600">{interactor.value} INTEL</span>
+            </div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );

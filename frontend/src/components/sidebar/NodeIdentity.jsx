@@ -24,6 +24,10 @@ export default function NodeIdentity({ element }) {
   };
 
   const forensicType = resolveForensicType();
+  // Enhanced Identification
+  const nodeTitle = isNode 
+    ? (element.properties?.name || element.properties?.subject || element.properties?.email || element.id) 
+    : element.type;
 
   // Visual Palette Mapping
   const typeConfig = {
@@ -55,7 +59,7 @@ export default function NodeIdentity({ element }) {
 
       <div className="flex-1 min-w-0 pt-1">
         <h3 className="font-bold text-white text-2xl leading-tight font-display tracking-tight mb-2 truncate">
-          {isNode ? (element.properties?.name || element.properties?.subject || element.id) : element.type}
+          {nodeTitle}
         </h3>
 
         <div className="flex items-center gap-2.5">

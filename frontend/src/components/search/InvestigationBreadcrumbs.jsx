@@ -10,7 +10,7 @@ export default function InvestigationBreadcrumbs({ path, onSelectStep }) {
     return (
       <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3 px-6 py-3 bg-slate-900/60 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl">
         <div className="size-1.5 bg-indigo-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(99,102,241,0.5)]" />
-        <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest italic">Tracing Engine Cold (Waiting for Probe)</span>
+        <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest italic">Trace Node, Entity & Link (Waiting for Probe)</span>
       </div>
     );
   }

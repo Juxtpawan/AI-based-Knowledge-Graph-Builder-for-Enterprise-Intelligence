@@ -32,20 +32,20 @@ export default function TopicSearchSidebar({
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: -320, opacity: 0 }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed lg:relative left-0 top-0 lg:top-auto h-full w-full sm:w-80 vidzai-glass-frame border-r border-white/5 flex flex-col z-50 lg:z-45 bg-slate-950/20 shadow-2xl lg:shadow-none"
+                        className="relative left-0 top-0 lg:top-auto h-full w-full sm:w-80 vidzai-glass-frame border-r border-white/5 flex flex-col z-50 lg:z-45 bg-slate-950/20 shadow-2xl lg:shadow-none"
                     >
-                        <div className="p-8 border-b border-white/5 bg-slate-950/20">
+                        <div className="p-4 border-b border-white/5 bg-slate-950/20">
                             <div className="flex items-center justify-between mb-8">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2.5 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 shadow-lg shadow-indigo-500/10">
                                         <BrainCircuit className="text-indigo-400" size={24} />
                                     </div>
                                     <div>
-                                        <h2 className="font-bold text-white tracking-tight text-lg font-display">Topics</h2>
-                                        <p className="text-[10px] text-slate-500 font-mono uppercase tracking-[0.2em] font-bold">Trace Core</p>
+                                        <h2 className="font-bold text-white tracking-tight text-lg font-display">Topic Search</h2>
+                                        <p className="text-[10px] text-slate-500 font-mono uppercase tracking-[0.2em] font-bold">Trace links</p>
                                     </div>
                                 </div>
-                                <button onClick={onClose} className="lg:hidden p-2 hover:bg-slate-800 rounded-full text-slate-500">
+                                <button onClick={onClose} className="lg p-2 hover:bg-slate-800 rounded-full text-slate-500">
                                     <ChevronLeft size={20} />
                                 </button>
                             </div>
@@ -57,7 +57,7 @@ export default function TopicSearchSidebar({
                                 </div>
                                 <input
                                     type="text"
-                                    placeholder="Search events, concepts..."
+                                    placeholder="Search node, entities..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-3.5 pl-12 pr-12 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/5 transition-all shadow-xl font-sans"

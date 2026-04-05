@@ -70,7 +70,7 @@ export default function SidebarForensics({ element }) {
     const defaultSev = pId === 'severe' ? 'Critical' : 'Medium';
     setFlagData({ ...flagData, severity: defaultSev });
     setShowFlagForm(true);
-    setStatus(pId); // Optimistic UI
+    setStatus(pId); 
   };
 
   return (
@@ -85,7 +85,7 @@ export default function SidebarForensics({ element }) {
         </div>
         <div>
           <h4 className="text-[10px] font-black uppercase text-white tracking-[0.2em]">Forensic Curation</h4>
-          <p className="text-[8px] font-bold text-slate-500 uppercase mt-1 tracking-widest leading-none">Intelligence Signal Triage</p>
+          <p className="text-[8px] font-bold text-slate-500 uppercase mt-1 tracking-widest leading-none">Intelligence Signals</p>
         </div>
       </div>
 

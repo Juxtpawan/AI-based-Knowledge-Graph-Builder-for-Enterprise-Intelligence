@@ -119,6 +119,17 @@ export const kgService = {
       console.error('Error fetching node pulse:', error);
       throw error;
     }
+  },
+  
+  // NEW: Detail fetch for inspector
+  getNodeDetails: async (elementId) => {
+    try {
+      const response = await apiClient.get(`/node/${encodeURIComponent(elementId)}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching full node details:', error);
+      throw error;
+    }
   }
 };
 

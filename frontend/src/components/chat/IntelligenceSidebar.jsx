@@ -30,13 +30,14 @@ export default function IntelligenceSidebar({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="xl:hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50"
+            className="lg:hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50"
           />
           <motion.div
-            initial={{ x: 100, opacity: 0 }}
+            initial={{ x: '100%', opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 100, opacity: 0 }}
-            className="fixed inset-y-4 right-4 xl:relative xl:inset-auto w-[calc(100%-2rem)] xl:max-w-none xl:w-[40%] flex flex-col glass-panel-heavy rounded-4xl shadow-2xl z-50 overflow-hidden bg-slate-900/60 transition-all"
+            exit={{ x: '100%', opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-y-4 right-4 w-[calc(100%-2rem)] sm:w-[400px] lg:relative lg:inset-auto lg:w-[400px] xl:w-[450px] flex flex-col glass-panel-heavy rounded-3xl sm:rounded-4xl shadow-2xl z-50 overflow-hidden bg-slate-900/90 lg:bg-slate-900/60 transition-all border border-white/5"
           >
           {/* Sidebar Navigation */}
           <div className="p-6 border-b border-white/5 flex items-center justify-between bg-slate-950/40 backdrop-blur-md">
@@ -50,13 +51,13 @@ export default function IntelligenceSidebar({
               <div className="w-px h-3 bg-white/10" />
               <button
                 onClick={() => setActiveTab('probe')}
-                className={`text-[11px] font-bold uppercase tracking-[0.2em] flex items-center gap-2 transition-all ${activeTab === 'probe' ? 'text-vidzai-emerald' : 'text-slate-500 hover:text-slate-300'}`}
+                className={`text-[11px] font-bold uppercase tracking-[0.2em] flex items-center  gap-2 transition-all ${activeTab === 'probe' ? 'text-vidzai-emerald' : 'text-slate-500 hover:text-slate-300'}`}
               >
-                <Info size={16} className={activeTab === 'probe' ? 'glow-emerald' : ''} /> Probe
+                <Info size={16} className={activeTab === 'probe' ? 'glow-emerald rounded-full' : ''} /> Metadata
               </button>
             </div>
             <div className="flex items-center gap-3">
-              <button onClick={onClose} className="xl:hidden p-1.5 hover:bg-white/5 rounded-lg text-slate-500">
+              <button onClick={onClose} className="lg:hidden p-1.5 hover:bg-white/5 rounded-lg text-slate-500">
                 <X size={16} />
               </button>
             </div>

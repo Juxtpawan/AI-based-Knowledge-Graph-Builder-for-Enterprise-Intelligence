@@ -72,7 +72,7 @@ export default function DashboardMetrics() {
         name: alert.title.split(': ')[1], // Extract name from title
         initialTab: 'forensics' // Tell Sidebar to open Curation tab directly
     });
-    // Redirect to the Grapg view
+    // Redirect to the Graph view
     navigate('/explore');
   };
 
@@ -88,7 +88,7 @@ export default function DashboardMetrics() {
             status: 'neutral',
             severity: 'Low',
             category: 'Verified',
-            note: 'Cleared from dashboard'
+            note: 'Removed from dashboard'
         });
     } catch (err) {
         console.error("Failed to neutralize alert:", err);
