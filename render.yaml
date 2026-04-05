@@ -23,7 +23,7 @@ services:
         sync: false
 
   # 2. Vite Frontend (Static Site)
-  - type: static
+  - type: static_site
     name: ai-kbg-frontend
     runtime: static
     rootDir: frontend
