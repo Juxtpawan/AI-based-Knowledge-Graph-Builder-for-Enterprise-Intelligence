@@ -82,9 +82,9 @@ export function useRealtimeAnalytics() {
 
   // ── WebSocket Lifecycle ────────────────────────────────────────────────
   const connectWS = useCallback(() => {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    // Use the base URL from apiClient if possible, or fallback to localhost
-    const wsUrl = `${protocol}//localhost:8000/ws/analytics`;
+    const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+    const wsBase = apiBase.replace(/^http/, 'ws');
+    const wsUrl = `${wsBase}/ws/analytics`;
 
     console.log(`[WS] Connecting to ${wsUrl}...`);
     const ws = new WebSocket(wsUrl);

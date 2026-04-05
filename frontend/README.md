@@ -1,4 +1,4 @@
-# Vidzai Frontend — Intelligence Visualization & Forensics Dashboard
+# Vidzai Frontend — Forensic Investigation Suite
 
 The **Vidzai Frontend** is a professional-grade, high-fidelity **React** application built with **Vite**. It provides a window into the complex enterprise knowledge graph, offering interactive exploration and AI-powered investigation.
 
@@ -8,15 +8,16 @@ The **Vidzai Frontend** is a professional-grade, high-fidelity **React** applica
 - **Interactive High-Fidelity Canvas**: Powered by `@neo4j-nvl`, featuring real-time node highlighting and relationship pathing.
 - **Probe Mode**: Contextual subgraphs centered around your search query.
 - **Global Mode**: A high-density constellation view of the entire enterprise dataset.
-- **Forensic Inspector**: Sidebar panels for entity identity, behavioral forensics, and deep metadata deep-dives.
+- **Forensic Inspector (v2)**: Advanced sidebar panels with data-driven filter categories (Structural, Forensic, Temporal) and single-vector selection logic.
 
 ### 📊 Cognitive Analytics & Curation
 - **Dynamic Metrics**: Real-time throughput and anomaly detection via **Recharts**.
 - **Alert Fabric**: Real-time intelligence feed for forensic signals with circular branding and interactive triage.
 - **Forensic Curation Sidebar**: High-density investigative forms for validating and flagging intelligence.
-- **Thought Stepper**: Transparent UI showing the AI's step-by-step reasoning during investigations.
-- **Stateful Intelligence**: Unified state management using **Zustand** ensuring synchronised selection across all views.
-- **Glassmorphism UI**: Beautiful, modern design using **Tailwind CSS 4** and **Framer Motion 12**.
+- **Thought Stepper**: Transparent UI showing the AI's step-by-step reasoning via **Chain-of-Thought**.
+- **Stateful Intelligence**: Unified state management using **Zustand** ensuring synchronized selection across all views.
+- **Responsive Layout**: Cross-breakpoint optimized interface with mobile-safe sidebar logic and scrollable filter panels.
+- **Glassmorphism UI**: Beautiful, modern design using **Tailwind CSS 4.x** and **Framer Motion 12.x**.
 
 ## 🛠️ Technology Stack
 - **Framework**: React 19 (Concurrent Mode)

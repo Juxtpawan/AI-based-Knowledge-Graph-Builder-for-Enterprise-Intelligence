@@ -1,4 +1,4 @@
-# Vidzai: Enterprise Intelligence Platform with Hybrid RAG
+# Vidzai: Forensic Intelligence Suite with Hybrid RAG
 
 <div align="center">
 
@@ -21,7 +21,7 @@
 
 ## 🎯 About Vidzai
 
-**Vidzai** is an enterprise-grade intelligence platform that revolutionizes how organizations extract insights from massive volumes of unstructured data. By combining **Large Language Models (Gemini 3 Flash)**, **Knowledge Graphs (Neo4j)**, and **Vector Retrieval (Pinecone)**, Vidzai transforms raw email communications into a sophisticated, queryable knowledge base.
+**Vidzai** is an enterprise-grade forensic intelligence suite that revolutionizes how organizations extract insights from massive volumes of unstructured data. By combining **Large Language Models (Gemini 3 Flash)**, **Knowledge Graphs (Neo4j)**, and **Vector Retrieval (Pinecone)**, Vidzai transforms raw email communications into a sophisticated, queryable knowledge base for investigators.
 
 ### The Problem
 - **Unstructured data chaos**: Enterprise communications are scattered across emails with no coherent structure.
@@ -32,8 +32,8 @@
 Vidzai leverages a **Hybrid RAG (Retrieval-Augmented Generation)** architecture that:
 1. **Extracts intelligence** using Google Gemini AI for Named Entity Recognition (NER).
 2. **Structures knowledge** in a Neo4j graph database with entity relationships.
-3. **Enables semantic search** via Pinecone vector embeddings.
-4. **Synthesizes insights** through an intelligent chat interface powered by LLM context fusion.
+3. **Enables semantic search** via Pinecone vector embeddings with **strict grounding constraints**.
+4. **Synthesizes insights** through an intelligent chat interface powered by **Chain-of-Thought (CoT)** context fusion.
 
 ---
 
@@ -44,9 +44,10 @@ Vidzai leverages a **Hybrid RAG (Retrieval-Augmented Generation)** architecture 
 - **Probe vs. Global Modes**: Toggle between contextual subgraphs (Probe) and full enterprise constellation views (Global).
 - **Intuitive Inspectors**: Deep-dive into behavioral metrics, forensic metadata, and entity identities.
 
-### 🤖 Intelligent Investigation Chat
+### 🤖 Intelligent Investigation Chat (v2)
 - **Hybrid Retrieval**: Synthesis of insights from both Graph (Neo4j) and Vector (Pinecone) stores.
-- **Thought Stepper**: Transparent AI reasoning process showing the investigation path.
+- **Thought Stepper**: Transparent AI reasoning process showing the investigation path using **Chain-of-Thought (CoT)**.
+- **Strict Grounding**: Prompt-engineered constraints ensure responses are derived exclusively from provided internal data, eliminating hallucinations.
 - **Multi-turn Context**: Intelligent memory that understands previous queries and graph states.
 
 ### 📊 Cognitive Analytics Dashboard
@@ -57,7 +58,7 @@ Vidzai leverages a **Hybrid RAG (Retrieval-Augmented Generation)** architecture 
 ### ⚖️ Forensic Curation Protocol
 - **Three-Tiered Triage**: Unified protocol supporting `Validated Intel`, `Flagged Anomaly`, and `Severe Risk` states.
 - **Actionable Metadata**: High-density investigative forms that persist status and metadata directly into the graph.
-- **Persistence Layer**: Seamless integration with Neo4j for storage and stateful forensic history.
+- **Persistence Layer**: Seamless integration with Neo4j for storage and stateful forensic history with audit trails.
 
 ### 🏗️ Enterprise Backend Architecture
 - **FastAPI Engine**: High-performance, production-grade async service.
@@ -96,13 +97,14 @@ Vidzai leverages a **Hybrid RAG (Retrieval-Augmented Generation)** architecture 
 graph TD
     subgraph Client ["Frontend (React/Vite)"]
         A[Bloom Graph Canvas] --- B[Intelligence Chat]
-        B --- C[Analytics Dashboard]
+        B --- C[Forensic Dashboard]
     end
 
     subgraph Server ["Backend (FastAPI)"]
         D[Query Engine] --- E[Hybrid RAG Orchestrator]
         E --- F[Gemini AI Interface]
-        G[Analytics Service] --- D
+        G[Analytics Engine] --- D
+        J[WebSocket Gateway] --- B
     end
 
     subgraph Storage ["Intelligence Fabric"]

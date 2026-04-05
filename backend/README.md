@@ -1,15 +1,15 @@
-# Vidzai Backend — Intelligence Layer
+# Vidzai Backend — Forensic Intelligence Layer
 
 The **Vidzai Backend** is a high-performance **FastAPI** application designed to power the Hybrid RAG (Retrieval-Augmented Generation) pipeline. It orchestrates intelligence extraction, graph traversal, vector retrieval, and LLM synthesis.
 
 ## 🏗️ Architecture Summary
 
 ### Core Components
-- **FastAPI Engine**: Async-first API handles multiple concurrent forensic queries.
-- **Hybrid RAG Orchestrator**: Merges structured graph context (Neo4j) with semantic vector context (Pinecone).
-- **Gemini 3 Flash Interface**: Powers the Named Entity Recognition (NER) and final answer synthesis.
-- **Async Services**: Dedicated background tasks for large-scale data ingestion and metrics computation.
-- **WebSocket Gateway**: Real-time broadcasting of forensic signals and intelligence alerts to connected clients.
+- **FastAPI Engine**: High-concurrency async service powering the investigation suite.
+- **Hybrid RAG Orchestrator**: Merges structured graph context (Neo4j) with semantic vector context (Pinecone) using **Chain-of-Thought (CoT)** reasoning.
+- **Gemini 3 Flash Interface**: Orchestrates NER, relationship extraction, and final ground-truth synthesis.
+- **Async Services**: Fault-tolerant background workers for large-scale ingestion and real-time metric computation.
+- **WebSocket Gateway**: Low-latency broadcasting of forensic signals and intelligence alerts (`Validated`, `Flagged`, `Risk`).
 
 ## 📁 Directory Structure
 - **`main.py`**: Entry point and middleware configuration.
@@ -45,17 +45,20 @@ The backend requires a `.env` file with:
 
 ### Advanced Hybrid Retrieval
 Vidzai's RAG doesn't just search text; it understands the topology of your data.
-- **Step 1**: Vector retrieval finds semantically similar nodes.
-- **Step 2**: Graph traversal explores 2-3 hops from those nodes to gather deep relationship context.
-- **Step 3**: LLM (Gemini) synthesizes a unified answer from both direct matches and structural paths.
+- **Step 1**: Vector retrieval via Pinecone finds semantically similar entry points.
+- **Step 2**: Graph traversal in Neo4j explores 2-3 hops from those nodes to gather deep relationship context (Identity, Communication, Topic).
+- **Step 3**: LLM (Gemini) executes **Chain-of-Thought (CoT)** reasoning with **strict grounding** to synthesize a unified answer from both direct matches and structural paths.
 
 ### Real-Time Analytics & Curation
 Background services compute forensic distribution metrics over your Neo4j graph, powering the cognitive dashboards in the frontend.
 
-The **Forensic Curation Protocol** (`/api/curation`) allows investigators to:
-- **Validate** intelligence nodes with high-confidence markers.
-- **Flag** anomalies for further manual review.
-- **Mark** severe risks for immediate escalation.
-- **Persist** metadata and audit trails directly into the knowledge graph.
+The **Forensic Curation Protocol** (`/api/curation`) enables deep investigative persistence:
+- **Validate**: Markers for high-confidence intelligence nodes.
+- **Flag**: Immediate identification of anomalies for manual triage.
+- **Risk**: Escalation of severe forensic signals.
+- **Audit**: Every curation action persists investigator metadata and timestamps directly into the graph schema.
+
+### Fault-Tolerant Retrieval
+The backend implements **independent lookup logic** for Neo4j and Pinecone. This ensures that even if one retrieval vector experiences latency or a schema mismatch (e.g., missing indices), the other can still provide partial context to the LLM, preventing full system timeouts.
 
 ---
