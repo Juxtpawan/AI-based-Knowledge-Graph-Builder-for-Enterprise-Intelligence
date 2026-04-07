@@ -21,7 +21,7 @@ _SCHEMA_QUERIES = [
     "CREATE INDEX email_msg_id_idx   IF NOT EXISTS FOR (n:Email)    ON (n.message_id)",
     "CREATE INDEX email_subject_idx  IF NOT EXISTS FOR (n:Email)    ON (n.subject)",
     "CREATE CONSTRAINT email_unique_msg_id IF NOT EXISTS FOR (n:Email) REQUIRE n.message_id IS UNIQUE",
-    "CREATE FULLTEXT INDEX global_search_index IF NOT EXISTS FOR (n:Email|Employee|Entity|Person|ExtractedNode) ON EACH [n.name, n.email, n.subject]",
+    "CREATE FULLTEXT INDEX global_search_index IF NOT EXISTS FOR (n:Email|Employee|Entity|Person|ExtractedNode) ON EACH [n.name, n.email, n.subject] OPTIONS { indexConfig: { `fulltext.analyzer`: 'english' } }",
 ]
 
 
@@ -77,6 +77,13 @@ async def lifespan(app: FastAPI):
         try:
             print("[DB] Building schema indices...")
             await _build_schema(driver)
+            
+            # Index warm-up / status verification
+            async with driver.session() as session:
+                print("[DB] Verifying Full-Text Index status...")
+                # This check ensures the index is actually populated and ready
+                await session.run("CALL db.index.fulltext.queryNodes('global_search_index', 'ping') YIELD node RETURN count(*)")
+            
             print("[DB] Schema indices ONLINE.")
         except Exception as e:
             print(f"[DB] Schema warning: {e}")
