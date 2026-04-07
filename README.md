@@ -9,6 +9,7 @@
 ![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)
 ![Neo4j](https://img.shields.io/badge/Neo4j-5.x-45818e?style=flat-square&logo=neo4j)
 ![Tailwind](https://img.shields.io/badge/Tailwind-4.x-38bdf8?style=flat-square&logo=tailwind-css)
+![Render](https://img.shields.io/badge/Render-Deployed-430098?style=flat-square&logo=render)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 **Transform Unstructured Enterprise Data into Intelligent Forensic Knowledge Graphs**
@@ -76,8 +77,9 @@ Vidzai leverages a **Hybrid RAG (Retrieval-Augmented Generation)** architecture 
 | **Vite** | 8.0 | Lightning-fast build tool |
 | **Tailwind CSS** | 4.2 | Utility-first styling (Glassmorphism) |
 | **Framer Motion** | 12.38 | High-fidelity animations |
-| **Neo4j NVL** | 2.10 | Native graph visualization engine |
+| **Neo4j NVL** | 1.10 | Native graph visualization engine |
 | **Zustand** | 5.0 | Atomic state management |
+| **Google Auth** | 0.13 | Secure Enterprise SSO |
 
 ### Backend
 | Technology | Version | Purpose |
@@ -128,8 +130,8 @@ graph TD
 
 3. **Miles3** (`miles3hybridRAG.py`): Knowledge synthesis.
    - Hybrid search combining graph & vector retrieval.
-   - LLM-powered answer generation.
-   - Interactive querying interface.
+   - LLM-powered answer generation (Gemini 3 Flash).
+   - Interactive querying interface with CoT logic.
 
 ---
 
@@ -184,6 +186,12 @@ GEMINI_AI_API_KEY=your_key
 **Manual Execution:**
 - **Terminal 1 (Backend):** `cd backend && python main.py`
 - **Terminal 2 (Frontend):** `cd frontend && npm run dev`
+
+### 5. Cloud Deployment (Render)
+This project is pre-configured for **Render**. Use the included `render.yaml` blueprint:
+1. Connect your GitHub repository to Render.
+2. Render will automatically detect the blueprint and set up the Web Service (Backend) and Static Site (Frontend).
+3. Remember to set the environment variables (API keys) in the Render dashboard.
 
 ---
 

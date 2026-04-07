@@ -7,9 +7,9 @@ The **Vidzai Backend** is a high-performance **FastAPI** application designed to
 ### Core Components
 - **FastAPI Engine**: High-concurrency async service powering the investigation suite.
 - **Hybrid RAG Orchestrator**: Merges structured graph context (Neo4j) with semantic vector context (Pinecone) using **Chain-of-Thought (CoT)** reasoning.
-- **Gemini 3 Flash Interface**: Orchestrates NER, relationship extraction, and final ground-truth synthesis.
+- **Gemini 3 Flash Interface**: Orchestrates NER, relationship extraction, and final ground-truth synthesis (Model: `gemini-3-flash-preview`).
 - **Async Services**: Fault-tolerant background workers for large-scale ingestion and real-time metric computation.
-- **WebSocket Gateway**: Low-latency broadcasting of forensic signals and intelligence alerts (`Validated`, `Flagged`, `Risk`).
+- **WebSocket Gateway**: Low-latency broadcasting of forensic signals and intelligence alerts (`/ws/analytics`).
 
 ## 📁 Directory Structure
 - **`main.py`**: Entry point and middleware configuration.
@@ -20,7 +20,7 @@ The **Vidzai Backend** is a high-performance **FastAPI** application designed to
 - **`notebooks/`**: The "Miles" series for step-by-step data transformation.
   - `miles1`: Data preprocessing & enrichment.
   - `miles2`: AI-driven entity & relationship extraction.
-  - `miles3`: Hybrid RAG implementation and query logic.
+  - `miles3`: Hybrid RAG implementation engine (`miles3hybridRAG.py`).
 
 ## 🚀 Setting Up the Environment
 
@@ -62,3 +62,6 @@ The **Forensic Curation Protocol** (`/api/curation`) enables deep investigative 
 The backend implements **independent lookup logic** for Neo4j and Pinecone. This ensures that even if one retrieval vector experiences latency or a schema mismatch (e.g., missing indices), the other can still provide partial context to the LLM, preventing full system timeouts.
 
 ---
+
+## ☁️ Deployment
+The backend is pre-configured for **Render** using the `render.yaml` file in the root directory. It uses a **Docker** runtime to ensure environment consistency across development and production.

@@ -21,10 +21,10 @@ The **Vidzai Frontend** is a professional-grade, high-fidelity **React** applica
 
 ## 🛠️ Technology Stack
 - **Framework**: React 19 (Concurrent Mode)
-- **Tooling**: Vite 8, ESLint (Modern Config)
-- **Styling**: Tailwind CSS 4.2, Framer Motion 12.38
-- **Visuals**: `@neo4j-nvl/react` 2.10, Recharts 2.x
-- **State**: Zustand 5.0 (Custom Atomic Store)
+- **Tooling**: Vite 8, ESLint (Modern Config), React Router 7
+- **Styling**: Tailwind CSS 4.2 (Glassmorphism), Framer Motion 12.38, Lucide React
+- **Visuals**: `@neo4j-nvl/react` 1.10, Recharts 3.8
+- **State & Auth**: Zustand 5.0, Google OAuth 2.0
 
 ## 📁 Directory Structure
 - **`src/components/graph/`**: All Bloom graph logic, canvas wrapper, and terminal.
@@ -56,3 +56,6 @@ npm run build
 ```
 
 ---
+
+## ☁️ Deployment
+The frontend is deployed as a **Static Site** on **Render**. The build process is automated via the `render.yaml` blueprint, which runs `npm install && npm run build` and serves the `dist/` directory.
