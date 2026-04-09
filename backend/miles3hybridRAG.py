@@ -239,7 +239,7 @@ async def retrieve_hybrid_context(query, driver=None):
     return context_str, graph_data
 
 # [SECTION: AI SYNTHESIS]
-async def generate_answer(query, driver=None):
+async def generate_answer_async(query, driver=None):
     """Generating a detailed report using Gemini and the hybrid context."""
     context_str, graph_data = await retrieve_hybrid_context(query, driver=driver)
     
@@ -299,7 +299,7 @@ async def generate_answer(query, driver=None):
 
 def generate_answer(query):
     """Synchronous interface for answer generation."""
-    return asyncio.run(generate_answer(query))
+    return asyncio.run(generate_answer_async(query))
 
 # [SECTION: LEGACY INGESTION]
 def build_vector_index(email_csv):
